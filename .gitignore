@@ -1,0 +1,8 @@
+# build outputs and licensed font files never go in this public repo
+source/deploybuild/
+source/newbiz/
+source/master/
+source/font/*.woff2
+source/font/*.otf
+*.ttf
+.DS_Store

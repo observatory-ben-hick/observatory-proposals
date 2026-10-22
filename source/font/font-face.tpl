@@ -1,0 +1,2 @@
+/* Neue Haas Grotesk Display Pro, built into the page so every visitor sees it, with or without the font installed */
+@font-face{font-family:"NHG Display";src:url(data:font/woff2;base64,{{B64}}) format("woff2");font-weight:100 900;font-style:normal;font-display:block}
