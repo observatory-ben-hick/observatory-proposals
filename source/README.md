@@ -7,7 +7,7 @@ www.theobservatory.je/originalthinking.
 - `msrc/config-newbiz.js`: the master's content (all copy, images, levels, contacts). Most briefs only touch this file.
 - `msrc/config-deploy.js`: the same content set up for the live site (film and poster served from the repo, email links open in the visitor's mail app).
 - `msrc/app.js`, `msrc/body.html`, `msrc/style.css`, `msrc/wordmark.js`, `symsrc/sym.js`: the page itself.
-- `site/assets`, `sj-assets`: images. The film lives once, in `../originalthinking/assets/showreel-v3c.mp4`.
+- `site/assets`, `sj-assets`: images. The film lives once, in `../originalthinking/assets/showreel-v4.mp4`.
 - `og/`: the share preview image (`og-originalthinking.jpg`) and the scripts that render it.
 - `tools/build_master.py`: builds the master page. `tools/deploy.py`: builds the live page into `../originalthinking/`. `tools/audit.js`: layout checks at every width.
 

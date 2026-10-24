@@ -54,7 +54,7 @@ window.PROPOSAL = {
     marquee: false,
     work: 'Our work encompasses: brand, design and identity, strategy and positioning, products and packaging, exhibitions and installations, websites and digital experiences, marketing, advertising and storytelling, data visualisations, film, sound and animation.',
     /* the showreel, edge to edge, playing on a loop. The pictures below stand in if the film is removed */
-    video: { src: 'assets/showreel-v3c.mp4', poster: 'assets/showreel-v3-poster.jpg', ratio: '16/9', label: 'The Observatory showreel 2026' },
+    video: { src: 'assets/showreel-v4.mp4', poster: 'assets/showreel-v3-poster.jpg', ratio: '16/9', label: 'The Observatory showreel 2026' },
     images: [
       { src: 'assets/otbtl-wide.jpg', position: '50% 50%', alt: 'Original thinking. Built to last. Printed in black over an orange block' }
     ]
