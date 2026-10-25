@@ -18,7 +18,7 @@ SRC = os.path.join(REPO, 'site-src', 'index.html')
 DEFAULT_IMG = ORIGIN + '/media/og-observatory.jpg'
 FONT = ('<link rel="preconnect" href="https://use.typekit.net" crossorigin>\n'
         '<link rel="stylesheet" href="https://use.typekit.net/lud1fnf.css">\n'
-        '<style>/* every headline in caps is Neue Haas Grotesk Display 65 Medium */h1,h2,h3,h4,h5,h6,b,strong,th,[data-split],.mega,.t-mega,.t-title,.h1,.mf-t,.fc-h,.tg,.cardt{font-weight:500}</style>\n')
+        '<style>/* 65 Medium: every headline in caps, every link with an arrow, every work title. Everything else 55 Roman (weight 400) */h1,h2,h3,h4,h5,h6,b,strong,th,[data-split],.mega,.t-mega,.t-title,.h1,.mf-t,.fc-h,.tg,.cardt,.tl,.tl *,.lk,.cs-back,.btn,.btn *,.tq-nav button,.nl a .t,.nl a .ar,.wk-c .ar,.wk-c span:nth-child(2),.wc .meta span:first-child,.wlist .c,.next .lab,.next .h1,[data-split] *,.fc-h,.fc-h *,.nl a .d,.nc>.dim:first-child,.np-meta .num,.post-date{font-weight:500!important}body{font-weight:400}</style>\n')
 CSP = ("default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://use.typekit.net https://p.typekit.net; "
        "font-src 'self' data: https://use.typekit.net; img-src 'self' data: https://p.typekit.net; media-src 'self'; connect-src 'self'; "
        "frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:")

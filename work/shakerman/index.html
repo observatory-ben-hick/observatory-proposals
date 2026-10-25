@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="/observatory-proposals/media/apple-touch-icon.png">
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/lud1fnf.css">
-<style>/* every headline in caps is Neue Haas Grotesk Display 65 Medium */h1,h2,h3,h4,h5,h6,b,strong,th,[data-split],.mega,.t-mega,.t-title,.h1,.mf-t,.fc-h,.tg,.cardt{font-weight:500}</style>
+<style>/* 65 Medium: every headline in caps, every link with an arrow, every work title. Everything else 55 Roman (weight 400) */h1,h2,h3,h4,h5,h6,b,strong,th,[data-split],.mega,.t-mega,.t-title,.h1,.mf-t,.fc-h,.tg,.cardt,.tl,.tl *,.lk,.cs-back,.btn,.btn *,.tq-nav button,.nl a .t,.nl a .ar,.wk-c .ar,.wk-c span:nth-child(2),.wc .meta span:first-child,.wlist .c,.next .lab,.next .h1,[data-split] *,.fc-h,.fc-h *,.nl a .d,.nc>.dim:first-child,.np-meta .num,.post-date{font-weight:500!important}body{font-weight:400}</style>
 <title>Shakerman · The Observatory</title>
 <meta name="description" content="Shakerman. Work by The Observatory, a creative studio in Jersey.">
 <meta name="author" content="The Observatory">
@@ -4403,7 +4403,7 @@ function vNews(){
     '<section class="wrap" style="margin-top:clamp(36px,5vw,72px)">'+newsList(S.news)+'</section>';
 }
 function vPost(n){
-  return '<section class="ph wrap"><a class="cs-back ul" href="#news">← All news</a><div class="cs-meta"><div><span class="dim">Date</span><span>'+esc(n.date)+'</span></div><div><span class="dim">Topic</span><span>'+esc(n.tag)+'</span></div></div>'+
+  return '<section class="ph wrap"><a class="cs-back ul" href="#news">← All news</a><div class="cs-meta"><div><span class="dim">Date</span><span class="post-date">'+esc(n.date)+'</span></div><div><span class="dim">Topic</span><span>'+esc(n.tag)+'</span></div></div>'+
     '<div class="grid post"><h1 class="h1" data-split>'+esc(n.title)+'</h1>'+(Array.isArray(n.text)?'':'<p class="body rv">'+esc(n.text)+'</p>')+'</div></section>'+
     (Array.isArray(n.text)?postBody(n):'');
 }
