@@ -1,2 +1,7 @@
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /site-src/
+Disallow: /source/
+Disallow: /originalthinking/
+
+Sitemap: https://www.theobservatory.je/sitemap.xml
