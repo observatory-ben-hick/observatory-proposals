@@ -8,7 +8,7 @@ Writes index.html, one folder per page (work/<id>/, news/<id>/, about/, news/, c
 description, canonical address, share tags and structured data, so search engines and
 link previews see each page without running the script.
 """
-import sys, os, re, json, html, shutil, threading, functools, datetime, tempfile
+import hashlib, sys, os, re, json, html, shutil, threading, functools, datetime, tempfile
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 
 REPO, BASE = sys.argv[1], sys.argv[2]
@@ -36,7 +36,19 @@ def page_html(base):
             '<link rel="apple-touch-icon" href="%smedia/apple-touch-icon.png">\n' % (CSP, base, base, base, base)) + FONT
     if PREVIEW:
         s = s.replace('<meta name="robots" content="index, follow, max-image-preview:large">', '<meta name="robots" content="noindex, nofollow">')
-    return head + s
+    return fingerprint(head + s, base)
+
+_FP = {}
+def fingerprint(s, base):
+    """Every media link carries a short fingerprint of the file's contents (?v=...), so files can be
+    cached for a long time and a changed file still shows at once: its address changes with it."""
+    def rep(m):
+        rel = m.group(1)
+        if rel not in _FP:
+            f = os.path.join(REPO, rel)
+            _FP[rel] = hashlib.sha1(open(f, 'rb').read()).hexdigest()[:8] if os.path.isfile(f) else ''
+        return m.group(0) + ('?v=' + _FP[rel] if _FP[rel] else '')
+    return re.sub(r'(?<=["\'(\s,=])' + re.escape(base) + r'(media/[A-Za-z0-9_./-]+\.(?:webp|jpe?g|png|gif|svg|mp4|webm))(?![A-Za-z0-9_./?-])', rep, s)
 
 def collect(base_html):
     """Load every page in a headless browser and read back what the site itself sets."""
