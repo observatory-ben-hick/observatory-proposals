@@ -4312,7 +4312,7 @@ function workOut(){
   var list=S.work,o=$('#wout');if(!o)return;
   if(wState.v==='grid')o.innerHTML='<div class="wgrid">'+list.map(function(w,i){return '<article class="wc'+(w.video&&!still?' vid':'')+'"><a href="#'+w.id+'" data-cur="View"><div class="ap">'+vid(w)+'</div><div class="meta"><span>'+esc(nice(w.client))+'</span><span class="dim num">'+n2(i)+'</span></div><h3 class="cardt">'+esc(w.statement)+'</h3></a></article>'}).join('')+'</div>';
   else o.innerHTML='<div class="wlist" id="wlist">'+list.map(function(w,i){return '<a href="#'+w.id+'" data-img="'+esc(w.image)+'"><span class="i num dim">'+n2(i)+'</span><span class="c">'+esc(nice(w.client))+'</span><span class="s">'+esc(w.statement)+'</span><span class="k dim">'+esc(w.discipline)+'</span><span class="y num dim">'+esc(w.year)+'</span></a>'}).join('')+'</div>';
-  reveal(o);listHover();collect();mountTiles();
+  reveal(o);listHover();collect();mountTiles();litTiles();
 }
 
 /* case study selection: a varied editorial grid. Rows are drawn from a set of compositions on the
@@ -4433,9 +4433,11 @@ var io=null;
 /* per-view motion: the statement, the testimonial slider and the marks that live in the page */
 var TOUCH=false;try{TOUCH=matchMedia('(hover: none)').matches}catch(e){}
 var litEl=null;
-/* on touch screens a first tap brings a tile into colour, a second tap opens the project */
-if(TOUCH)D.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.wk a,.wc a');if(!a)return;var t=a.parentNode;
-  if(t.classList.contains('lit'))return;e.preventDefault();if(litEl&&litEl!==t)litEl.classList.remove('lit');t.classList.add('lit');litEl=t},true);
+/* on touch screens one tap opens the project; tiles come into colour as they pass the middle of the screen */
+var litIO=null;
+function litTiles(){if(!TOUCH||!('IntersectionObserver' in W))return;if(litIO)litIO.disconnect();
+  litIO=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('lit',e.isIntersecting)})},{rootMargin:'-35% 0px -35% 0px'});
+  $$('.wk,.wc').forEach(function(t){litIO.observe(t)})}
 var LG=null,MF=null,TQ=null,BM=null,BMt=0,BMh=false,CM=null;
 function cl(v){return v<0?0:v>1?1:v}
 var filmIO=null;
@@ -4603,7 +4605,9 @@ var BASE=(D.querySelector('meta[name="obs-base"]')||{}).content||'/',ORIGIN='htt
 function U(id){if(id==='home')return BASE;if(ROUTES[id])return BASE+id+'/';if(byId(id))return BASE+'work/'+id+'/';if(newsById(id))return BASE+'news/'+id+'/';return null}
 function fixLinks(root){$$('a[href^="#"]',root||D).forEach(function(a){var u=U(a.getAttribute('href').slice(1));if(u)a.setAttribute('href',u)})}
 function relPath(){var p=location.pathname;if(p.indexOf(BASE)===0)p=p.slice(BASE.length);return p.replace(/index\.html$/,'').replace(/^\/+|\/+$/g,'')}
-(function(){var h=(location.hash||'').slice(1),u=h&&U(h);if(u&&W.history&&history.replaceState)history.replaceState(null,'',u)})();
+(function(){var h=(location.hash||'').slice(1),u=h&&U(h);if(u&&W.history&&history.replaceState)history.replaceState({d:0},'',u)})();
+function hd(){return (history.state&&history.state.d)||0}
+try{if(!history.state)history.replaceState({d:0},'')}catch(e){}
 function parse(){
   var p=relPath().split('/');
   if(!p[0])return{view:'home'};
@@ -4628,6 +4632,9 @@ function render(){
   var r=parse(),m=$('#main'),h='';
   if(r.view==='home')h=vHome();else if(r.view==='work')h=vWork();else if(r.view==='about')h=vAbout();else if(r.view==='news')h=vNews();else if(r.view==='contact')h=vContact();else if(r.view==='case')h=vCase(r.item);else if(r.view==='post')h=vPost(r.item);
   if(io){io.disconnect();io=null}
+  /* every page but home opens with a back arrow: one step back through the visit, or up to its section */
+  if(r.view!=='home'){var fb=r.view==='case'?'#work':r.view==='post'?'#news':'#home';
+    h=h.replace(/<a class="cs-back ul" href="#(?:work|news)">← All (?:work|news)<\/a>/,'').replace('<section class="ph wrap">','<section class="ph wrap"><a class="cs-back ul" data-back href="'+fb+'" aria-label="Go back">← Back</a>')}
   m.innerHTML=h;fixLinks(m);
   var sec=r.sec||r.view;
   $$('[data-r]').forEach(function(a){a.classList.toggle('on',a.getAttribute('data-r')===sec)});
@@ -4635,7 +4642,7 @@ function render(){
   setMeta(r);
   $('#foot').querySelector('.foot-cta').hidden=r.view==='contact';
   peek.classList.remove('on');
-  reveal(m);wire(r.view);mountExtras();if(typeof collect==='function')collect();
+  reveal(m);wire(r.view);mountExtras();litTiles();if(typeof collect==='function')collect();
 }
 var cur=$('#curtain'),busy=false;
 function go(){
@@ -4646,14 +4653,18 @@ function go(){
   setTimeout(function(){render();W.scrollTo(0,0);cur.classList.add('lift');setTimeout(function(){cur.classList.remove('cover','lift');busy=false},720)},560);
 }
 fixLinks(D);
+/* links drawn later (the Work grid and list, testimonials, the marquee) get real addresses too */
+if('MutationObserver' in W)new MutationObserver(function(ms){for(var i=0;i<ms.length;i++)if(ms[i].addedNodes.length){fixLinks(D);break}}).observe(D.body,{childList:true,subtree:true});
 D.addEventListener('click',function(e){
   if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
   var a=e.target.closest&&e.target.closest('a[href]');if(!a||a.target==='_blank'||a.hasAttribute('download'))return;
+  if(a.hasAttribute('data-back')&&hd()>0){e.preventDefault();history.back();return}
+  var hh=a.getAttribute('href');if(hh&&hh.charAt(0)==='#'){var hu=U(hh.slice(1));if(hu){e.preventDefault();a.setAttribute('href',hu);if(hu!==location.pathname){history.pushState({d:hd()+1},'',hu);go()}else{closeMenu();W.scrollTo({top:0,behavior:still?'auto':'smooth'})}return}}
   var u=new URL(a.href,location.href);
   if(u.origin!==location.origin||u.pathname.indexOf(BASE)!==0||/\.[a-z0-9]+$/i.test(u.pathname)||u.pathname.indexOf(BASE+'originalthinking')===0)return;
   if(u.pathname===location.pathname&&u.hash)return;
   e.preventDefault();
-  if(u.pathname!==location.pathname){history.pushState(null,'',u.pathname);go()}else{closeMenu();W.scrollTo({top:0,behavior:still?'auto':'smooth'})}
+  if(u.pathname!==location.pathname){history.pushState({d:hd()+1},'',u.pathname);go()}else{closeMenu();W.scrollTo({top:0,behavior:still?'auto':'smooth'})}
 });
 W.addEventListener('popstate',go);
 render();
