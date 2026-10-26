@@ -19,7 +19,7 @@ assert 'data:font/woff2' not in doc, 'embedded font not removed'
 doc=doc.replace('"NHG Display",','"neue-haas-grotesk-display",')
 doc=doc.replace('*,*:before,*:after{font-weight:400!important','*,*:before,*:after{font-weight:600!important')
 OG='https://www.theobservatory.je/'+SLUG
-OGI='https://observatory-ben-hick.github.io/observatory-proposals/'+SLUG+'/assets/og-'+SLUG+'.jpg?v=3'
+OGI='https://www.theobservatory.je/'+SLUG+'/assets/og-'+SLUG+'.jpg?v=3'
 doc=doc.replace('<meta name="theme-color" content="#F1EDE5">','<meta name="theme-color" content="#F1EDE5">\n<meta property="og:type" content="website">\n<meta property="og:title" content="The Observatory · Original thinking. Built to last.">\n<meta property="og:description" content="A creative partnership proposal from The Observatory.">\n<meta property="og:url" content="'+OG+'">\n<meta property="og:image" content="'+OGI+'">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image" content="'+OGI+'">',1)
 shutil.os.makedirs(ROOT+'/'+SLUG+'/assets',exist_ok=True); shutil.copy(S+'/og/og-'+SLUG+'.jpg',ROOT+'/'+SLUG+'/assets/og-'+SLUG+'.jpg')
 doc=doc.replace('<meta name="theme-color" content="#F1EDE5">','<meta name="theme-color" content="#F1EDE5">\n<link rel="preconnect" href="https://use.typekit.net" crossorigin>\n<link rel="stylesheet" href="https://use.typekit.net/lud1fnf.css">',1)
