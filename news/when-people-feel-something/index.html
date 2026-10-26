@@ -4341,9 +4341,7 @@ function vHome(){
     '<div class="wk2">'+f.map(function(w){var sb=sub(w);return '<article class="wk'+(w.video&&!still?' vid':'')+'"><a href="#'+w.id+'" data-cur="View"><div class="ap">'+vid(w)+'</div><p class="wk-c"><span class="ar">→</span><span>'+esc(nice(w.client))+'</span>'+(sb?'<span class="dim">'+esc(sc(sb))+'</span>':'')+'</p></a></article>'}).join('')+'</div>'+
     '<div class="wrap wk-more">'+tl('#work','View all '+S.work.length+' projects')+'</div></section>'+
   /* praise */
-  (V.length?'<section class="sec" id="tst"><div class="wrap">'+hd(['IN THEIR','WORDS'],'What founders and leaders say about working with us.')+'</div>'+
-    '<div class="pr" id="pr"><div class="pr-t" id="prT">'+V.map(function(t){var w=t.work&&byId(t.work);return '<figure class="pc"><figcaption><span class="pc-i">'+esc(initials(t.name))+'</span><span><span>'+esc(t.name)+'</span><span class="dim">'+esc(t.org)+'</span></span></figcaption><blockquote>“'+esc(t.q)+'”</blockquote><p class="pc-r dim">'+esc(t.role)+(w?' · <a class="ul" href="#'+w.id+'">See the work</a>':'')+'</p></figure>'}).join('')+'</div></div>'+
-    '<div class="wrap pr-ctl"><span class="num" id="prN">1 / '+V.length+'</span><div class="tq-nav"><button id="prP" aria-label="Previous testimonial">←</button><button id="prX" aria-label="Next testimonial">→</button></div></div></section>':'')+
+  vPr()+
   /* how we work */
   '<section class="wrap sec" id="how">'+hd(HW.headline)+
     '<div class="ix"><div class="ix-l"><p class="rv">Creative partnerships</p></div>'+
@@ -4380,6 +4378,10 @@ function vHow(){
     '<span class="rv">'+btn('#contact',X.cta+' →',true)+'</span></div>'+
     '<div class="hw-caps"><ul class="mf-caps">'+(S.hero.capabilities||[]).map(function(c,i){return '<li class="rv" style="--d:'+(i%2)+'"><span class="num">'+n2(i)+'</span><span>'+esc(c)+'</span></li>'}).join('')+'</ul></div></div></section>';
 }
+/* In their words: the testimonial cards, on Home and at the foot of Work */
+function vPr(){var V=S.testimonials||[];if(!V.length)return '';return '<section class="sec" id="tst"><div class="wrap">'+hd(['IN THEIR','WORDS'],'What founders and leaders say about working with us.')+'</div>'+
+    '<div class="pr" id="pr"><div class="pr-t" id="prT">'+V.map(function(t){var w=t.work&&byId(t.work);return '<figure class="pc"><figcaption><span class="pc-i">'+esc(initials(t.name))+'</span><span><span>'+esc(t.name)+'</span><span class="dim">'+esc(t.org)+'</span></span></figcaption><blockquote>“'+esc(t.q)+'”</blockquote><p class="pc-r dim">'+esc(t.role)+(w?' · <a class="ul" href="#'+w.id+'">See the work</a>':'')+'</p></figure>'}).join('')+'</div></div>'+
+    '<div class="wrap pr-ctl"><span class="num" id="prN">1 / '+V.length+'</span><div class="tq-nav"><button id="prP" aria-label="Previous testimonial">←</button><button id="prX" aria-label="Next testimonial">→</button></div></div></section>'}
 function vVoices(){
   var T=S.testimonials||[];if(!T.length)return '';
   return '<section class="wrap sec tst" id="tst" aria-roledescription="carousel" aria-label="Client testimonials"><div class="sec-head"><span class="idx">In their words</span><span class="ttl">Clients and collaborators</span><span class="end"></span></div>'+
@@ -4415,7 +4417,7 @@ function vWork(){
   return '<section class="ph wrap"><div class="ph-row"><h1 class="mega" data-split><span>WORK<sup class="num">'+S.work.length+'</sup></span></h1><p class="body rv" style="max-width:24em">What we created. What it made possible.</p></div>'+
     '<div class="ctl"><span class="lab">'+S.work.length+' projects</span>'+
     '<div class="views" role="group" aria-label="View"><button class="ul'+(wState.v==='grid'?' on':'')+'" data-v="grid">Grid</button><button class="ul'+(wState.v==='list'?' on':'')+'" data-v="list">List</button></div></div>'+
-    '<div class="wout" id="wout"></div></section>';
+    '<div class="wout" id="wout"></div></section>'+vPr();
 }
 function workOut(){
   var list=S.work,o=$('#wout');if(!o)return;
@@ -4720,7 +4722,7 @@ function U(id){if(id==='home')return BASE;if(ROUTES[id])return BASE+id+'/';if(by
 function fixLinks(root){$$('a[href^="#"]',root||D).forEach(function(a){var u=U(a.getAttribute('href').slice(1));if(u)a.setAttribute('href',u)})}
 function relPath(){var p=location.pathname;if(p.indexOf(BASE)===0)p=p.slice(BASE.length);return p.replace(/index\.html$/,'').replace(/^\/+|\/+$/g,'')}
 (function(){var h=(location.hash||'').slice(1),u=h&&U(h);if(u&&W.history&&history.replaceState)history.replaceState({d:0},'',u)})();
-function hd(){return (history.state&&history.state.d)||0}
+function navDepth(){return (history.state&&history.state.d)||0}
 try{if(!history.state)history.replaceState({d:0},'')}catch(e){}
 function parse(){
   var p=relPath().split('/');
@@ -4779,13 +4781,13 @@ if('MutationObserver' in W)new MutationObserver(function(ms){for(var i=0;i<ms.le
 D.addEventListener('click',function(e){
   if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
   var a=e.target.closest&&e.target.closest('a[href]');if(!a||a.target==='_blank'||a.hasAttribute('download'))return;
-  if(a.hasAttribute('data-back')&&hd()>0){e.preventDefault();history.back();return}
-  var hh=a.getAttribute('href');if(hh&&hh.charAt(0)==='#'){var hu=U(hh.slice(1));if(hu){e.preventDefault();a.setAttribute('href',hu);if(hu!==location.pathname){history.pushState({d:hd()+1},'',hu);go()}else{closeMenu();W.scrollTo({top:0,behavior:still?'auto':'smooth'})}return}}
+  if(a.hasAttribute('data-back')&&navDepth()>0){e.preventDefault();history.back();return}
+  var hh=a.getAttribute('href');if(hh&&hh.charAt(0)==='#'){var hu=U(hh.slice(1));if(hu){e.preventDefault();a.setAttribute('href',hu);if(hu!==location.pathname){history.pushState({d:navDepth()+1},'',hu);go()}else{closeMenu();W.scrollTo({top:0,behavior:still?'auto':'smooth'})}return}}
   var u=new URL(a.href,location.href);
   if(u.origin!==location.origin||u.pathname.indexOf(BASE)!==0||/\.[a-z0-9]+$/i.test(u.pathname)||u.pathname.indexOf(BASE+'originalthinking')===0)return;
   if(u.pathname===location.pathname&&u.hash)return;
   e.preventDefault();
-  if(u.pathname!==location.pathname){history.pushState({d:hd()+1},'',u.pathname);go()}else{closeMenu();W.scrollTo({top:0,behavior:still?'auto':'smooth'})}
+  if(u.pathname!==location.pathname){history.pushState({d:navDepth()+1},'',u.pathname);go()}else{closeMenu();W.scrollTo({top:0,behavior:still?'auto':'smooth'})}
 });
 W.addEventListener('popstate',go);
 render();
