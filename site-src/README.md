@@ -4,8 +4,7 @@ The whole site is one file, `site-src/index.html`. Its first script block (`wind
 
 ## Make a change (Claude does this)
 1. Edit `site-src/index.html`. Copy changes go in the `window.SITE` block. New images and films go in `media/work/` (optimised first), referenced as `__BASE__media/work/<file>`.
-2. Build: `python3 -I site-src/deploy.py "$PWD" /`
-   (use `/observatory-proposals/ --preview` only before the domain points here)
+2. Build: `python3 -I site-src/deploy.py "$PWD" /` (the site lives at the root of www.theobservatory.je; the `CNAME` file sets the domain, never delete it)
 3. Commit and push to `main`. GitHub Pages updates the live site in a minute or two.
 
 The build writes `index.html`, a folder per page (`work/<id>/`, `news/<id>/`, `about/`, `news/`, `contact/`), `404.html`, `sitemap.xml` and `robots.txt`. Never edit those by hand: the next build overwrites them. Removing a project or post from the CMS removes its page on the next build.
