@@ -19,8 +19,8 @@ DEFAULT_IMG = ORIGIN + '/media/og-observatory.jpg'
 FONT = ('<link rel="preconnect" href="https://use.typekit.net" crossorigin>\n'
         '<link rel="stylesheet" href="https://use.typekit.net/lud1fnf.css">\n'
         '<style>/* Adobe kit weights: 500 = 55 Roman, 600 = 65 Medium, 700 = 75 Bold. 75 Bold for every headline in caps, every link with an arrow, every work title and news dates; 65 Medium for client names on the home work tiles; 55 Roman for everything else */body,body *{font-weight:500!important}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6,html body b,html body strong,html body th,html body [data-split],html body .mega,html body .t-mega,html body .t-title,html body .h1,html body .mf-t,html body .fc-h,html body p.tg,html body .cardt,html body .tl,html body .tl *,html body .lk,html body .cs-back,html body .btn,html body .btn *,html body .tq-nav button,html body .nl a .t,html body .nl a .ar,html body .wc .meta span:first-child,html body .wlist .c,html body .next .lab,html body .next .h1,html body [data-split] *,html body .fc-h,html body .fc-h *,html body .nl a .d,html body .nc>.dim:first-child,html body .np-meta .num,html body .post-date{font-weight:700!important}html body .wk-c .ar,html body .wk-c span:nth-child(2){font-weight:600!important}</style>\n')
-CSP = ("default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://use.typekit.net https://p.typekit.net; "
-       "font-src 'self' data: https://use.typekit.net; img-src 'self' data: https://p.typekit.net; media-src 'self'; connect-src 'self'; "
+CSP = ("default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://use.typekit.net https://p.typekit.net; "
+       "font-src 'self' data: https://use.typekit.net; img-src 'self' data: https://p.typekit.net https://*.google-analytics.com https://*.googletagmanager.com; media-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; "
        "frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:")
 
 def page_html(base):
@@ -91,6 +91,14 @@ def head_for(r, m):
     elif m['kind'] == 'post':
         ld = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": m['h1'].strip() or title, "description": desc,
               "url": url, "image": img, "author": {"@id": ORIGIN + "/#org"}, "publisher": {"@id": ORIGIN + "/#org"}}
+    if r:
+        crumbs = [("The Observatory", ORIGIN + "/")]
+        sec = r.split('/')[0]
+        if '/' in r: crumbs.append((sec.capitalize(), ORIGIN + "/" + sec + "/"))
+        crumbs.append((title.split(' · ')[0] if '/' in r else sec.capitalize(), url))
+        bc = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+              {"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(crumbs)]}
+        ld = [x for x in (ld, bc) if x]
     return url, title, desc, img, ld
 
 def apply_head(s, url, title, desc, img, ld):
@@ -133,9 +141,10 @@ def main():
     open(os.path.join(REPO, '404.html'), 'w', encoding='utf-8').write(nf)
     today = datetime.date.today().isoformat()
     pri = lambda r: '1.0' if r == '' else '0.8' if r in ('work', 'about', 'contact', 'news') else '0.7' if r.startswith('work/') else '0.5'
-    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">']
     for r in routes:
-        sm.append('  <url><loc>%s/%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>' % (ORIGIN, r + '/' if r else '', today, pri(r)))
+        im = re.sub(r'^https://www\.theobservatory\.je/+', ORIGIN + '/', meta[r]['img'] or DEFAULT_IMG)
+        sm.append('  <url><loc>%s/%s</loc><lastmod>%s</lastmod><priority>%s</priority><image:image><image:loc>%s</image:loc></image:image></url>' % (ORIGIN, r + '/' if r else '', today, pri(r), html.escape(im)))
     sm.append('</urlset>')
     open(os.path.join(REPO, 'sitemap.xml'), 'w').write('\n'.join(sm) + '\n')
     rb = 'User-agent: *\nDisallow: /\n' if PREVIEW else ('User-agent: *\nAllow: /\nDisallow: /site-src/\nDisallow: /source/\nDisallow: /originalthinking/\n\nSitemap: %s/sitemap.xml\n' % ORIGIN)
