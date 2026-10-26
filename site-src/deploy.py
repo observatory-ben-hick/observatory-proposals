@@ -29,6 +29,7 @@ def page_html(base):
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
             '<meta http-equiv="Content-Security-Policy" content="%s">\n'
             '<meta name="referrer" content="strict-origin-when-cross-origin">\n'
+            '<meta name="google-site-verification" content="-VpKRAsjYBZ9gfo6TmifI1kYQbCXsEsVQbuSis7VphQ">\n'
             '<meta name="obs-base" content="%s">\n'
             '<link rel="icon" href="%smedia/favicon.svg" type="image/svg+xml">\n'
             '<link rel="icon" href="%smedia/favicon-32.png" sizes="32x32" type="image/png">\n'
