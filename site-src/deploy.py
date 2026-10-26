@@ -69,7 +69,8 @@ def collect(base_html):
               const it=(()=>{const p=location.pathname.split('/').filter(Boolean);if(p[0]==='work'&&p[1])return SITE.work.find(w=>w.id===p[1]);if(p[0]==='news'&&p[1])return SITE.news.find(n=>n.id===p[1]);return null})();
               return {title:document.title,desc:g('meta[name="description"]'),img:g('meta[property="og:image"]'),
                 h1:(document.querySelector('#main h1')||{}).textContent||'',
-                kind:it?(it.client?'case':'post'):'page',year:it&&it.year||'',date:it&&it.date||''}}""")
+                kind:it?(it.client?'case':'post'):'page',year:it&&it.year||'',date:it&&it.date||'',
+                hero:(()=>{const i=document.querySelector('#main img[fetchpriority="high"]');return i?{src:i.getAttribute('src'),srcset:i.getAttribute('srcset')||'',sizes:i.getAttribute('sizes')||''}:null})()}}""")
         b.close()
     srv.shutdown(); shutil.rmtree(tmp)
     return routes, out
@@ -101,7 +102,7 @@ def head_for(r, m):
         ld = [x for x in (ld, bc) if x]
     return url, title, desc, img, ld
 
-def apply_head(s, url, title, desc, img, ld):
+def apply_head(s, url, title, desc, img, ld, hero=None):
     def rep(pat, val):
         nonlocal s
         s2, n = re.subn(pat, lambda mm: mm.group(1) + esc(val) + mm.group(2), s, count=1)
@@ -116,6 +117,9 @@ def apply_head(s, url, title, desc, img, ld):
     rep(r'(<meta name="twitter:title" content=")[^"]*(">)', title)
     rep(r'(<meta name="twitter:description" content=")[^"]*(">)', desc)
     extra = '<meta property="og:image" content="%s">\n<meta property="og:image:alt" content="%s">\n<meta name="twitter:image" content="%s">\n' % (esc(img), esc(title), esc(img))
+    if hero and hero.get('src'):
+        # the first big picture starts downloading while the page is still arriving
+        extra += '<link rel="preload" as="image" href="%s"%s fetchpriority="high">\n' % (esc(hero['src']), (' imagesrcset="%s" imagesizes="%s"' % (esc(hero['srcset']), esc(hero['sizes'] or '100vw'))) if hero.get('srcset') else '')
     if ld: extra += '<script type="application/ld+json">%s</script>\n' % json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')
     return s.replace('<meta name="twitter:card"', extra + '<meta name="twitter:card"', 1)
 
@@ -125,7 +129,7 @@ def main():
     written = []
     for r in routes:
         url, title, desc, img, ld = head_for(r, meta[r])
-        out = apply_head(live, url, title, desc, img, ld)
+        out = apply_head(live, url, title, desc, img, ld, meta[r].get('hero'))
         d = os.path.join(REPO, r) if r else REPO
         os.makedirs(d, exist_ok=True)
         open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(out); written.append(r)
