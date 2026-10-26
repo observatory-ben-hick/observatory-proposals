@@ -399,6 +399,7 @@ html.anim .wall.done .cell:before{transition-delay:0s}
 .foot-row{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--g);margin-top:clamp(18px,2.4vw,36px);flex-wrap:wrap}
 .foot-row .roundel{--rs:clamp(9px,1vw,14px)}
 .foot-meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--ink);margin-top:clamp(24px,3vw,44px);padding-top:14px;font-size:var(--t-lab)}
+.foot-meta .soc{display:flex;gap:18px;flex-wrap:wrap}
 
 /* master marker: shown only while template is true */
 .tpl{position:fixed;left:var(--g);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:140;display:flex;align-items:center;gap:9px;background:var(--ink);color:var(--bg);font-size:12px;line-height:1.2;padding:9px 13px;border-radius:999px;max-width:calc(100vw - 2*var(--g))}

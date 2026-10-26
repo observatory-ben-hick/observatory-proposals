@@ -294,7 +294,7 @@ window.PROPOSAL = {
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--navh) + env(safe-area-inset-top,0px))}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;font-size:var(--t-body);line-height:1.45;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;font-synthesis:none}
 body.lock{overflow:hidden}
-*,*:before,*:after{font-weight:600!important;font-synthesis:none}
+*,*:before,*:after{font-weight:500!important;font-synthesis:none}
 [hidden]{display:none!important}
 h1,h2,h3,h4,p,ul,ol,figure{margin:0;padding:0;font-size:inherit}
 b,strong,em,i{font-style:normal}
@@ -677,6 +677,7 @@ html.anim .wall.done .cell:before{transition-delay:0s}
 .foot-row{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--g);margin-top:clamp(18px,2.4vw,36px);flex-wrap:wrap}
 .foot-row .roundel{--rs:clamp(9px,1vw,14px)}
 .foot-meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--ink);margin-top:clamp(24px,3vw,44px);padding-top:14px;font-size:var(--t-lab)}
+.foot-meta .soc{display:flex;gap:18px;flex-wrap:wrap}
 
 /* master marker: shown only while template is true */
 .tpl{position:fixed;left:var(--g);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:140;display:flex;align-items:center;gap:9px;background:var(--ink);color:var(--bg);font-size:12px;line-height:1.2;padding:9px 13px;border-radius:999px;max-width:calc(100vw - 2*var(--g))}
@@ -694,6 +695,7 @@ html.anim .wall.done .cell:before{transition-delay:0s}
 }
 </style>
 <script>(function(){var h=document.documentElement;h.classList.add('js');try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))h.classList.add('anim')}catch(e){}/* failsafe: if the page script has not finished, show everything as plain content */function bare(){if(!h.classList.contains('ok'))h.classList.remove('anim')}window.addEventListener('error',bare);setTimeout(bare,5000)})();</script>
+<style>html body h1,html body h2,html body h3,html body h4,html body .h1,html body .h2,html body .h3,html body .mega,html body [data-split],html body [data-split] *,html body .w,html body .marq-t,html body .marq-t *,html body a.btn,html body a.btn *,html body .foot-meta a{font-weight:700!important}</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -942,7 +944,7 @@ html.anim .wall.done .cell:before{transition-delay:0s}
     <p class="h2" id="footTag">ORIGINAL THINKING.<br>BUILT TO LAST.</p>
     
   </div>
-  <div class="foot-meta"><span>The Observatory × <span data-t="short"></span></span><span><span id="footKind"></span> · <span data-t="year"></span></span><a href="#top">Back to top ↑</a></div>
+  <div class="foot-meta"><span>The Observatory × <span data-t="short"></span></span><span><span id="footKind"></span> · <span data-t="year"></span></span><span class="soc"><a href="https://www.instagram.com/theobservatory/" target="_blank" rel="noopener me">Instagram ↗</a><a href="https://www.linkedin.com/company/the-observatory---visual-culture/" target="_blank" rel="noopener me">LinkedIn ↗</a><a href="https://x.com/beobserved" target="_blank" rel="noopener me">X ↗</a></span><a href="#top">Back to top ↑</a></div>
 </footer>
 
 <div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="Concept" hidden>
@@ -1361,11 +1363,11 @@ function startStage(){
   },3800);
 }
 
-/* ---------- footer wordmark: assembles letter by letter in the manner of the film's title ----------
+/* ---------- footer wordmark: the type, still (the assembly animation is retired; kept here switched off) ----------
    A red dot opens into the O, each letter after it arrives as a red shape (some flipped, the Rs jumping),
    then settles to ink. While the footer stays in view the word breaks apart and rebuilds every few seconds. */
 (function(){
-  var wm=$('.wm-foot');if(!wm||!ANIM||!wm.animate)return;
+  var wm=$('.wm-foot');return;
   var still=false;try{still=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
   if(still)return;
   var L=$$('.lt',wm),N=L.length,running=[],vis=false,loopT=null,busy=false;

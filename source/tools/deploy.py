@@ -17,7 +17,10 @@ n0=len(doc)
 doc=_re.sub(r'/\* Neue Haas Grotesk Display Pro, built into the page[^\n]*\n@font-face\{font-family:"NHG Display";src:url\(data:font/woff2;base64,[A-Za-z0-9+/=]+\) format\("woff2"\);[^}]*\}','',doc,count=1)
 assert 'data:font/woff2' not in doc, 'embedded font not removed'
 doc=doc.replace('"NHG Display",','"neue-haas-grotesk-display",')
-doc=doc.replace('*,*:before,*:after{font-weight:400!important','*,*:before,*:after{font-weight:600!important')
+doc=doc.replace('*,*:before,*:after{font-weight:400!important','*,*:before,*:after{font-weight:500!important')
+# same type rule as www.theobservatory.je: 75 Bold for headlines in caps and links with arrows, 55 Roman for everything else
+BOLD=','.join('html body '+x for x in ['h1','h2','h3','h4','.h1','.h2','.h3','.mega','[data-split]','[data-split] *','.w','.marq-t','.marq-t *','a.btn','a.btn *','.foot-meta a'])
+doc=doc.replace('</head>','<style>'+BOLD+'{font-weight:700!important}</style>\n</head>',1)
 OG='https://www.theobservatory.je/'+SLUG
 OGI='https://www.theobservatory.je/'+SLUG+'/assets/og-'+SLUG+'.jpg?v=3'
 doc=doc.replace('<meta name="theme-color" content="#F1EDE5">','<meta name="theme-color" content="#F1EDE5">\n<meta property="og:type" content="website">\n<meta property="og:title" content="The Observatory · Original thinking. Built to last.">\n<meta property="og:description" content="A creative partnership proposal from The Observatory.">\n<meta property="og:url" content="'+OG+'">\n<meta property="og:image" content="'+OGI+'">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image" content="'+OGI+'">',1)

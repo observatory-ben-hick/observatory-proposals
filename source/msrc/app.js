@@ -331,11 +331,11 @@ function startStage(){
   },3800);
 }
 
-/* ---------- footer wordmark: assembles letter by letter in the manner of the film's title ----------
+/* ---------- footer wordmark: the type, still (the assembly animation is retired; kept here switched off) ----------
    A red dot opens into the O, each letter after it arrives as a red shape (some flipped, the Rs jumping),
    then settles to ink. While the footer stays in view the word breaks apart and rebuilds every few seconds. */
 (function(){
-  var wm=$('.wm-foot');if(!wm||!ANIM||!wm.animate)return;
+  var wm=$('.wm-foot');return;
   var still=false;try{still=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
   if(still)return;
   var L=$$('.lt',wm),N=L.length,running=[],vis=false,loopT=null,busy=false;
