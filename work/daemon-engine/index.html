@@ -233,6 +233,10 @@ window.SITE = {
       "ar": "1584 / 672",
       "silent": true
     },
+    "links": [
+      { "label": "Request treatment", "url": "mailto:studio@daemonengine.com?subject=House%20of%20Dark%3A%20treatment%20request" },
+      { "label": "Request investor deck", "url": "mailto:studio@daemonengine.com?subject=House%20of%20Dark%3A%20investor%20deck%20request" }
+    ],
     "heroAr": "2000 / 1116",
     "galleryAr": [
       "1493 / 2000",
@@ -4501,6 +4505,8 @@ function vCase(w){
       '<div class="cs-fv"'+(w.film.ar?' style="aspect-ratio:'+esc(w.film.ar)+'"':'')+'><video muted loop playsinline webkit-playsinline preload="none" poster="'+esc(w.film.poster||'')+'" data-src="'+esc(w.film.src)+'"></video><button class="stage-play" id="csPlay" hidden aria-label="Play the film"><span>Play</span></button></div></div>':'')+
     (w.footImg?'<figure class="cs-foot'+(w.footImg.edge?' edge':'')+'"><img src="'+esc(w.footImg.img)+'" alt="'+esc(nice(w.client))+'" loading="lazy" style="aspect-ratio:'+esc(w.footImg.ar)+'"></figure>':'')+
     (w.link?'<div class="cs-link wrap"><a class="tl" href="'+esc(w.link.url)+'" target="_blank" rel="noopener"><span>'+esc(w.link.label)+'</span><i>↗</i></a></div>':'')+
+    /* links: a row of footer links; mail links open the email app, web links open in a new tab */
+    (w.links&&w.links.length?'<div class="cs-link wrap"><div class="np-links">'+w.links.map(function(k){var m=/^mailto:/.test(k.url);return '<a class="tl" href="'+esc(k.url)+'"'+(m?'':' target="_blank" rel="noopener"')+'><span>'+esc(k.label)+'</span><i>'+(m?'→':'↗')+'</i></a>'}).join('')+'</div></div>':'')+
     '<a class="next" href="#'+nx.id+'"><div class="grid"><span class="lab">Next project · '+esc(nice(nx.client))+'</span><p class="h1">'+esc(nx.statement)+'</p><div class="ap">'+img(nx.image,nx.client)+'</div></div></a></section>';
 }
 function vAbout(){
