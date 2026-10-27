@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <url><loc>https://www.theobservatory.je/</loc><lastmod>2026-10-27</lastmod><priority>1.0</priority><image:image><image:loc>https://www.theobservatory.je/media/og-observatory.jpg</image:loc></image:image></url>
-  <url><loc>https://www.theobservatory.je/work/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority><image:image><image:loc>https://www.theobservatory.je/media/og-observatory.jpg</image:loc></image:image></url>
-  <url><loc>https://www.theobservatory.je/about/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority><image:image><image:loc>https://www.theobservatory.je/media/og-observatory.jpg</image:loc></image:image></url>
-  <url><loc>https://www.theobservatory.je/news/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority><image:image><image:loc>https://www.theobservatory.je/media/og-observatory.jpg</image:loc></image:image></url>
-  <url><loc>https://www.theobservatory.je/contact/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority><image:image><image:loc>https://www.theobservatory.je/media/og-observatory.jpg</image:loc></image:image></url>
+  <url><loc>https://www.theobservatory.je/</loc><lastmod>2026-10-27</lastmod><priority>1.0</priority><image:image><image:loc>https://www.theobservatory.je/media/og-great-ideas.jpg</image:loc></image:image></url>
+  <url><loc>https://www.theobservatory.je/work/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority><image:image><image:loc>https://www.theobservatory.je/media/og-great-ideas.jpg</image:loc></image:image></url>
+  <url><loc>https://www.theobservatory.je/about/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority><image:image><image:loc>https://www.theobservatory.je/media/og-great-ideas.jpg</image:loc></image:image></url>
+  <url><loc>https://www.theobservatory.je/news/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority><image:image><image:loc>https://www.theobservatory.je/media/og-great-ideas.jpg</image:loc></image:image></url>
+  <url><loc>https://www.theobservatory.je/contact/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority><image:image><image:loc>https://www.theobservatory.je/media/og-great-ideas.jpg</image:loc></image:image></url>
   <url><loc>https://www.theobservatory.je/work/posidonia/</loc><lastmod>2026-10-27</lastmod><priority>0.7</priority><image:image><image:loc>https://www.theobservatory.je/media/work/pos-hero.webp</image:loc></image:image></url>
   <url><loc>https://www.theobservatory.je/work/ocean-culture/</loc><lastmod>2026-10-27</lastmod><priority>0.7</priority><image:image><image:loc>https://www.theobservatory.je/media/work/ocean-culture-1.webp</image:loc></image:image></url>
   <url><loc>https://www.theobservatory.je/work/timeless/</loc><lastmod>2026-10-27</lastmod><priority>0.7</priority><image:image><image:loc>https://www.theobservatory.je/media/work/timeless-wide.webp</image:loc></image:image></url>
