@@ -56,7 +56,7 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   if(H2.work){var wk=D.createElement('div');wk.className='wrap work';wk.innerHTML='<p class="lead rv">'+esc(H2.work)+'</p>';var mq2=$('.marq');if(mq2)mq2.parentNode.insertBefore(wk,mq2.nextSibling)}
   put('heroKind',LB.kind||'Creative partnership proposal');put('footKind',LB.kind||'Creative partnership proposal');
   lines('heroTag',H2.tagline||['ORIGINAL THINKING.','BUILT TO LAST.']);lines('footTag',(P.labels||{}).footTag||H2.tagline||['ORIGINAL THINKING.','BUILT TO LAST.']);
-  lines('kvLine',H2.tagline||['ORIGINAL THINKING.','BUILT TO LAST.']);
+  lines('kvLine',LB.kvLine||H2.tagline||['ORIGINAL THINKING.','BUILT TO LAST.']);
   /* labels.keyVisualShow:false removes the full-width picture and its panel above the contact section */
   if(LB.keyVisualShow===false){var kvs=$('section.kv');if(kvs)kvs.hidden=true}
   /* keyVisual image: labels.keyVisualImage = {src, alt, position} */

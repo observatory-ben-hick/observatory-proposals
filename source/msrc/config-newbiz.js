@@ -37,15 +37,17 @@ window.PROPOSAL = {
     workflowFile: 'Visual language',
     workflowMeta: 'Concepts v1 →',
     workflowNote: 'Illustration of a generative workflow',
+    kvLine: ['ORIGINAL THINKING.', 'BUILT TO LAST.'],   /* the line on the key visual panel */
     footTag: ['GREAT IDEAS.', 'GOOD COMPANY.'],   /* the footer line */
     workflowCount: 45
   },
 
   hero: {
     /* a paragraph, then two lines that keep their break */
+    tagline: ['GREAT IDEAS.', 'GOOD COMPANY.'],   /* the top section headline */
     intro: [
-      'All in. We get to know your business, challenge the obvious and get stuck into making it better, fast. We work alongside founders and ambitious teams to sharpen their story, build brands that stand out and turn attention into business.',
-      ['You know what your business can be.', 'We help the world see it.']
+      'Great creative work starts with understanding the business behind it.',
+      'We’re thinkers and doers. An independent creative partnership bringing decades of experience, original thinking and exceptional design to ambitious businesses.'
     ],
     prepared: false,
     navBrand: 'The Observatory × {short}',
