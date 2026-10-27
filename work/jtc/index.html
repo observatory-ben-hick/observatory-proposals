@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/media/apple-touch-icon.png?v=cd74af1e">
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/lud1fnf.css">
-<style>/* Adobe kit weights: 500 = 55 Roman, 600 = 65 Medium, 700 = 75 Bold. 75 Bold for every headline in caps, every link with an arrow, every work title and news dates; 65 Medium for client names on the home work tiles; 55 Roman for everything else */body,body *{font-weight:500!important}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6,html body b,html body strong,html body th,html body [data-split],html body .mega,html body .t-mega,html body .t-title,html body .h1,html body .mf-t,html body .fc-h,html body p.tg,html body .tl,html body .tl *,html body .lk,html body .cs-back,html body .btn,html body .btn *,html body .tq-nav button,html body .nl a .t,html body .nl a .ar,html body .wc .meta span:first-child,html body .wlist .c,html body .next .lab,html body .next .h1,html body [data-split] *,html body .fc-h,html body .fc-h *,html body .nl a .d,html body .nc>.dim:first-child,html body .np-meta .num,html body .post-date,html body .ft-soc a,html body .bos-t{font-weight:700!important}html body .wk-c .ar,html body .wk-c span:nth-child(2){font-weight:600!important}html body .wc h3.cardt{font-weight:500!important}</style>
+<style>/* Adobe kit weights: 500 = 55 Roman, 600 = 65 Medium, 700 = 75 Bold. 75 Bold for every headline in caps, every link with an arrow, every work title and news dates; 65 Medium for client names on the home work tiles; 55 Roman for everything else */body,body *{font-weight:500!important}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6,html body b,html body strong,html body th,html body [data-split],html body .mega,html body .t-mega,html body .t-title,html body .h1,html body .mf-t,html body .fc-h,html body p.tg,html body .tl,html body .tl *,html body .lk,html body .cs-back,html body .btn,html body .btn *,html body .tq-nav button,html body .nl a .t,html body .nl a .ar,html body .wc .meta span:first-child,html body .wlist .c,html body .next .lab,html body .next .h1,html body [data-split] *,html body .fc-h,html body .fc-h *,html body .nl a .d,html body .nc>.dim:first-child,html body .np-meta .num,html body .post-date,html body .ft-soc a,html body .bos-t,html body .bk2-h,html body .bk2-go,html body .bk2-go *{font-weight:700!important}html body .wk-c .ar,html body .wk-c span:nth-child(2){font-weight:600!important}html body .wc h3.cardt{font-weight:500!important}</style>
 <title>JTC Group · Global rebrand with CGI · The Observatory</title>
 <meta name="description" content="A global rebrand for JTC Group inspired by the Monarch butterfly migration: CGI creatures, a new visual language and a story of shared ownership.">
 <meta name="author" content="The Observatory">
@@ -3667,7 +3667,7 @@ window.SITE = {
     line: 'Tell us what you have in mind. You’ll hear straight back from us, personally.',
     /* book a call: paste the Calendly event link into url (e.g. https://calendly.com/the-observatory/20min).
        The calendar only loads when someone presses the button, so the page stays fast and no Calendly cookies are set until then. */
-    booking: { url: 'https://calendly.com/studio-theobservatory/20-minute-chat', label: 'Book a 20 minute call', note: '20 minutes with Ben and Sarah. UK time, Monday to Saturday, 8am to 6pm.' },
+    booking: { url: 'https://calendly.com/studio-theobservatory/20-minute-chat', label: 'Book a 20 minute call', headline: ['20 MINUTES WITH', 'BEN AND SARAH.'], note: 'Pick a time that suits you. Monday to Saturday, 8am to 6pm, UK time.' },
     emails: [
       { who: 'Ben · Creative direction and commercial thinking', address: 'ben@theobservatory.je' },
       { who: 'Sarah · Communications and brand storytelling', address: 'sarah@theobservatory.je' }
@@ -4088,6 +4088,19 @@ html.anim .mf-t .mw.on{opacity:1}
 @keyframes bosshine{0%,35%{background-position:100% 0}65%,100%{background-position:0 0}}
 @media(prefers-reduced-motion:reduce){.bos:before{animation:none;background:var(--accent)}.bos-t{animation:none;color:var(--bg);background:none}}
 /* book a call */
+.bk2{margin-top:clamp(36px,5vw,80px);background:var(--accent);color:var(--on-dark);margin-left:calc(-1 * max(var(--m),env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(var(--m),env(safe-area-inset-right,0px)));padding:clamp(18px,2vw,28px) max(var(--m),env(safe-area-inset-right,0px)) clamp(22px,2.6vw,40px) max(var(--m),env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:clamp(40px,6vw,100px)}
+.bk2-top{display:flex;justify-content:space-between;font-size:var(--t-lab)}
+.bk2-row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--g);align-items:end}
+.bk2-h{grid-column:1/span 7;margin:0;font-family:var(--display);font-size:clamp(36px,5.6vw,96px);line-height:.9;letter-spacing:-.02em}
+.bk2-act{grid-column:8/-1;display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.bk2-note{margin:0;font-size:var(--t-body);max-width:24em}
+.bk2-go{display:inline-flex;align-items:center;gap:14px;background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:18px 28px;font:inherit;font-size:clamp(17px,1.4vw,21px);cursor:pointer;transition:transform .5s var(--ease),background .3s}
+.bk2-go i{font-style:normal;transition:transform .5s var(--ease)}
+.bk2-go:hover{transform:translateY(-2px)}.bk2-go:hover i{transform:translateX(5px)}
+.bk2-go:focus-visible{outline:2px solid var(--bg);outline-offset:3px}
+.ct-or{margin:clamp(40px,5vw,72px) 0 0}
+
+@media(max-width:900px){.bk2-h,.bk2-act{grid-column:1/-1}.bk2-act{margin-top:8px}.bk2-go{width:100%;justify-content:space-between}}
 .bk-row{align-items:end}.bk-note{grid-column:1/span 6;margin:0}.bk-act{grid-column:8/-1;justify-self:end}
 .bk-cal{margin-top:clamp(28px,4vw,56px);border-top:1px solid var(--ink)}.bk-cal iframe{display:block;width:100%;height:clamp(700px,80vh,1000px);border:0;background:var(--bg)}
 @media(max-width:900px){.bk-note,.bk-act{grid-column:1/-1;justify-self:start}.bk-act{margin-top:20px}.bk-cal iframe{height:1050px}}
@@ -4805,13 +4818,17 @@ function postBody(n){
 function socRow(cls){var L=S.social||[];if(!L.length)return '';return '<div class="soc '+cls+'"><span class="lab dim">Follow</span><span class="soc-l">'+L.map(function(x){return '<a class="tl" href="'+esc(x.url)+'" target="_blank" rel="noopener me"><span>'+esc(x.label)+'</span><i>↗</i></a>'}).join('')+'</span></div>'}
 function vContact(){
   var C=S.contact;
+  var K=C.booking||{};
   return '<section class="ph wrap"><h1 class="h1" data-split>'+lines(C.headline)+'</h1>'+
+    /* book a call leads the page: an orange panel with one big button; the calendar opens beneath it */
+    (K.url?'<div class="bk2 rv" id="book"><div class="bk2-top"><span>Book a call</span><span>UK time</span></div>'+
+      '<div class="bk2-row"><p class="bk2-h">'+(K.headline||['20 MINUTES WITH','BEN AND SARAH.']).map(esc).join('<br>')+'</p>'+
+      '<div class="bk2-act"><p class="bk2-note">'+esc(K.note)+'</p><button class="bk2-go" type="button" id="bkGo"><span class="roll"><span>'+esc(K.label)+'</span></span><i aria-hidden="true">→</i></button></div></div></div>'+
+      '<div class="bk-cal" id="bkCal" hidden></div>':'')+
+    (K.url?'<p class="lab ct-or">Or get in touch directly</p>':'')+
     '<div class="grid cta"><div class="who"><p class="lab">'+esc(C.place)+'</p><p class="body">'+esc(C.line)+'</p>'+
     '<a class="btn" href="https://wa.me/'+esc(C.whatsapp.number)+'" target="_blank" rel="noopener"><span class="dot"></span><span class="roll"><span>'+esc(C.whatsapp.label)+'</span></span></a><span class="lab dim num" style="user-select:text">'+esc(C.whatsapp.display)+'</span></div>'+
     '<div class="act">'+C.emails.map(function(m){return '<div class="contact"><span class="lab dim">'+esc(m.who)+'</span><a class="mail ml" href="mailto:'+esc(m.address)+'?subject='+encodeURIComponent(C.subject)+'" aria-label="Email '+esc(m.who.split(' ')[0])+' at '+esc(m.address)+'"><span>'+esc(m.address)+'</span><i aria-hidden="true">→</i></a></div>'}).join('')+socRow('contact')+'</div></div></section>'+
-    (C.booking&&C.booking.url?'<section class="wrap sec bk" id="book"><div class="sec-head"><span class="idx">Book a call</span><span class="ttl"></span><span class="end">UK time</span></div>'+
-      '<div class="grid bk-row"><p class="bk-note body rv">'+esc(C.booking.note)+'</p><div class="bk-act rv"><button class="btn big" type="button" id="bkGo"><span class="dot"></span><span class="roll"><span>'+esc(C.booking.label)+'</span></span></button></div></div>'+
-      '<div class="bk-cal" id="bkCal" hidden></div></section>':'')+
     (C.image?'<figure class="ct-img rv"><img src="'+esc(C.image.img)+'" alt="'+esc(C.image.alt)+'" style="aspect-ratio:'+esc(C.image.ar)+'" loading="lazy" decoding="async"></figure>':'');
 }
 
