@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/media/apple-touch-icon.png?v=cd74af1e">
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/lud1fnf.css">
-<style>/* Adobe kit weights: 500 = 55 Roman, 600 = 65 Medium, 700 = 75 Bold. 75 Bold for every headline in caps, every link with an arrow, every work title and news dates; 65 Medium for client names on the home work tiles; 55 Roman for everything else */body,body *{font-weight:500!important}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6,html body b,html body strong,html body th,html body [data-split],html body .mega,html body .t-mega,html body .t-title,html body .h1,html body .mf-t,html body .fc-h,html body p.tg,html body .tl,html body .tl *,html body .lk,html body .cs-back,html body .btn,html body .btn *,html body .tq-nav button,html body .nl a .t,html body .nl a .ar,html body .wc .meta span:first-child,html body .wlist .c,html body .next .lab,html body .next .h1,html body [data-split] *,html body .fc-h,html body .fc-h *,html body .nl a .d,html body .nc>.dim:first-child,html body .np-meta .num,html body .post-date,html body .ft-soc a{font-weight:700!important}html body .wk-c .ar,html body .wk-c span:nth-child(2){font-weight:600!important}html body .wc h3.cardt{font-weight:500!important}</style>
+<style>/* Adobe kit weights: 500 = 55 Roman, 600 = 65 Medium, 700 = 75 Bold. 75 Bold for every headline in caps, every link with an arrow, every work title and news dates; 65 Medium for client names on the home work tiles; 55 Roman for everything else */body,body *{font-weight:500!important}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6,html body b,html body strong,html body th,html body [data-split],html body .mega,html body .t-mega,html body .t-title,html body .h1,html body .mf-t,html body .fc-h,html body p.tg,html body .tl,html body .tl *,html body .lk,html body .cs-back,html body .btn,html body .btn *,html body .tq-nav button,html body .nl a .t,html body .nl a .ar,html body .wc .meta span:first-child,html body .wlist .c,html body .next .lab,html body .next .h1,html body [data-split] *,html body .fc-h,html body .fc-h *,html body .nl a .d,html body .nc>.dim:first-child,html body .np-meta .num,html body .post-date,html body .ft-soc a,html body .bos-t{font-weight:700!important}html body .wk-c .ar,html body .wk-c span:nth-child(2){font-weight:600!important}html body .wc h3.cardt{font-weight:500!important}</style>
 <title>Creative partnerships, now open · The Observatory</title>
 <meta name="description" content="The Observatory now works as a creative partner: senior thinking, design and storytelling embedded in your business, not just answering the brief.">
 <meta name="author" content="The Observatory">
@@ -4077,6 +4077,14 @@ html.anim .mf-t .mw.on{opacity:1}
 @media(max-width:900px){.hw-caps{grid-column:1/-1}}
 @media(max-width:560px){.hw-caps .mf-caps{grid-template-columns:1fr}}
 
+/* footer badge: Built by Brand OS, reversed out, with an orange keyline running round it */
+@property --bos{syntax:'<angle>';initial-value:0deg;inherits:false}
+.bos{position:relative;display:inline-flex;align-items:center;padding:7px 14px 6px;border-radius:999px;background:var(--ink);color:var(--bg);line-height:1;isolation:isolate;align-self:center}
+.bos:before{content:"";position:absolute;inset:-1.5px;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--bos),transparent 0 62%,var(--accent) 80%,#ffb199 86%,var(--accent) 92%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:bosrun 3.6s linear infinite;z-index:-1}
+.bos-t{font-size:11px;letter-spacing:.14em;background:linear-gradient(100deg,var(--bg) 0 40%,#ffd4c4 50%,var(--bg) 60% 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:bosshine 3.6s ease-in-out infinite}
+@media(max-width:700px){.bos{order:9;margin-top:6px}}@keyframes bosrun{to{--bos:360deg}}
+@keyframes bosshine{0%,35%{background-position:100% 0}65%,100%{background-position:0 0}}
+@media(prefers-reduced-motion:reduce){.bos:before{animation:none;background:var(--accent)}.bos-t{animation:none;color:var(--bg);background:none}}
 /* book a call */
 .bk-row{align-items:end}.bk-note{grid-column:1/span 6;margin:0}.bk-act{grid-column:8/-1;justify-self:end}
 .bk-cal{margin-top:clamp(28px,4vw,56px);border-top:1px solid var(--ink)}.bk-cal iframe{display:block;width:100%;height:clamp(700px,80vh,1000px);border:0;background:var(--bg)}
@@ -4424,7 +4432,7 @@ html.anim .ap.in img{transform:none}
     <nav aria-label="Footer"><a class="ul" href="#work">Work</a><a class="ul" href="#about">About</a><a class="ul" href="#news">News</a><a class="ul" href="#contact">Contact</a></nav>
     <div class="ad"><span>ben@theobservatory.je</span><span>sarah@theobservatory.je</span><span class="dim">Jersey, Channel Islands</span><span class="ft-soc" id="ftSoc"></span></div>
   </div>
-  <div class="foot-meta"><span>© The Observatory</span><button type="button" class="ul ck-open" id="ckOpen">Cookie settings</button><span>Since 2005</span></div>
+  <div class="foot-meta"><span>© The Observatory</span><button type="button" class="ul ck-open" id="ckOpen">Cookie settings</button><span class="bos" role="img" aria-label="Built by Brand OS"><span class="bos-t" aria-hidden="true">BUILT BY BRAND OS</span></span><span>Since 2005</span></div>
 </footer>
 
 <div class="peek" id="peek"><img alt="" id="peekImg"></div>
