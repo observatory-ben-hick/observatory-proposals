@@ -69,20 +69,25 @@
 window.SITE = {
 
   hero: {
-    tagline: ['ORIGINAL THINKING.', 'BUILT TO LAST.'],
+    tagline: ['GREAT IDEAS.', 'GOOD COMPANY.'],
     /* the statement that lights up word by word under the showreel */
     statement: ['GOOD THINGS HAPPEN', 'WHEN WE THINK', 'BIGGER.'],
     capabilities: ['Strategy and commercial thinking', 'Creative direction and design', 'Digital experiences', 'Marketing and storytelling', 'Production and partnerships', 'Exhibitions and installations'],
+    /* the hero line under the wordmark: a short opener, then one sentence */
+    kicker: 'All in.',
     intro: [
-      'For those who refuse to settle for average.',
-      'You know how much work has gone into building your business. We think just as much thought should go into how the world sees it.',
-      'We’re The Observatory. An independent creative studio with the experience and imagination to do your ambitions justice.'
+      'We get to know your business, challenge the obvious and get stuck into making it better, fast.',
+      /* under the showreel: a statement, then the paragraphs, then the sign-off */
+      'Great creative work starts with understanding the business behind it.',
+      'We’re thinkers and doers. An independent creative partnership bringing decades of experience, original thinking and exceptional design to ambitious businesses.',
+      'We bring ideas before we’re asked, speak our minds and work at speed with you to make things happen. We put technology to work when it genuinely adds value.',
+      'Good thinking. Better business.'
     ],
     sign: '',
     cta: 'Explore our partnerships',
     /* the line of disciplines under the wordmark */
     services: ['Strategy', 'Brand and identity', 'Film and animation', 'Digital experiences', 'Exhibitions'],
-    reel: { src: '/media/films/f501f219d06c.mp4?v=b08ba1ba', fallback: '', poster: '/media/films/9204d0133479.jpg?v=95acd5d4', label: 'A selection of our work', mobile: '' },
+    reel: { src: '/media/films/showreel-v4-r2.mp4?v=66290ffd', fallback: '', poster: '/media/films/9204d0133479.jpg?v=95acd5d4', label: 'A selection of our work', mobile: '' },
     /* the reel fills the screen and plays as it scrolls into view. mobile: an optional
        vertical cut (1080 x 1920 MP4, H.264) for phones held upright. Without one,
        phones show the centre of the landscape film. */
@@ -3487,10 +3492,11 @@ window.SITE = {
 
   /* how we work: the creative partnership, without the prices */
   how: {
-    headline: ['MORE THAN A BRIEF.', 'BETTER THAN BUSINESS', 'AS USUAL.'],
+    headline: ['IN IT WITH YOU.'],
+    label: 'Creative Partnerships.',
     body: [
-      'We believe the best creative work comes from knowing the people behind a business, understanding what matters to them and being part of the conversation.',
-      'That’s why we’ve built The Observatory around creative partnerships. We work alongside founders and teams, bringing fresh thinking, senior creative direction and the right expertise when it’s needed. Sometimes that’s finding a clearer direction. Sometimes it’s creating something entirely new. Often it’s seeing an opportunity that was there all along. Whatever the challenge, we make the complicated feel simple and the ambitious feel possible.'
+      'We work directly with you, bringing ideas to the table, challenging decisions when it matters and taking responsibility for making things happen.',
+      'Together, we set the priorities, focus on what matters to your business and keep things moving.'
     ],
     cta: 'Explore how we work together'
   },
@@ -3504,6 +3510,8 @@ window.SITE = {
     body: 'For your business, that might eventually include connected brand and communications systems, audience insights, content management and automation. To be defined once the foundations are in.',
     panel: { count: 45, msg: 'Visual language concepts are now ready', file: 'Visual language', meta: 'Concepts v1 →', note: 'Illustration of a generative workflow', image: '/media/assets/fabric.webp?v=32135f4d' }
   },
+  /* the heading over the testimonials (Home and the foot of Work) */
+  testimonialsHead: { headline: ['THE COMPANY', 'WE KEEP.'], body: 'Sharper thinking, clearer direction and a creative partner who makes things happen. Hear it from our clients.' },
   testimonials: [
     { q: 'Sarah and Ben have been instrumental in our growth, helping us reflect who we truly are.', name: 'Tamsin Raine', role: 'CEO', org: 'Ocean Culture', work: 'ocean-culture' },
     { q: 'Outstanding. Creative masterminds with razor-sharp execution.', name: 'Mick Southworth', role: 'Executive Producer', org: 'Enriched Media Group', work: 'enriched-media' },
@@ -3708,7 +3716,7 @@ html.anim .ap .pv video{transform:scale(1.06);transition:transform 1.8s var(--ea
 html.anim .ap.in .pv video{transform:none}
 @media(hover:hover){.fi a:hover .ap.in .pv video,.wc a:hover .ap.in .pv video{transform:scale(1.03)}}
 .meta{display:flex;justify-content:space-between;gap:16px;font-size:var(--t-lab);border-top:1px solid var(--rule);padding-top:10px}
-.cardt{font-family:var(--display);font-size:var(--t-h3);line-height:1.04;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance}
+.cardt{font-family:var(--display);font-size:var(--t-h3);line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
 @media(hover:hover){.fi a .ap img,.wc a .ap img{transition:transform 1.2s var(--ease)}.fi a:hover .ap.in img,.wc a:hover .ap.in img{transform:scale(1.09)}}
 .more{margin-top:clamp(56px,8vw,130px);display:flex;justify-content:center}
 
@@ -3777,7 +3785,7 @@ html.anim .wall.in .cell:before{opacity:1;transform:none}
 .wlist a{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);align-items:baseline;padding:clamp(16px,1.8vw,24px) 0;border-bottom:1px solid var(--rule);transition:opacity .35s var(--ease)}
 .wlist .i{grid-column:span 1;font-size:var(--t-lab)}
 .wlist .c{grid-column:span 3}
-.wlist .s{grid-column:span 6;font-family:var(--display);font-size:clamp(18px,1.6vw,24px);line-height:1.1;text-transform:uppercase;letter-spacing:-.008em}
+.wlist .s{grid-column:span 6;font-family:var(--display);font-size:clamp(18px,1.6vw,24px);line-height:1.1;letter-spacing:-.008em}
 .wlist .k{grid-column:span 1;font-size:var(--t-lab)}
 .wlist .y{grid-column:span 1;font-size:var(--t-lab);text-align:right}
 .wlist.has a{opacity:.3}.wlist.has a:hover{opacity:1}
@@ -4057,7 +4065,7 @@ html.anim .tq.on .tq-by{opacity:1;transform:none;transition-delay:.35s}
 
 /* hero */
 .hx{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px var(--g);margin-top:clamp(18px,2.2vw,34px);align-items:baseline;font-size:var(--t-body);line-height:1.35}
-.hx-a{grid-column:1/span 4}
+.hx-k{display:block}.hx-a{grid-column:1/span 4}
 .hx-b{grid-column:6/span 5}
 .hx-b i{font-style:normal;color:var(--accent);margin:0 .35em}
 .hx-c{grid-column:11/span 2;justify-self:end}
@@ -4301,7 +4309,7 @@ html.anim .ap.in img{transform:none}
   </div>
   <div id="footWm"></div>
   <div class="foot-row">
-    <p class="tg">ORIGINAL THINKING.<br>BUILT TO LAST.</p>
+    <p class="tg">GREAT IDEAS.<br>GOOD COMPANY.</p>
     <nav aria-label="Footer"><a class="ul" href="#work">Work</a><a class="ul" href="#about">About</a><a class="ul" href="#news">News</a><a class="ul" href="#contact">Contact</a></nav>
     <div class="ad"><span>ben@theobservatory.je</span><span>sarah@theobservatory.je</span><span class="dim">Jersey, Channel Islands</span><span class="ft-soc" id="ftSoc"></span></div>
   </div>
@@ -4420,6 +4428,8 @@ if(S.prototype){var tp=$('#tpl');tp.hidden=false;$('span',tp).textContent=S.prot
 function tl(href,label,go,arrow){return '<a class="tl'+(arrow==='↓'?' dn':'')+'" href="'+href+'"'+(go?' data-go="'+go+'"':'')+'><span>'+esc(label)+'</span><i>'+(arrow||'→')+'</i></a>'}
 function hd(title,side,cta,mega){return '<div class="hd"><h2 class="'+(mega?'t-mega':'t-title')+'" data-split>'+lines(title)+'</h2>'+((side||cta)?'<div class="hd-side rv">'+(side?'<p>'+esc(side)+'</p>':'')+(cta||'')+'</div>':'')+'</div>'}
 /* descriptions in sentence case: only the first letter is a capital, acronyms like CGI, IP and Web3 stay as they are */
+/* statements in sentence case for the Work grid and list; brand names keep their capitals */
+function stmt(t){t=(t||'').toLowerCase().replace(/(^|[.?!]\s+)([a-z\u2019])/g,function(m,a,c){return a+c.toUpperCase()});['House of Dark','Ocean Culture'].forEach(function(n){t=t.replace(new RegExp('\\b'+n+'\\b','gi'),n)});return t}
 function sc(t){t=(t||'').split(' ').map(function(x){return /[A-Z].*[A-Z]|\d/.test(x)?x:x.toLowerCase()}).join(' ');return t.charAt(0).toUpperCase()+t.slice(1)}
 function sub(w){if(w.discipline)return w.discipline;var t=w.statement||'';if(!t||/TO COME/.test(t))return '';t=t.toLowerCase().replace(/\.$/,'');return t.charAt(0).toUpperCase()+t.slice(1)}
 var NAMES={'CLAIRE McQUE':'Claire McQue','P&O GOLDEN TIDE':'P&O Golden Tide','7TH SENSE':'7th Sense','AIM':'AIM','JTC':'JTC','10% FOR THE OCEAN':'10% for the Ocean','ST DUPONT':'S.T. Dupont','HOUSE OF DARK':'House of Dark','FLOWERS OF TOMORROW':'Flowers of Tomorrow','FUTURE OF HUMANITY':'Future of Humanity','UNION OF CONCERN':'Union of Concern','POINT OF CHANGE':'Point of Change','RELEASING SHADOWS + THE LOOM':'Releasing Shadows + The Loom','MAILLARD & CO':'Maillard & Co','INSPIRED BY NATURE':'Inspired by Nature','EGGS WITH LEGS':'Eggs with Legs','THE OBSERVATORY | INSPIRED BY NATURE':'The Observatory | Inspired by Nature','CLAIRE MITCHELL | RELEASING SHADOWS':'Claire Mitchell | Releasing Shadows','THE BANK JOB':'The Bank Job','S.T. DUPONT PARIS':'S.T. Dupont Paris','EGGS WITH LEGS | DAEMON ENGINE':'Eggs with Legs | Daemon Engine','POINT OF CHANGE | RED SQUIRREL PRODUCTIONS':'Point of Change | Red Squirrel Productions','ÉNIA DE SOUSA':'Énia de Sousa','JTC GROUP':'JTC Group','BARROW AT THE MANOR':'Barrow at the Manor','EQUILIBRIUM FUTURES':'Equilibrium Futures','THE GOOD STONE':'The Good Stone','7TH SENSE RESEARCH':'7th Sense Research','SPACEBOX':'SpaceBox'};
@@ -4452,11 +4462,11 @@ function vHome(){
   return ''+
   /* hero */
   '<section class="hero wrap"><h1 class="mega" id="wmTop">'+wmTop()+'</h1>'+
-    '<div class="hx"><p class="hx-a rv">'+esc(intro[0])+'</p><p class="hx-b lab-u rv" style="--d:1">'+(H.services||[]).map(esc).join('<i>•</i>')+'</p><span class="hx-c rv" style="--d:2">'+tl('#sel','See the work','sel','↓')+'</span></div></section>'+
+    '<div class="hx"><p class="hx-a rv">'+(H.kicker?'<span class="hx-k">'+esc(H.kicker)+'</span>':'')+esc(intro[0])+'</p><p class="hx-b lab-u rv" style="--d:1">'+(H.services||[]).map(esc).join('<i>•</i>')+'</p><span class="hx-c rv" style="--d:2">'+tl('#sel','See the work','sel','↓')+'</span></div></section>'+
   '<section class="stage" id="stage" aria-label="'+esc(H.reel.label)+'"><button class="stage-play" id="stPlay" hidden aria-label="Play the film"><span>Play</span></button></section>'+
   /* original thinking */
   '<section class="wrap sec">'+hd(H.tagline)+
-    '<div class="ix"><p class="ix-l rv">'+esc(H.sign)+'</p><div class="ix-r"><p class="t-state rv">'+esc(intro[1])+'</p><p class="t-body rv">'+esc(intro[2])+'</p>'+
+    '<div class="ix"><p class="ix-l rv">'+esc(H.sign)+'</p><div class="ix-r"><p class="t-state rv">'+esc(intro[1])+'</p>'+intro.slice(2).map(function(t){return '<p class="t-body rv">'+esc(t)+'</p>'}).join('')+
     '<div class="tls rv">'+tl('#how',H.cta||'Explore our partnerships','how')+tl('#sel','See the work','sel')+tl('#contact','Start a project')+'</div></div></div></section>'+
   /* selected work */
   '<section class="sec" id="sel">'+
@@ -4466,7 +4476,7 @@ function vHome(){
   vPr()+
   /* how we work */
   '<section class="wrap sec" id="how">'+hd(HW.headline)+
-    '<div class="ix"><div class="ix-l"><p class="rv">Creative partnerships</p></div>'+
+    '<div class="ix"><div class="ix-l"><p class="rv">'+esc(HW.label||'Creative partnerships')+'</p></div>'+
     '<div class="ix-r"><p class="t-state rv">'+esc(hb[0])+'</p>'+hb.slice(1).map(function(t){return '<p class="t-body rv">'+esc(t)+'</p>'}).join('')+
     '<div class="tls rv">'+tl('#contact',HW.cta||'Explore how we work together')+tl('#about','Meet the studio')+'</div></div></div>'+vLegend()+'</section>'+
   vClients()+
@@ -4502,7 +4512,7 @@ function vHow(){
     '<div class="hw-caps"><ul class="mf-caps">'+(S.hero.capabilities||[]).map(function(c,i){return '<li class="rv" style="--d:'+(i%2)+'"><span class="num">'+n2(i)+'</span><span>'+esc(c)+'</span></li>'}).join('')+'</ul></div></div></section>';
 }
 /* In their words: the testimonial cards, on Home and at the foot of Work */
-function vPr(){var V=S.testimonials||[];if(!V.length)return '';return '<section class="sec" id="tst"><div class="wrap">'+hd(['IN THEIR','WORDS'],'What founders and leaders say about working with us.')+'</div>'+
+function vPr(){var V=S.testimonials||[];if(!V.length)return '';return '<section class="sec" id="tst"><div class="wrap">'+hd((S.testimonialsHead||{}).headline||['IN THEIR','WORDS'],(S.testimonialsHead||{}).body||'')+'</div>'+
     '<div class="pr" id="pr"><div class="pr-t" id="prT">'+V.map(function(t){var w=t.work&&byId(t.work);return '<figure class="pc"><figcaption><span class="pc-i">'+esc(initials(t.name))+'</span><span><span>'+esc(t.name)+'</span><span class="dim">'+esc(t.org)+'</span></span></figcaption><blockquote>“'+esc(t.q)+'”</blockquote><p class="pc-r dim">'+esc(t.role)+(w?' · <a class="ul" href="#'+w.id+'">See the work</a>':'')+'</p></figure>'}).join('')+'</div></div>'+
     '<div class="wrap pr-ctl"><span class="num" id="prN">1 / '+V.length+'</span><div class="tq-nav"><button id="prP" aria-label="Previous testimonial">←</button><button id="prX" aria-label="Next testimonial">→</button></div></div></section>'}
 function vVoices(){
@@ -4550,15 +4560,15 @@ function newsList(arr){
 var wState={v:'grid'};
 try{var sv=localStorage.getItem('obs-view');if(sv==='list'||sv==='grid')wState.v=sv}catch(e){}
 function vWork(){
-  return '<section class="ph wrap"><div class="ph-row"><h1 class="mega" data-split><span>WORK<sup class="num">'+S.work.length+'</sup></span></h1><p class="body rv" style="max-width:24em">What we created. What it made possible.</p></div>'+
+  return '<section class="ph wrap"><div class="ph-row"><h1 class="mega" data-split><span>WORK<sup class="num">'+S.work.length+'</sup></span></h1><p class="body rv" style="max-width:24em">Good thinking. Better business.</p></div>'+
     '<div class="ctl"><span class="lab">'+S.work.length+' projects</span>'+
     '<div class="views" role="group" aria-label="View"><button class="ul'+(wState.v==='grid'?' on':'')+'" data-v="grid">Grid</button><button class="ul'+(wState.v==='list'?' on':'')+'" data-v="list">List</button></div></div>'+
     '<div class="wout" id="wout"></div></section>'+vPr();
 }
 function workOut(){
   var list=S.work,o=$('#wout');if(!o)return;
-  if(wState.v==='grid')o.innerHTML='<div class="wgrid">'+list.map(function(w,i){return '<article class="wc'+(w.video&&!still?' vid':'')+'"><a href="#'+w.id+'" data-cur="View"><div class="ap">'+vid(w)+'</div><div class="meta"><span>'+esc(nice(w.client))+'</span><span class="dim num">'+n2(i)+'</span></div><h3 class="cardt">'+esc(w.statement)+'</h3></a></article>'}).join('')+'</div>';
-  else o.innerHTML='<div class="wlist" id="wlist">'+list.map(function(w,i){return '<a href="#'+w.id+'" data-img="'+esc(w.image)+'"><span class="i num dim">'+n2(i)+'</span><span class="c">'+esc(nice(w.client))+'</span><span class="s">'+esc(w.statement)+'</span><span class="k dim">'+esc(w.discipline)+'</span><span class="y num dim">'+esc(w.year)+'</span></a>'}).join('')+'</div>';
+  if(wState.v==='grid')o.innerHTML='<div class="wgrid">'+list.map(function(w,i){return '<article class="wc'+(w.video&&!still?' vid':'')+'"><a href="#'+w.id+'" data-cur="View"><div class="ap">'+vid(w)+'</div><div class="meta"><span>'+esc(nice(w.client))+'</span><span class="dim num">'+n2(i)+'</span></div><h3 class="cardt">'+esc(stmt(w.statement))+'</h3></a></article>'}).join('')+'</div>';
+  else o.innerHTML='<div class="wlist" id="wlist">'+list.map(function(w,i){return '<a href="#'+w.id+'" data-img="'+esc(w.image)+'"><span class="i num dim">'+n2(i)+'</span><span class="c">'+esc(nice(w.client))+'</span><span class="s">'+esc(stmt(w.statement))+'</span><span class="k dim">'+esc(w.discipline)+'</span><span class="y num dim">'+esc(w.year)+'</span></a>'}).join('')+'</div>';
   reveal(o);listHover();collect();mountTiles();litTiles();
 }
 

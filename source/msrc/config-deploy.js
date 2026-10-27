@@ -37,13 +37,14 @@ window.PROPOSAL = {
     workflowFile: 'Visual language',
     workflowMeta: 'Concepts v1 →',
     workflowNote: 'Illustration of a generative workflow',
+    footTag: ['GREAT IDEAS.', 'GOOD COMPANY.'],   /* the footer line */
     workflowCount: 45
   },
 
   hero: {
     /* a paragraph, then two lines that keep their break */
     intro: [
-      'For those who refuse to settle for average. We work alongside founders and ambitious teams to sharpen their story, build brands that stand out and turn attention into business.',
+      'All in. We get to know your business, challenge the obvious and get stuck into making it better, fast. We work alongside founders and ambitious teams to sharpen their story, build brands that stand out and turn attention into business.',
       ['You know what your business can be.', 'We help the world see it.']
     ],
     prepared: false,
