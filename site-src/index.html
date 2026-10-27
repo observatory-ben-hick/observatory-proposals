@@ -3374,11 +3374,6 @@ window.SITE = {
         "full": true
       }
     ],
-    "footImg": {
-      "img": "__BASE__media/work/ec-foot.webp",
-      "ar": "2576 / 1444",
-      "full": true
-    },
     "link": {
       "url": "https://www.elizabethcookcourtartist.com/",
       "label": "Visit elizabethcookcourtartist.com"
@@ -4357,7 +4352,7 @@ OPT.m={"__BASE__media/work/10-percent-for-the-ocean-1.jpg":["__BASE__media/work/
 /* phone-sized copies: any plain <img src> with a smaller copy gets a srcset, so phones download about half the bytes and big screens still get the full file. Film stills wait until their film is near the screen, and phones get the smaller still */
 /* Elizabeth Cook: smaller copies */
 Object.assign(OPT.im,{"__BASE__media/work/ec-cover.webp":["__BASE__media/work/ec-cover.t.webp",720,1080],"__BASE__media/work/ec-hero.webp":["__BASE__media/work/ec-hero.t.webp",1200,2576]});
-Object.assign(OPT.m,{"__BASE__media/work/ec-foot.webp":["__BASE__media/work/ec-foot.m.webp",1200,2576],"__BASE__media/work/sel/ec-depp.webp":["__BASE__media/work/sel/ec-depp.m.webp",1200,2576],"__BASE__media/work/sel/ec-shipman.webp":["__BASE__media/work/sel/ec-shipman.m.webp",1200,2576],"__BASE__media/work/sel/ec-harris-framed.webp":["__BASE__media/work/sel/ec-harris-framed.m.webp",1200,2047],"__BASE__media/work/sel/ec-rooney-framed.webp":["__BASE__media/work/sel/ec-rooney-framed.m.webp",1200,1990],"__BASE__media/work/sel/ec-corridor.webp":["__BASE__media/work/sel/ec-corridor.m.webp",1200,2048],"__BASE__media/work/sel/ec-study.webp":["__BASE__media/work/sel/ec-study.m.webp",1200,1839],"__BASE__media/work/sel/ec-boardroom.webp":["__BASE__media/work/sel/ec-boardroom.m.webp",1200,2576]});
+Object.assign(OPT.m,{"__BASE__media/work/sel/ec-depp.webp":["__BASE__media/work/sel/ec-depp.m.webp",1200,2576],"__BASE__media/work/sel/ec-shipman.webp":["__BASE__media/work/sel/ec-shipman.m.webp",1200,2576],"__BASE__media/work/sel/ec-harris-framed.webp":["__BASE__media/work/sel/ec-harris-framed.m.webp",1200,2047],"__BASE__media/work/sel/ec-rooney-framed.webp":["__BASE__media/work/sel/ec-rooney-framed.m.webp",1200,1990],"__BASE__media/work/sel/ec-corridor.webp":["__BASE__media/work/sel/ec-corridor.m.webp",1200,2048],"__BASE__media/work/sel/ec-study.webp":["__BASE__media/work/sel/ec-study.m.webp",1200,1839],"__BASE__media/work/sel/ec-boardroom.webp":["__BASE__media/work/sel/ec-boardroom.m.webp",1200,2576]});
 function srcsets(h){h=h.replace(/ poster="([^"]+)"/g,function(a,u){var t=OPT.m[u.replace(/&amp;/g,'&')];return ' data-poster="'+u+'"'+(t?' data-psm="'+esc(t[0])+'" data-psmw="'+t[1]+'"':'')});return h.replace(/<img src="([^"]+)"(?![^>]*srcset)/g,function(a,u){var t=OPT.m[u.replace(/&amp;/g,"&")];return t?'<img src="'+u+'" srcset="'+esc(t[0])+' '+t[1]+'w, '+u+' '+t[2]+'w" sizes="100vw"':a})}
 function img(src,alt){if(!src)return '';var t=OPT.im[src];return '<span class="pi"><img '+(t?'data-src="'+esc(src)+'" data-sm="'+esc(t[0])+'" data-smw="'+t[1]+'"':'src="'+esc(src)+'"')+' alt="'+esc(alt||'')+'" loading="lazy" decoding="async"></span>'}
 function heroImg(src,alt){var t=OPT.im[src];return '<img src="'+esc(src)+'"'+(t&&t[2]?' srcset="'+esc(t[0])+' '+t[1]+'w, '+esc(src)+' '+t[2]+'w" sizes="100vw"':'')+' alt="'+esc(alt)+'" fetchpriority="high" decoding="async">'}
