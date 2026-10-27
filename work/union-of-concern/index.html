@@ -75,7 +75,7 @@ window.SITE = {
     /* the hero line under the wordmark: a short opener, then one sentence */
     kicker: 'All in.',
     intro: [
-      'We get to know your business, challenge the obvious and get stuck into making it better, fast.',
+      'We get to know your business, challenge\nthe obvious and get stuck into making it better, fast.',   /* \n marks the line break on larger screens */
       /* under the showreel: a statement, then the paragraphs, then the sign-off */
       'Great creative work starts with understanding the business behind it.',
       'We’re thinkers and doers. An independent creative partnership bringing decades of experience, original thinking and exceptional design to ambitious businesses.',
@@ -4068,8 +4068,8 @@ html.anim .tq.on .tq-by{opacity:1;transform:none;transition-delay:.35s}
 
 /* hero */
 .hx{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px var(--g);margin-top:clamp(18px,2.2vw,34px);align-items:baseline;font-size:var(--t-body);line-height:1.35}
-.hx-k{display:block}.hx-a{grid-column:1/span 4}
-.hx-b{grid-column:5/span 6}.hx-s{list-style:none;margin:0;padding:0;columns:2;column-gap:var(--g);line-height:1.25}.hx-s li{break-inside:avoid;padding:0 0 .62em 1em;position:relative}.hx-s li:before{content:"";position:absolute;left:0;top:.42em;width:5px;height:5px;border-radius:50%;background:var(--accent)}@media(max-width:640px){.hx-s{columns:1;font-size:13px}.hx-s li{padding-bottom:.5em}}@media(min-width:901px) and (max-width:1300px){.hx .hx-b{grid-column:5/-1}.hx .hx-c{grid-column:1/span 4;justify-self:start;grid-row:2}}
+.hx-k{display:inline}.hx-a{white-space:nowrap}@media(max-width:1100px){.hx-a{white-space:normal}.hx-br{display:none}}@media(min-width:1101px) and (max-width:1800px){.hx .hx-a{grid-column:1/span 5}.hx .hx-b{grid-column:6/-1}.hx .hx-c{grid-column:1/span 5;grid-row:2;justify-self:start}}.hx-a{grid-column:1/span 4}
+.hx-b{grid-column:5/span 6}.hx-s{list-style:none;margin:0;padding:0;columns:2;column-gap:var(--g);line-height:1.25}.hx-s li{break-inside:avoid;padding:0 0 .62em 1em;position:relative}.hx-s li:before{content:"";position:absolute;left:0;top:.42em;width:5px;height:5px;border-radius:50%;background:var(--accent)}@media(max-width:640px){.hx-s{columns:1;font-size:13px}.hx-s li{padding-bottom:.5em}}@media(min-width:901px) and (max-width:1100px){.hx .hx-b{grid-column:5/-1}.hx .hx-c{grid-column:1/span 4;justify-self:start;grid-row:2}}
 .hx-b i{font-style:normal;color:var(--accent);margin:0 .35em}
 .hx-c{grid-column:11/span 2;justify-self:end}
 @media(max-width:900px){.hx-a{grid-column:1/-1}.hx-b{grid-column:1/-1}.hx-c{grid-column:1/-1;justify-self:start}}
@@ -4465,7 +4465,7 @@ function vHome(){
   return ''+
   /* hero */
   '<section class="hero wrap"><h1 class="mega" id="wmTop">'+wmTop()+'</h1>'+
-    '<div class="hx"><p class="hx-a rv">'+(H.kicker?'<span class="hx-k">'+esc(H.kicker)+'</span>':'')+esc(intro[0])+'</p><ul class="hx-b hx-s lab-u rv" style="--d:1" aria-label="What we do">'+(H.services||[]).map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul><span class="hx-c rv" style="--d:2">'+tl('#sel','See the work','sel','↓')+'</span></div></section>'+
+    '<div class="hx"><p class="hx-a rv">'+(H.kicker?'<span class="hx-k">'+esc(H.kicker)+'</span> ':'')+esc(intro[0]).replace(/\n/g,'<br class="hx-br">')+'</p><ul class="hx-b hx-s lab-u rv" style="--d:1" aria-label="What we do">'+(H.services||[]).map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul><span class="hx-c rv" style="--d:2">'+tl('#sel','See the work','sel','↓')+'</span></div></section>'+
   '<section class="stage" id="stage" aria-label="'+esc(H.reel.label)+'"><button class="stage-play" id="stPlay" hidden aria-label="Play the film"><span>Play</span></button></section>'+
   /* original thinking */
   '<section class="wrap sec">'+hd(H.tagline)+
