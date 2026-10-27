@@ -3414,6 +3414,15 @@ window.SITE = {
     cta: 'Explore how we work together'
   },
 
+  /* Creativity first: the AIM technology partnership, on Home under the logo wall (from the proposal page) */
+  aim: {
+    label: 'Creativity first',
+    tag: 'Technology partnership',
+    headline: ['CREATIVITY FIRST.', 'TECHNOLOGY WHEN IT ADDS VALUE.'],
+    lead: 'Through our technology partnership with AIM, Automated Intelligence Models, we can also explore opportunities to introduce intelligent systems, AI and automation where there is clear commercial benefit.',
+    body: 'For your business, that might eventually include connected brand and communications systems, audience insights, content management and automation. To be defined once the foundations are in.',
+    panel: { count: 45, msg: 'Visual language concepts are now ready', file: 'Visual language', meta: 'Concepts v1 →', note: 'Illustration of a generative workflow', image: '/media/assets/fabric.webp?v=32135f4d' }
+  },
   testimonials: [
     { q: 'Sarah and Ben have been instrumental in our growth, helping us reflect who we truly are.', name: 'Tamsin Raine', role: 'CEO', org: 'Ocean Culture', work: 'ocean-culture' },
     { q: 'Outstanding. Creative masterminds with razor-sharp execution.', name: 'Mick Southworth', role: 'Executive Producer', org: 'Enriched Media Group', work: 'enriched-media' },
@@ -3872,6 +3881,30 @@ html.anim .mf-t .mw.on{opacity:1}
 @media(max-width:900px){.hw-caps{grid-column:1/-1}}
 @media(max-width:560px){.hw-caps .mf-caps{grid-template-columns:1fr}}
 
+/* Creativity first: AIM partnership card and generative panel */
+.ai-top .h1{grid-column:1/span 7;font-size:clamp(30px,4.7vw,82px);line-height:.94}
+.ai-top .txt{grid-column:8/span 5;align-self:end;display:flex;flex-direction:column;gap:1em}
+.ai-top .lead{font-size:clamp(20px,2.1vw,32px);margin:0}.ai-top .body{margin:0}
+.ai-row{margin-top:clamp(40px,6vw,88px);align-items:stretch}
+.ai-card{grid-column:1/span 7;background:var(--accent);color:var(--on-dark);padding:clamp(18px,2.4vw,36px);display:flex;flex-direction:column;justify-content:space-between;gap:clamp(28px,4vw,56px);min-height:clamp(260px,30vw,460px)}
+.ai-lock{flex:1;display:flex;align-items:center;justify-content:space-around;gap:16px}
+.ai-mark{display:block;width:clamp(96px,17vw,250px);aspect-ratio:789/344;background:currentColor;-webkit-mask:url(/media/assets/aim.png?v=20e8fef4) center/contain no-repeat;mask:url(/media/assets/aim.png?v=20e8fef4) center/contain no-repeat}
+.ai-sym{width:clamp(70px,11vw,160px);aspect-ratio:286/187;height:auto;flex:none;fill:currentColor}
+.ai-plus{font-size:clamp(22px,2.6vw,40px);line-height:1}
+.ai-labs{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.pf{grid-column:8/span 5;background:var(--tile);padding:clamp(18px,2.4vw,36px);display:flex;flex-direction:column;gap:18px;justify-content:space-between;min-height:clamp(260px,30vw,460px)}
+.pf-row{display:flex;align-items:center;gap:14px;font-size:15px}
+.pf-mk{display:block;width:46px;flex:none}
+.pf-msg{font-family:var(--display);font-size:var(--t-h3);line-height:1.1;letter-spacing:-.01em;max-width:14em;margin:0}
+.pf-card{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:end;background:var(--bg);padding:10px}
+.pf-card .im{width:clamp(96px,11vw,170px);aspect-ratio:16/9;overflow:hidden}
+.pf-card img{width:100%;height:100%;display:block;object-fit:contain}
+.pf-card .t{display:flex;justify-content:space-between;gap:10px;font-size:14px;align-items:flex-end}
+.pf-tag{font-size:12px}
+@media(max-width:560px){.pf-card .t{flex-direction:column;align-items:flex-start;gap:4px}.pf-card .t span{white-space:nowrap}}
+.pf.is-live .pf-msg,.pf.is-live .pf-card{opacity:0;transform:translateY(14px);transition:opacity .7s var(--ease),transform .9s var(--ease)}
+.pf.is-live.s1 .pf-msg,.pf.is-live.s2 .pf-card{opacity:1;transform:none}
+@media(max-width:900px){.ai-top .h1,.ai-top .txt,.ai-card,.pf{grid-column:1/-1}}
 /* testimonials: one voice at a time, set large, with the symbol keeping time */
 .tq-stage{display:grid}
 .tq{grid-area:1/1;display:flex;flex-direction:column;justify-content:space-between;gap:clamp(32px,5vw,72px);visibility:hidden;min-width:0}
@@ -4353,6 +4386,7 @@ function vHome(){
     '<div class="ix-r"><p class="t-state rv">'+esc(hb[0])+'</p>'+hb.slice(1).map(function(t){return '<p class="t-body rv">'+esc(t)+'</p>'}).join('')+
     '<div class="tls rv">'+tl('#contact',HW.cta||'Explore how we work together')+tl('#about','Meet the studio')+'</div></div></div>'+vLegend()+'</section>'+
   vClients()+
+  vAim()+
   /* the studio */
   '<section class="wrap sec">'+hd(['THE STUDIO'],null,null,true)+
     '<div class="ix"><div class="ix-l st-pp">'+A.people.map(function(p){return '<figure><div class="ap">'+img(p.image,p.name)+'</div><span>'+esc(p.name.charAt(0)+p.name.slice(1).toLowerCase().replace(/ (\w)/,function(m,c){return ' '+c.toUpperCase()}))+'</span><span class="dim">'+esc(p.role)+'</span></figure>'}).join('')+'</div>'+
@@ -4403,6 +4437,19 @@ function vVoiceList(){
     '<div class="tg-list">'+T.map(function(t,i){return '<figure class="rv" style="--d:'+(i%2)+'"><blockquote>“'+esc(t.q)+'”</blockquote><figcaption><span>'+esc(t.name)+'</span><span class="dim">'+esc(t.role)+', '+esc(t.org)+'</span></figcaption></figure>'}).join('')+'</div></section>';
 }
 function marqSet(){return S.work.map(function(w){return '<a href="#'+w.id+'">'+esc(nice(w.client))+'</a><svg viewBox="0 0 286 188" aria-hidden="true"><use href="#sym"/></svg>'}).join('')}
+/* Creativity first: the AIM partnership card and the generative panel, as on the proposal page */
+function vAim(){
+  var A=S.aim;if(!A)return '';var P=A.panel||{};
+  return '<section class="wrap sec ai" id="aim"><div class="sec-head"><span class="idx">'+esc(A.label)+'</span><span class="ttl"></span><span class="end">'+esc(A.tag)+'</span></div>'+
+    '<div class="grid ai-top"><h2 class="h1" data-split>'+(A.headline||[]).map(esc).join('<br>')+'</h2><div class="txt rv">'+(A.lead?'<p class="lead">'+esc(A.lead)+'</p>':'')+(A.body?'<p class="body">'+esc(A.body)+'</p>':'')+'</div></div>'+
+    '<div class="grid ai-row"><div class="ai-card rv"><div class="ai-lock"><span class="ai-mark" role="img" aria-label="AIM"></span><span class="ai-plus" aria-hidden="true">+</span>'+
+      '<svg class="ai-sym" viewBox="0 0 286 188" role="img" aria-label="The Observatory"><use href="#sym"/></svg></div>'+
+      '<div class="ai-labs"><span>Automated</span><span>Intelligence</span><span>Models</span></div></div>'+
+    '<div class="pf rv" id="pf" style="--d:1"><div class="pf-row"><span class="pf-mk" id="pfMk" aria-hidden="true"></span><span>Thinking <span class="num" id="pfS">'+(P.count||12)+'s</span></span></div>'+
+      '<p class="pf-msg">'+esc(P.msg)+'</p>'+
+      '<div class="pf-card"><div class="im">'+(P.image?'<img src="'+esc(P.image)+'" alt="" loading="lazy" decoding="async">':'')+'</div><div class="t"><span>'+esc(P.file)+'</span><span>'+esc(P.meta)+'</span></div></div>'+
+      '<span class="pf-tag">'+esc(P.note)+'</span></div></div></section>';
+}
 function vClients(){
   var cells='';for(var r=0;r<7;r++)for(var c=0;c<6;c++)cells+='<div class="cell" style="--c:'+c+';--r:'+r+'"></div>';
   return '<section class="wrap sec">'+hd(['THE COMPANY','WE KEEP.'],'Global names and independent originals. Two decades of brands built on original thinking.',tl('#work','See the work'))+
@@ -4579,6 +4626,15 @@ function fltTick(){fltRaf=0;var vh=W.innerHeight;
   var p=((r.top+r.height/2)-vh/2)/vh;el.style.transform='translate3d(0,'+(p*parseFloat(el.getAttribute('data-sp'))*100).toFixed(2)+'%,0)'}}
 W.addEventListener('scroll',function(){if((FLT.length||$('.mas-fl.night'))&&!fltRaf)fltRaf=requestAnimationFrame(fltTick)},{passive:true});
 function mountExtras(){
+  /* the generative panel: the symbol thinks while the counter climbs, then the result arrives; repeats while on screen */
+  (function(){var pf=$('#pf');if(!pf||!ANIM)return;var sEl=$('#pfS'),TOP=Math.max(1,parseInt(((S.aim||{}).panel||{}).count,10)||12),ctl=null,vis=false,busy=false,on=false;
+    try{ctl=SYM.mount($('#pfMk'))}catch(e){}
+    function turn(){if(!ctl)return;if(!on){ctl.to(0,620);return}ctl.to(ctl.p>.5?0:1,620,function(){setTimeout(turn,90)})}
+    function cycle(){if(busy||!vis||!pf.isConnected)return;busy=true;pf.classList.add('is-live');pf.classList.remove('s1','s2');on=true;turn();
+      var k=0,iv=setInterval(function(){if(!pf.isConnected){clearInterval(iv);return}k++;sEl.textContent=k+'s';if(k>=TOP){clearInterval(iv);on=false;if(ctl)ctl.to(0,620);
+        setTimeout(function(){pf.classList.add('s1')},350);setTimeout(function(){pf.classList.add('s2')},900);setTimeout(function(){busy=false;cycle()},6500)}},Math.max(40,Math.round(2520/TOP)))}
+    try{new IntersectionObserver(function(e){vis=e[0].isIntersecting;if(vis)cycle()},{threshold:.4}).observe(pf)}catch(e){}
+  })();
   FLT=FLTOK?$$('.flt'):[];if(FLT.length||$('.mas-fl.night'))fltTick();
   MF=null;TQ=null;LG=null;mountFilm();
   var cw=$('.cs-wide[data-auto] img');if(cw){var fit=function(){if(cw.naturalWidth&&cw.naturalWidth>cw.naturalHeight)cw.parentNode.style.setProperty('--ar',cw.naturalWidth+' / '+cw.naturalHeight)};if(cw.complete)fit();else cw.addEventListener('load',fit)}
