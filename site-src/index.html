@@ -3511,7 +3511,8 @@ window.SITE = {
   ],
 
   about: {
-    headline: ['WE BUILD', 'WORLDS.'],
+    headline: ['GREAT IDEAS.', 'GOOD COMPANY.'],
+    intro: 'There’s a reason we’re called The Observatory. We’re curious by nature, good at seeing what others miss and even better at figuring out what to do about it. We bring experienced creative minds directly into your business to solve problems, spot opportunities and get things moving. Whether you’re launching, scaling or changing direction, we think fast, get stuck in and turn ambitious ideas into work that makes a difference.',
     statement: [
       'We’ve spent decades creating with some of the world’s most iconic brands, NASA, Google, Coca-Cola, Land Rover, John Lewis, shaping stories where imagination meets the edge of what’s possible. But now, we’re following the tide back to where we belong.',
       'As islanders, we’re happiest near or in the sea. And we’re committing more of our time, talent and creative energy to work with impact brands, movements and people who, like us, feel most alive in motion, whether on waves, wheels, or wandering new frontiers.',
@@ -3811,8 +3812,8 @@ html.anim .wall.in .cell:before{opacity:1;transform:none}
 @media(max-width:800px){.next .h1{grid-column:1/-1}.next .ap{grid-column:1/span 6}}
 
 /* about */
-.ab-top .h1{grid-column:1/span 8}
-.ab-top .lead{grid-column:8/span 5;align-self:end;margin-top:clamp(24px,3vw,48px)}
+.ab-top .h1{grid-column:1/-1}
+.ab-top .lead{grid-column:6/span 7;align-self:end;margin-top:clamp(28px,3.4vw,56px);font-size:clamp(20px,2.1vw,32px);line-height:1.2;max-width:none}
 @media(max-width:900px){.ab-top .h1,.ab-top .lead{grid-column:1/-1}}
 .st-side{grid-column:1/span 4;position:sticky;top:calc(var(--navh) + 28px);align-self:start;font-size:var(--t-lab)}
 .st-copy{grid-column:6/span 7;display:flex;flex-direction:column;gap:1.1em}
@@ -4502,7 +4503,7 @@ function vVoices(){
 }
 function vVoiceList(){
   var T=S.testimonials||[];if(!T.length)return '';
-  return '<section class="wrap sec"><div class="sec-head"><span class="idx">In their words</span><span class="ttl">Clients and collaborators</span><span class="end"></span></div>'+
+  return '<section class="wrap sec"><div class="sec-head"><span class="idx">What people say</span><span class="ttl">Clients and collaborators</span><span class="end"></span></div>'+
     '<div class="tg-list">'+T.map(function(t,i){return '<figure class="rv" style="--d:'+(i%2)+'"><blockquote>“'+esc(t.q)+'”</blockquote><figcaption><span>'+esc(t.name)+'</span><span class="dim">'+esc(t.role)+', '+esc(t.org)+'</span></figcaption></figure>'}).join('')+'</div></section>';
 }
 function marqSet(){return S.work.map(function(w){return '<a href="#'+w.id+'">'+esc(nice(w.client))+'</a><svg viewBox="0 0 286 188" aria-hidden="true"><use href="#sym"/></svg>'}).join('')}
@@ -4627,7 +4628,7 @@ function vCase(w){
 }
 function vAbout(){
   var A=S.about;
-  return '<section class="ph wrap"><div class="grid ab-top"><h1 class="h1" data-split>'+lines(A.headline)+'</h1><p class="lead rv">Ben and Sarah Hickingbotham. Creative partners, island based, working worldwide since 2005.</p></div>'+
+  return '<section class="ph wrap"><div class="grid ab-top"><h1 class="h1" data-split>'+lines(A.headline)+'</h1><p class="lead rv">'+esc(A.intro||'')+'</p></div>'+
     '<div class="grid pair">'+A.people.map(person).join('')+'</div></section>'+
     '<section class="wrap sec"><div class="sec-head"><span class="idx">Who we are</span><span class="ttl">Since 2005</span><span class="end"></span></div>'+
     '<div class="grid"><p class="st-side">Ben and Sarah Hickingbotham<br><span class="dim">Jersey, Channel Islands</span></p><div class="st-copy">'+A.statement.map(function(p,i){return '<p class="'+(i?'body':'lead')+' rv">'+esc(p)+'</p>'}).join('')+'</div></div></section>'+
