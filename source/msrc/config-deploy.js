@@ -92,11 +92,8 @@ window.PROPOSAL = {
     nav: 'Where do we start',
     label: 'Where do we start',
     headline: ['WHERE DO', 'WE START?'],
-    lead: 'From ambition to action.',
-    body: [
-      'Every business has a vision of what it could become. Our job is to understand that ambition, uncover the opportunities others might miss and bring the right ideas to life.',
-      'We work alongside your team, combining insight, strategy, creativity and technology to build something distinctive, purposeful and commercially valuable.'
-    ],
+    lead: 'We sharpen what you’re selling, make a stronger case for why it matters and create the work that helps you win business. From finding your position in the market to launching your next big idea, we’re experienced creative partners who take responsibility for getting things done.',
+    body: '',
     connector: 'Three connected stages. One clear path.',
     map: false,   /* true shows the three stage buttons under the line */
     focusLabel: 'Our focus',
