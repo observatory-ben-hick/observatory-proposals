@@ -74,7 +74,7 @@ def collect(base_html):
         b = p.chromium.launch(); pg = b.new_page()
         pg.goto(root); pg.wait_for_timeout(600)
         ids = pg.evaluate("({work:SITE.work.map(w=>w.id),news:SITE.news.map(n=>n.id)})")
-        routes = [''] + ['work', 'about', 'news', 'contact'] + ['work/' + i for i in ids['work']] + ['news/' + i for i in ids['news']]
+        routes = [''] + ['work', 'about', 'news', 'contact', 'privacy'] + ['work/' + i for i in ids['work']] + ['news/' + i for i in ids['news']]
         for r in routes:
             pg.goto(root + (r + '/' if r else '')); pg.wait_for_timeout(250)
             out[r] = pg.evaluate("""()=>{const g=(s,a)=>{const m=document.head.querySelector(s);return m?m.getAttribute(a||'content'):''};
