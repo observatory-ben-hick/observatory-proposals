@@ -125,7 +125,6 @@ window.PROPOSAL = {
         get: 'A distinctive creative direction, a stronger brand proposition and developed ideas ready to become real.' },
       { num: '03', title: 'ACTIVATE.', days: 'Days 61–90', sub: 'Make it real. Make it matter.',
         body: [
-          'We bring together the right people, creative expertise and technology to turn the work into meaningful experiences, communications and commercial opportunities.',
           'From production to launch, we make sure the thinking carries through to every detail.'
         ],
         focus: [
