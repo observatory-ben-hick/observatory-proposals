@@ -192,12 +192,13 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   put('lvIntro',L.intro);
   var lv=$('#lvs');lv.style.setProperty('--n',items.length||1);
   lv.innerHTML=items.map(function(it){
-    return '<button class="level" type="button" role="radio" aria-checked="false" data-level="'+esc(it.name)+'" data-days="'+it.days+'" data-sess="'+it.sessions+'" data-price="'+esc(it.price)+'">'+
+    return '<button class="level" type="button" role="radio" aria-checked="false" data-level="'+esc(it.name)+'" data-days="'+it.days+'" data-sess="'+it.sessions+'" data-price="'+esc(it.price)+'" data-text="'+esc(it.text||'')+'" data-manage="'+esc(it.manage||'')+'">'+
       '<span class="h3">'+esc(String(it.name).toUpperCase())+'</span>'+
       '<span><span class="lv-price num">'+esc(it.price)+'</span><span class="lv-per">Per month</span></span>'+
       '<span class="lv-desc">'+esc(it.text)+'</span>'+
+      (it.manage?'<span class="lv-rows"><span class="lv-mg"><span class="lv-mk">'+esc(L.manageLabel||'How we manage it')+'</span><span class="lv-mv">'+esc(it.manage)+'</span></span></span>':
       '<span class="lv-rows"><span class="lv-row"><span>Senior days</span>'+pips(it.days,md)+'<b class="num">'+it.days+'</b></span>'+
-      '<span class="lv-row"><span>Working sessions</span>'+pips(it.sessions,ms,true)+'<b class="num">'+it.sessions+'</b></span></span>'+
+      '<span class="lv-row"><span>Working sessions</span>'+pips(it.sessions,ms,true)+'<b class="num">'+it.sessions+'</b></span></span>')+
       '<span class="lv-pick"><i></i><span data-pick>Choose '+esc(it.name)+'</span></span></button>';
   }).join('');
   blocks('flexHead',L.flex);opt('termsLead',L.termsLead);opt('termsClose',L.closing);
@@ -458,7 +459,10 @@ function startStage(){
     wrap.classList.add('has');
     lv.forEach(function(x){var on=x===b;x.classList.toggle('sel',on);x.setAttribute('aria-checked',on?'true':'false');x.querySelector('[data-pick]').textContent=on?'Selected':'Choose '+x.getAttribute('data-level')});
     var name=b.getAttribute('data-level'),days=count(b.getAttribute('data-days'),'senior day','senior days');
-    line.textContent=name+'. '+days.charAt(0).toUpperCase()+days.slice(1)+' and '+count(b.getAttribute('data-sess'),'working session','working sessions')+' a month, at '+b.getAttribute('data-price')+'.';
+    var mg=b.getAttribute('data-manage');
+    /* tiers described by how they are managed, not by days */
+    if(mg){line.textContent=name+'. '+b.getAttribute('data-text')+'. '+mg+'.';line.hidden=true}
+    else line.textContent=name+'. '+days.charAt(0).toUpperCase()+days.slice(1)+' and '+count(b.getAttribute('data-sess'),'working session','working sessions')+' a month, at '+b.getAttribute('data-price')+'.';
     go.hidden=false;
     cta.textContent='Let’s talk about '+name+'.';
     var wa=$('#wa');if(wa&&!wa.hidden)wa.href=waLink('Let’s talk about '+name+'.');

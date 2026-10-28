@@ -171,21 +171,20 @@ window.PROPOSAL = {
 
   /* 03 · Choose your level */
   levels: {
-    intro: 'Senior days are shared between Ben and Sarah and cover everything from strategy to design development and coordination.',
+    intro: 'Before we kick-off we agree what the fee covers, specify the priorities, likely outputs, responsibilities and boundaries.',
     maxDays: 6,
     maxSessions: 3,
+    manageLabel: 'How we manage it',
     items: [
-      { name: 'Essential', price: '£1,500', text: 'Focused priorities, creative guidance and direction.', days: 2, sessions: 1 },
-      { name: 'Growth', price: '£2,500', text: 'Active creative development and commercial momentum.', days: 4, sessions: 2 },
-      { name: 'Partner', price: '£4,000+', text: 'Priority creative and comms capacity for campaigns, partnerships and activation.', days: 6, sessions: 3 }
+      { name: 'Essential', price: '£1,500', text: 'Focused senior creative input', manage: 'One active priority' },
+      { name: 'Growth', price: '£2,500', text: 'Consistent creative development', manage: 'Agreed rolling plan and deliverables' },
+      { name: 'Partner', price: '£4,000+', text: 'Broader senior creative involvement', manage: 'Bespoke workstreams and priorities' }
     ],
     flex: ['SCALE UP WHEN THERE’S MORE TO DO.', 'SCALE BACK WHEN THERE ISN’T.', 'CHANGES AGREED IN ADVANCE.'],
     termsLead: 'A flexible creative partnership, built around your priorities.',
     terms: [
       'We work together to establish priorities each month, ensuring our time is focused on the opportunities that will create the greatest value for you.',
-      'A working day is up to eight hours of allocated time, which can be used flexibly across the month.',
       'Every partnership starts with a three-month commitment, with the opportunity to adjust the level of support as the relationship develops.',
-      'Unused monthly capacity does not automatically carry forward unless agreed in writing.',
       'Larger projects, specialist production, technical development and third-party costs are scoped and agreed separately.'
     ],
     closing: 'Our aim? Meaningful progress, exceptional thinking and a creative relationship that grows with your business.'
