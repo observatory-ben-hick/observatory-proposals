@@ -175,6 +175,8 @@ window.PROPOSAL = {
     maxDays: 6,
     maxSessions: 3,
     manageLabel: 'How we manage it',
+    /* applies to every level: boxed under the three */
+    note: 'Larger projects, specialist production, technical development and third-party costs are scoped and agreed separately.',
     items: [
       { name: 'Essential', price: '£1,500', text: 'Focused senior creative input', manage: 'One active priority' },
       { name: 'Growth', price: '£2,500', text: 'Consistent creative development', manage: 'Agreed rolling plan and deliverables' },
@@ -184,8 +186,7 @@ window.PROPOSAL = {
     termsLead: 'A flexible creative partnership, built around your priorities.',
     terms: [
       'We work together to establish priorities each month, ensuring our time is focused on the opportunities that will create the greatest value for you.',
-      'Every partnership starts with a three-month commitment, with the opportunity to adjust the level of support as the relationship develops.',
-      'Larger projects, specialist production, technical development and third-party costs are scoped and agreed separately.'
+      'Every partnership starts with a three-month commitment, with the opportunity to adjust the level of support as the relationship develops.'
     ],
     closing: 'Our aim? Meaningful progress, exceptional thinking and a creative relationship that grows with your business.'
   },

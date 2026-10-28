@@ -201,6 +201,7 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
       '<span class="lv-row"><span>Working sessions</span>'+pips(it.sessions,ms,true)+'<b class="num">'+it.sessions+'</b></span></span>')+
       '<span class="lv-pick"><i></i><span data-pick>Choose '+esc(it.name)+'</span></span></button>';
   }).join('');
+  opt('lvNote',L.note);
   blocks('flexHead',L.flex);opt('termsLead',L.termsLead);opt('termsClose',L.closing);
   $('#terms').innerHTML=(L.terms||[]).map(function(t){return '<li class="rv">'+esc(t)+'</li>'}).join('');
   /* AIM */
