@@ -161,7 +161,7 @@ window.PROPOSAL = {
 
   /* The logo wall. */
   pedigree: {
-    show: true,
+    show: false,   /* logo wall removed from the proposal */
     label: 'Pedigree',
     title: 'Clients and collaborators',
     tag: 'Since 2005',
