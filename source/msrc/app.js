@@ -130,6 +130,8 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   if(!(F.people||[]).length)$('#people').hidden=true;
   $('#people').innerHTML=(F.people||[]).map(function(p,i){return '<div class="rv" style="--d:'+i+'"><h3 class="h3">'+esc(p.name)+'</h3><p>'+esc(p.text)+'</p></div>'}).join('');
   var caps=F.capabilities||[];
+  /* no capabilities: the poster sequence stands on its own beside the lead */
+  if(!caps.length){$('#caps').hidden=true;$('#capview').parentNode.classList.add('solo')}
   $('#caps').innerHTML=caps.map(function(c,i){return '<li class="cap" data-i="'+i+'" tabindex="0"><i class="dot"></i><h3 class="h3">'+esc(c.title)+'</h3>'+(c.lead?'<p class="cl">'+esc(c.lead)+'</p>':'')+'<p>'+esc(c.text)+'</p></li>'}).join('');
   /* offer.gallery: an optional sequence of pictures that plays on its own beside the list */
   var gal=F.gallery&&F.gallery.length?F.gallery:null,views=gal||caps.map(function(c){return {src:c.image,position:c.position}});
@@ -384,7 +386,7 @@ function startStage(){
    a wipe up, an iris, shutters from the centre and a diagonal sweep. */
 (function(){
   var list=$('#caps'),caps=$$('.cap',list),view=$('#capview'),imgs=$$('img',view),n=$('#capn'),cur=0,tn=0,gal=view&&view.classList.contains('gal');
-  if(!caps.length||!imgs.length)return;
+  if(!imgs.length)return;
   var still=false;try{still=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
   function show(i){
     i=((i%imgs.length)+imgs.length)%imgs.length;

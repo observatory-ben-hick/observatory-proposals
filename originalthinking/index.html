@@ -112,14 +112,7 @@ window.PROPOSAL = {
       { src: 'assets/g5-eivissa.jpg', alt: 'Poster: Nothing here exists alone, Eivissa' },
       { src: 'assets/g6-joy-asset.jpg', alt: 'Poster: Joy is a serious asset' }
     ],
-    capabilities: [
-      { title: 'STRATEGY & COMMERCIAL THINKING', lead: 'A clearer direction. A stronger business.', text: 'We help you define what makes your business different, sharpen your positioning and uncover opportunities to grow.' },
-      { title: 'CREATIVE DIRECTION & DESIGN', lead: 'A brand people recognise, remember and choose.', text: 'Distinctive identities, design, campaigns, products and packaging that bring your brand to life and make it impossible to confuse with anyone else.' },
-      { title: 'DIGITAL EXPERIENCES', lead: 'A stronger presence. A better experience.', text: 'Websites, digital products and connected brand experiences designed to engage your audience and turn interest into action.' },
-      { title: 'MARKETING & STORYTELLING', lead: 'The right story. In front of the right people.', text: 'Clear messaging, compelling content and creative campaigns that build attention, strengthen relationships and drive business.' },
-      { title: 'PRODUCTION & PARTNERSHIPS', lead: 'Big ideas, made real.', text: 'We bring together the right creative talent, technology and production expertise to turn ambitious ideas into meaningful experiences and commercial opportunities.' },
-      { title: 'EXHIBITIONS & INSTALLATIONS', lead: 'Experiences people remember.', text: 'Immersive environments, exhibitions and installations that bring your brand into the physical world, creating moments that connect, inspire and leave a lasting impression.' }
-    ]
+    capabilities: []
   },
 
   /* 02 · Your first 90 days. Three stages, each 30 days on the ruler. */
@@ -127,13 +120,13 @@ window.PROPOSAL = {
     show: true,
     nav: '90 days',
     label: 'Your first 90 days',
-    headline: ['YOUR FIRST', '90 DAYS.'],
+    headline: ['WHERE DO', 'WE START?'],
     lead: 'From ambition to action.',
     body: [
       'Every business has a vision of what it could become. Our job is to understand that ambition, uncover the opportunities others might miss and bring the right ideas to life.',
       'We work alongside your team, combining insight, strategy, creativity and technology to build something distinctive, purposeful and commercially valuable.'
     ],
-    connector: 'Three connected stages. One clear direction.',
+    connector: 'Three connected stages. One clear path.',
     map: false,   /* true shows the three stage buttons under the line */
     focusLabel: 'Our focus',
     getLabel: 'What you get',
@@ -468,7 +461,8 @@ html.anim .pre.out{clip-path:inset(0 0 100% 0);pointer-events:none}
 .cap-view.gal .cv-n{display:none}
 .cap-view.gal img.was{clip-path:none;transform:none;transition:none}
 .cap-view .cv-n{position:absolute;left:14px;bottom:12px;z-index:3;color:var(--on-dark);font-size:var(--t-lab)}
-@media(max-width:900px){.cap-list{grid-column:1/-1}.cap-view{display:none}.cap-list.has .cap{opacity:1}.cap .dot{transform:scale(1)}}
+.caps.solo{margin-top:clamp(40px,5vw,80px)}.caps.solo .cap-view{grid-column:8/span 5;position:relative;top:auto}
+@media(max-width:900px){.cap-list{grid-column:1/-1}.cap-view{display:none}.cap-list.has .cap{opacity:1}.cap .dot{transform:scale(1)}.caps.solo .cap-view{display:block;grid-column:1/-1}}
 
 /* 02 ninety days */
 .days-top .h1{grid-column:1/span 8}
@@ -1164,6 +1158,8 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   if(!(F.people||[]).length)$('#people').hidden=true;
   $('#people').innerHTML=(F.people||[]).map(function(p,i){return '<div class="rv" style="--d:'+i+'"><h3 class="h3">'+esc(p.name)+'</h3><p>'+esc(p.text)+'</p></div>'}).join('');
   var caps=F.capabilities||[];
+  /* no capabilities: the poster sequence stands on its own beside the lead */
+  if(!caps.length){$('#caps').hidden=true;$('#capview').parentNode.classList.add('solo')}
   $('#caps').innerHTML=caps.map(function(c,i){return '<li class="cap" data-i="'+i+'" tabindex="0"><i class="dot"></i><h3 class="h3">'+esc(c.title)+'</h3>'+(c.lead?'<p class="cl">'+esc(c.lead)+'</p>':'')+'<p>'+esc(c.text)+'</p></li>'}).join('');
   /* offer.gallery: an optional sequence of pictures that plays on its own beside the list */
   var gal=F.gallery&&F.gallery.length?F.gallery:null,views=gal||caps.map(function(c){return {src:c.image,position:c.position}});
@@ -1418,7 +1414,7 @@ function startStage(){
    a wipe up, an iris, shutters from the centre and a diagonal sweep. */
 (function(){
   var list=$('#caps'),caps=$$('.cap',list),view=$('#capview'),imgs=$$('img',view),n=$('#capn'),cur=0,tn=0,gal=view&&view.classList.contains('gal');
-  if(!caps.length||!imgs.length)return;
+  if(!imgs.length)return;
   var still=false;try{still=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
   function show(i){
     i=((i%imgs.length)+imgs.length)%imgs.length;

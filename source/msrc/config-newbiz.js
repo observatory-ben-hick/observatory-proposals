@@ -90,14 +90,7 @@ window.PROPOSAL = {
       { src: 'assets/g5-eivissa.jpg', alt: 'Poster: Nothing here exists alone, Eivissa' },
       { src: 'assets/g6-joy-asset.jpg', alt: 'Poster: Joy is a serious asset' }
     ],
-    capabilities: [
-      { title: 'STRATEGY & COMMERCIAL THINKING', lead: 'A clearer direction. A stronger business.', text: 'We help you define what makes your business different, sharpen your positioning and uncover opportunities to grow.' },
-      { title: 'CREATIVE DIRECTION & DESIGN', lead: 'A brand people recognise, remember and choose.', text: 'Distinctive identities, design, campaigns, products and packaging that bring your brand to life and make it impossible to confuse with anyone else.' },
-      { title: 'DIGITAL EXPERIENCES', lead: 'A stronger presence. A better experience.', text: 'Websites, digital products and connected brand experiences designed to engage your audience and turn interest into action.' },
-      { title: 'MARKETING & STORYTELLING', lead: 'The right story. In front of the right people.', text: 'Clear messaging, compelling content and creative campaigns that build attention, strengthen relationships and drive business.' },
-      { title: 'PRODUCTION & PARTNERSHIPS', lead: 'Big ideas, made real.', text: 'We bring together the right creative talent, technology and production expertise to turn ambitious ideas into meaningful experiences and commercial opportunities.' },
-      { title: 'EXHIBITIONS & INSTALLATIONS', lead: 'Experiences people remember.', text: 'Immersive environments, exhibitions and installations that bring your brand into the physical world, creating moments that connect, inspire and leave a lasting impression.' }
-    ]
+    capabilities: []
   },
 
   /* 02 · Your first 90 days. Three stages, each 30 days on the ruler. */
@@ -105,13 +98,13 @@ window.PROPOSAL = {
     show: true,
     nav: '90 days',
     label: 'Your first 90 days',
-    headline: ['YOUR FIRST', '90 DAYS.'],
+    headline: ['WHERE DO', 'WE START?'],
     lead: 'From ambition to action.',
     body: [
       'Every business has a vision of what it could become. Our job is to understand that ambition, uncover the opportunities others might miss and bring the right ideas to life.',
       'We work alongside your team, combining insight, strategy, creativity and technology to build something distinctive, purposeful and commercially valuable.'
     ],
-    connector: 'Three connected stages. One clear direction.',
+    connector: 'Three connected stages. One clear path.',
     map: false,   /* true shows the three stage buttons under the line */
     focusLabel: 'Our focus',
     getLabel: 'What you get',
