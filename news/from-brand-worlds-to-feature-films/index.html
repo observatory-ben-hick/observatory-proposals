@@ -2211,7 +2211,7 @@ window.SITE = {
     "heroWide": "/media/work/jtc-2.webp?v=f1adcb6f",
     "heroFull": true,
     "lead": "In a world of corporate blue and financial services clichés, how do you make a global trust company stand out? JTC had the answer in its DNA: shared ownership. We took inspiration from the extraordinary migration of Monarch butterflies, where thousands of fragile individuals achieve something remarkable by moving together. A powerful expression of strength in numbers.",
-    "outcome": "A global rebrand featuring six spectacular CGI creatures made from thousands of butterflies, supported by design, photography, infographics and communications. Adopted across JTC’s international offices and still in use, nine years on, the identity brought fresh energy and distinction to the brand for its £343 million London Stock Exchange valuation.",
+    "outcome": "A global rebrand featuring six spectacular CGI creatures made from thousands of butterflies, supported by design, photography, infographics and communications. Adopted across JTC’s international offices and still in use today, the identity brought fresh energy and distinction to the brand for its £343 million London Stock Exchange valuation.",
     "quote": {
       "q": "Taking our brand to the next level.",
       "name": "David Vieira",
@@ -2974,6 +2974,7 @@ window.SITE = {
   },
   {
     "id": "madhen",
+    "hidden": true,
     "client": "MADHEN",
     "statement": "HERO STATEMENT TO COME.",
     "discipline": "",
@@ -4104,6 +4105,7 @@ html.anim .mf-t .mw.on{opacity:1}
 @media(max-width:700px){.foot-meta>span:first-child{order:0}.bos{order:1}.fm-links{order:2}.foot-meta>span:last-child{order:3}}@keyframes bosrun{to{--bos:360deg}}
 @keyframes bosshine{0%,35%{background-position:100% 0}65%,100%{background-position:0 0}}
 @media(prefers-reduced-motion:reduce){.bos:before{animation:none;background:var(--accent)}.bos-t{animation:none;color:var(--bg);background:none}}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 /* privacy policy */
 .prv-top{margin-top:clamp(28px,4vw,64px);align-items:baseline}.prv-top .lab{grid-column:1/span 4}.prv-top .lead{grid-column:5/-1;margin:0;font-size:clamp(20px,2vw,30px)}
 .prv-s{border-top:1px solid var(--rule);padding-top:18px;margin-top:clamp(28px,3.4vw,52px)}
@@ -4457,7 +4459,7 @@ html.anim .ap.in img{transform:none}
 
 <div class="curtain" id="curtain" aria-hidden="true"><span class="cmk" id="cmk"></span></div>
 
-<main id="main"></main>
+<main id="main"><section class="ph wrap"><div class="cs-meta"><div><span class="dim">Date</span><span class="post-date">Sep 2026</span></div><div><span class="dim">Topic</span><span>Film</span></div></div><div class="grid post"><h1 class="h1 in" data-split="" data-done="1"><span class="w"><span style="--d: 0;">FROM</span> </span>  <span class="w"><span style="--d: 1;">BRAND</span> </span>  <span class="w"><span style="--d: 2;">WORLDS</span> </span>  <span class="w"><span style="--d: 3;">TO</span> </span>  <span class="w"><span style="--d: 4;">FEATURE</span> </span>  <span class="w"><span style="--d: 5;">FILMS.</span> </span> </h1></div></section><figure class="np-hero rv"><img src="/media/work/de-hero.webp?v=499a6d10" srcset="/media/work/de-hero.m.webp?v=521dff75 1200w, /media/work/de-hero.webp?v=499a6d10 2400w" sizes="100vw" alt="FROM BRAND WORLDS TO FEATURE FILMS." style="aspect-ratio:2400 / 1212" loading="lazy" decoding="async"></figure><section class="wrap np"><div class="grid"><div class="np-copy"><p class="lead rv">For over 20 years we’ve built worlds for brands. Cinematic experiences, immersive systems, stories that move through people like a current. At some point the obvious question arrived: what if the story was ours?</p><p class="body rv">Alongside our client work, we now write and produce feature films. House of Dark, our psychological gothic horror, has been greenlit by independent UK producers and is in development with a director attached. Flowers of Tomorrow, an extraordinary true story of courage, hope and human spirit, is in development too.</p><p class="body rv">And because getting great films made is its own challenge, we’re building Daemon Engine, a next-generation studio bringing together award-winning producers, original IP, intelligent technology and new approaches to finance.</p><p class="body rv">Same instincts, bigger screen. Find the story. Build the world. Make people feel something.</p></div></div><div class="np-grid"><figure class="rv"><img src="/media/work/fot-hero.webp?v=b7eb3196" alt="FROM BRAND WORLDS TO FEATURE FILMS." style="aspect-ratio:854 / 480" loading="lazy" decoding="async"></figure><figure class="rv"><img src="/media/work/sel/house-of-dark-05.webp?v=762f44c0" alt="FROM BRAND WORLDS TO FEATURE FILMS." style="aspect-ratio:1080 / 1350" loading="lazy" decoding="async"></figure><figure class="rv"><img src="/media/work/sel/de-posters.webp?v=7c2b6e2f" srcset="/media/work/sel/de-posters.m.webp?v=a543889d 1200w, /media/work/sel/de-posters.webp?v=7c2b6e2f 2357w" sizes="100vw" alt="FROM BRAND WORLDS TO FEATURE FILMS." style="aspect-ratio:2357 / 1571" loading="lazy" decoding="async"></figure></div><div class="cs-link np-links"><a class="tl" href="/work/daemon-engine/"><span>See the Daemon Engine case study</span><i>→</i></a></div></section></main>
 
 <footer class="foot wrap" id="foot">
   <div class="foot-cta">
@@ -4519,6 +4521,8 @@ html.anim .ap.in img{transform:none}
 <script>
 (function(){
 var W=window,D=document,S=W.SITE,$=function(s,r){return (r||D).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||D).querySelectorAll(s))};
+/* projects marked hidden stay in the CMS but are left off the site (no tile, no page) until they are finished */
+S.work=S.work.filter(function(w){return !w.hidden});
 (function(){var lead=S.home||[];S.work.sort(function(a,b){var i=lead.indexOf(a.id),j=lead.indexOf(b.id);if(i>-1||j>-1)return (i<0?999:i)-(j<0?999:j);return String(a.client).toUpperCase().localeCompare(String(b.client).toUpperCase(),'en')})})();
 var still=false;try{still=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
 var ANIM=!still&&'IntersectionObserver' in W;
@@ -4526,7 +4530,7 @@ if(ANIM)D.documentElement.classList.add('anim');
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function lines(a){return (a||[]).map(function(l){return '<span>'+esc(l)+'</span>'}).join('')}
 var WM=W.OBS_WORDMARK;
-function wmTop(){return '<svg class="wm wm-top" viewBox="'+WM.vb+'" role="img" aria-label="Observatory"><title>Observatory</title>'+WM.letters.map(function(d,i){return '<path style="--i:'+i+'" d="'+d+'"/>'}).join('')+'</svg>'}
+function wmTop(){return '<span class="sr">The Observatory, creative agency, Jersey</span><svg aria-hidden="true" class="wm wm-top" viewBox="'+WM.vb+'" role="img" aria-label="Observatory"><title>Observatory</title>'+WM.letters.map(function(d,i){return '<path style="--i:'+i+'" d="'+d+'"/>'}).join('')+'</svg>'}
 function byId(id){for(var i=0;i<S.work.length;i++)if(S.work[i].id===id)return S.work[i];return null}
 function newsById(id){for(var i=0;i<S.news.length;i++)if(S.news[i].id===id)return S.news[i];return null}
 function n2(i){return (i<9?'0':'')+(i+1)}
@@ -4623,7 +4627,7 @@ function vHome(){
   return ''+
   /* hero */
   '<section class="hero wrap"><h1 class="mega" id="wmTop">'+wmTop()+'</h1>'+
-    '<div class="hx"><p class="hx-a rv">'+(H.kicker?'<span class="hx-k">'+esc(H.kicker)+'</span> ':'')+esc(intro[0]).replace(/\n/g,'<br class="hx-br">')+'</p><ul class="hx-b hx-s lab-u rv" style="--d:1" aria-label="What we do">'+(H.services||[]).map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul><span class="hx-c rv" style="--d:2">'+tl('#sel','See the work','sel','↓')+'</span></div></section>'+
+    '<div class="hx"><p class="hx-a rv">'+(H.kicker?'<span class="hx-k">'+esc(H.kicker)+'</span> ':'')+esc(intro[0]).replace(/\n/g,' <br class="hx-br">')+'</p><ul class="hx-b hx-s lab-u rv" style="--d:1" aria-label="What we do">'+(H.services||[]).map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul><span class="hx-c rv" style="--d:2">'+tl('#sel','See the work','sel','↓')+'</span></div></section>'+
   '<section class="stage" id="stage" aria-label="'+esc(H.reel.label)+'"><button class="stage-play" id="stPlay" hidden aria-label="Play the film"><span>Play</span></button></section>'+
   /* original thinking */
   '<section class="wrap sec">'+hd(H.tagline)+

@@ -82,6 +82,13 @@ def collect(base_html):
               return {title:document.title,desc:g('meta[name="description"]'),img:g('meta[property="og:image"]'),
                 h1:(document.querySelector('#main h1')||{}).textContent||'',
                 kind:it?(it.client?'case':'post'):'page',year:it&&it.year||'',date:it&&it.date||'',
+                main:(()=>{const m=document.querySelector('#main').cloneNode(true);
+                  m.querySelectorAll('script,iframe,noscript,.cs-back').forEach(e=>e.remove());
+                  m.querySelectorAll('video').forEach(v=>{v.removeAttribute('src');v.removeAttribute('autoplay');v.removeAttribute('poster');v.querySelectorAll('source').forEach(x=>x.remove())});
+                  m.querySelectorAll('br').forEach(b=>b.before(document.createTextNode(' ')));
+                  m.querySelectorAll('[data-split]').forEach(e=>[...e.querySelectorAll('span')].forEach(x=>x.after(document.createTextNode(' '))));
+                  m.querySelectorAll('[style]').forEach(e=>{e.style.removeProperty('opacity');e.style.removeProperty('transform');if(!e.getAttribute('style'))e.removeAttribute('style')});
+                  return m.innerHTML})(),
                 hero:(()=>{const i=document.querySelector('#main img[fetchpriority="high"]');return i?{src:i.getAttribute('src'),srcset:i.getAttribute('srcset')||'',sizes:i.getAttribute('sizes')||''}:null})()}}""")
         b.close()
     srv.shutdown(); shutil.rmtree(tmp)
@@ -142,6 +149,9 @@ def main():
     for r in routes:
         url, title, desc, img, ld = head_for(r, meta[r])
         out = apply_head(live, url, title, desc, img, ld, meta[r].get('hero'))
+        # the page's own text goes into the HTML, so link previews, AI assistants and crawlers that do not run scripts read the real page; the script redraws it on load
+        assert out.count('<main id="main"></main>') == 1
+        out = out.replace('<main id="main"></main>', '<main id="main">' + meta[r]['main'] + '</main>')
         d = os.path.join(REPO, r) if r else REPO
         os.makedirs(d, exist_ok=True)
         open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(out); written.append(r)
