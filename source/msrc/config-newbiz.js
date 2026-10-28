@@ -101,8 +101,7 @@ window.PROPOSAL = {
     stages: [
       { num: '01', title: 'DEFINE.', days: 'Days 01–30', sub: 'See the bigger picture.',
         body: [
-          'Before we create anything, we get to know your business. Where you are, where you want to go, what’s working, what’s missing and what could be possible.',
-          'We look beyond the brief, bringing fresh perspective, commercial understanding and original thinking to uncover the opportunities that matter.'
+          'Before we create anything, we get to know your business. Where you are, where you want to go, what’s working, what’s missing and what could be possible.'
         ],
         focus: [
           { k: 'Understand.', t: 'Your vision, ambitions, business objectives and what success looks like.' },
