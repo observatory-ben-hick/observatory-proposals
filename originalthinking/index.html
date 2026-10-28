@@ -729,9 +729,16 @@ html.anim .wall.done .cell:before{transition-delay:0s}
 html.anim.cin .pre{background:var(--ink);transition:clip-path .6s var(--io)}
 html.anim.cin .pre>*{visibility:hidden}
 @media(prefers-reduced-motion:reduce){.hand{display:none}}
+
+/* Back to website, as the website's own back link */
+.ot-back{display:inline-flex;gap:10px;font-size:14px;margin-bottom:clamp(20px,2.6vw,36px);position:relative}
+.ot-back:after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:100% 50%;transition:transform .5s var(--ease)}
+.ot-back:hover:after{transform:scaleX(1);transform-origin:0 50%}
+.ot-back span:first-child{transition:transform .4s var(--ease)}
+.ot-back:hover span:first-child{transform:translateX(-4px)}
 </style>
 <script>(function(){var h=document.documentElement;h.classList.add('js');try{if(sessionStorage.getItem('obs-cur')==='1'){h.classList.add('cin');sessionStorage.removeItem('obs-cur')}}catch(e){}try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))h.classList.add('anim')}catch(e){}/* failsafe: if the page script has not finished, show everything as plain content */function bare(){if(!h.classList.contains('ok'))h.classList.remove('anim')}window.addEventListener('error',bare);setTimeout(bare,5000)})();</script>
-<style>html body h1,html body h2,html body h3,html body h4,html body .h1,html body .h2,html body .h3,html body .mega,html body [data-split],html body [data-split] *,html body .w,html body .marq-t,html body .marq-t *,html body a.btn,html body a.btn *,html body .foot-meta a,html body .bos-t{font-weight:700!important}</style>
+<style>html body h1,html body h2,html body h3,html body h4,html body .h1,html body .h2,html body .h3,html body .mega,html body [data-split],html body [data-split] *,html body .w,html body .marq-t,html body .marq-t *,html body a.btn,html body a.btn *,html body .foot-meta a,html body .bos-t,html body .ot-back,html body .ot-back *{font-weight:700!important}</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -1673,15 +1680,20 @@ $$('.mail[data-mail]').forEach(function(b){
    and the website opens the same curtain on arrival. Arriving from the website, the page opens out of it. */
 (function(){
   var SITE=P.site;if(!SITE)return;
+  /* Back to website: returns to the website page the visitor came from (same place), or the home page */
+  var hero=$('#top'),bk=D.createElement('a');bk.className='ot-back';bk.href=SITE.home||'../';bk.setAttribute('data-site','');bk.setAttribute('data-back','');
+  bk.innerHTML='<span aria-hidden="true">←</span><span>'+esc(SITE.back||'Back to website')+'</span>';if(hero)hero.insertBefore(bk,hero.firstChild);
+  var FROM=null;try{var r=new URL(D.referrer);if(r.origin===location.origin&&!/\/originalthinking\//.test(r.pathname))FROM=r.pathname}catch(x){}
   var b=$('#brand');if(b&&SITE.home){b.setAttribute('href',SITE.home);b.setAttribute('aria-label','The Observatory, website home');b.setAttribute('data-site','')}
   var c=D.createElement('div');c.className='hand';c.setAttribute('aria-hidden','true');c.innerHTML='<svg class="sym"><use href="#sym"/></svg>';D.body.appendChild(c);
   D.addEventListener('click',function(e){
     if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
     var a=e.target.closest&&e.target.closest('a[data-site]');if(!a)return;
     try{sessionStorage.setItem('obs-cur','1')}catch(x){}
-    if(!ANIM)return;
+    var back=a.hasAttribute('data-back')&&FROM&&history.length>1;
+    if(!ANIM){if(back){e.preventDefault();history.back()}return}
     e.preventDefault();c.classList.add('cover');
-    setTimeout(function(){location.href=a.href},420);
+    setTimeout(function(){if(back)history.back();else location.href=a.href},420);
   });
   /* back/forward cache: if this page is shown again, the curtain is open */
   W.addEventListener('pageshow',function(ev){if(ev.persisted)c.classList.remove('cover')});

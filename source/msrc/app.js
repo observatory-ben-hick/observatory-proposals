@@ -604,15 +604,20 @@ $$('.mail[data-mail]').forEach(function(b){
    and the website opens the same curtain on arrival. Arriving from the website, the page opens out of it. */
 (function(){
   var SITE=P.site;if(!SITE)return;
+  /* Back to website: returns to the website page the visitor came from (same place), or the home page */
+  var hero=$('#top'),bk=D.createElement('a');bk.className='ot-back';bk.href=SITE.home||'../';bk.setAttribute('data-site','');bk.setAttribute('data-back','');
+  bk.innerHTML='<span aria-hidden="true">←</span><span>'+esc(SITE.back||'Back to website')+'</span>';if(hero)hero.insertBefore(bk,hero.firstChild);
+  var FROM=null;try{var r=new URL(D.referrer);if(r.origin===location.origin&&!/\/originalthinking\//.test(r.pathname))FROM=r.pathname}catch(x){}
   var b=$('#brand');if(b&&SITE.home){b.setAttribute('href',SITE.home);b.setAttribute('aria-label','The Observatory, website home');b.setAttribute('data-site','')}
   var c=D.createElement('div');c.className='hand';c.setAttribute('aria-hidden','true');c.innerHTML='<svg class="sym"><use href="#sym"/></svg>';D.body.appendChild(c);
   D.addEventListener('click',function(e){
     if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
     var a=e.target.closest&&e.target.closest('a[data-site]');if(!a)return;
     try{sessionStorage.setItem('obs-cur','1')}catch(x){}
-    if(!ANIM)return;
+    var back=a.hasAttribute('data-back')&&FROM&&history.length>1;
+    if(!ANIM){if(back){e.preventDefault();history.back()}return}
     e.preventDefault();c.classList.add('cover');
-    setTimeout(function(){location.href=a.href},420);
+    setTimeout(function(){if(back)history.back();else location.href=a.href},420);
   });
   /* back/forward cache: if this page is shown again, the curtain is open */
   W.addEventListener('pageshow',function(ev){if(ev.persisted)c.classList.remove('cover')});
