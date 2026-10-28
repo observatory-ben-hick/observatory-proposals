@@ -174,13 +174,13 @@ window.PROPOSAL = {
     intro: 'Before we kick-off we agree what the fee covers, specify the priorities, likely outputs, responsibilities and boundaries.',
     maxDays: 6,
     maxSessions: 3,
-    manageLabel: 'How we manage it',
+    manageLabel: '',   /* no label: each level reads as two lines */
     /* applies to every level: boxed under the three */
     note: 'Larger projects, specialist production, technical development and third-party costs are scoped and agreed separately.',
     items: [
-      { name: 'Essential', price: '£1,500', text: 'Focused senior creative input', manage: 'One active priority' },
-      { name: 'Growth', price: '£2,500', text: 'Consistent creative development', manage: 'Agreed rolling plan and deliverables' },
-      { name: 'Partner', price: '£4,000+', text: 'Broader senior creative involvement', manage: 'Bespoke workstreams and priorities' }
+      { name: 'Essential', price: '£1,500', text: 'Focused senior creative input.', manage: 'One agreed priority, with hands-on creative development and delivery to move it forward.' },
+      { name: 'Growth', price: '£2,500', text: 'Consistent creative development.', manage: 'An agreed rolling plan, with ongoing design, content and communications created and delivered.' },
+      { name: 'Partner', price: '£4,000+', text: 'Broader senior creative involvement.', manage: 'Creative leadership and hands-on delivery across multiple priorities, campaigns and initiatives.' }
     ],
     flex: ['SCALE UP WHEN THERE’S MORE TO DO.', 'SCALE BACK WHEN THERE ISN’T.', 'CHANGES AGREED IN ADVANCE.'],
     termsLead: 'A flexible creative partnership, built around your priorities.',

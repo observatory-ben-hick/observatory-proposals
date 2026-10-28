@@ -196,13 +196,13 @@ window.PROPOSAL = {
     intro: 'Before we kick-off we agree what the fee covers, specify the priorities, likely outputs, responsibilities and boundaries.',
     maxDays: 6,
     maxSessions: 3,
-    manageLabel: 'How we manage it',
+    manageLabel: '',   /* no label: each level reads as two lines */
     /* applies to every level: boxed under the three */
     note: 'Larger projects, specialist production, technical development and third-party costs are scoped and agreed separately.',
     items: [
-      { name: 'Essential', price: '£1,500', text: 'Focused senior creative input', manage: 'One active priority' },
-      { name: 'Growth', price: '£2,500', text: 'Consistent creative development', manage: 'Agreed rolling plan and deliverables' },
-      { name: 'Partner', price: '£4,000+', text: 'Broader senior creative involvement', manage: 'Bespoke workstreams and priorities' }
+      { name: 'Essential', price: '£1,500', text: 'Focused senior creative input.', manage: 'One agreed priority, with hands-on creative development and delivery to move it forward.' },
+      { name: 'Growth', price: '£2,500', text: 'Consistent creative development.', manage: 'An agreed rolling plan, with ongoing design, content and communications created and delivered.' },
+      { name: 'Partner', price: '£4,000+', text: 'Broader senior creative involvement.', manage: 'Creative leadership and hands-on delivery across multiple priorities, campaigns and initiatives.' }
     ],
     flex: ['SCALE UP WHEN THERE’S MORE TO DO.', 'SCALE BACK WHEN THERE ISN’T.', 'CHANGES AGREED IN ADVANCE.'],
     termsLead: 'A flexible creative partnership, built around your priorities.',
@@ -1211,7 +1211,7 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
       '<span class="h3">'+esc(String(it.name).toUpperCase())+'</span>'+
       '<span><span class="lv-price num">'+esc(it.price)+'</span><span class="lv-per">Per month</span></span>'+
       '<span class="lv-desc">'+esc(it.text)+'</span>'+
-      (it.manage?'<span class="lv-rows"><span class="lv-mg"><span class="lv-mk">'+esc(L.manageLabel||'How we manage it')+'</span><span class="lv-mv">'+esc(it.manage)+'</span></span></span>':
+      (it.manage?'<span class="lv-rows"><span class="lv-mg">'+(L.manageLabel?'<span class="lv-mk">'+esc(L.manageLabel)+'</span>':'')+'<span class="lv-mv">'+esc(it.manage)+'</span></span></span>':
       '<span class="lv-rows"><span class="lv-row"><span>Senior days</span>'+pips(it.days,md)+'<b class="num">'+it.days+'</b></span>'+
       '<span class="lv-row"><span>Working sessions</span>'+pips(it.sessions,ms,true)+'<b class="num">'+it.sessions+'</b></span></span>')+
       '<span class="lv-pick"><i></i><span data-pick>Choose '+esc(it.name)+'</span></span></button>';
@@ -1477,7 +1477,7 @@ function startStage(){
     var name=b.getAttribute('data-level'),days=count(b.getAttribute('data-days'),'senior day','senior days');
     var mg=b.getAttribute('data-manage');
     /* tiers described by how they are managed, not by days */
-    if(mg){line.textContent=name+'. '+b.getAttribute('data-text')+'. '+mg+'.';line.hidden=true}
+    if(mg){var stop=function(t){t=String(t||'').trim();return /[.!?]$/.test(t)?t:t+'.'};line.textContent=name+'. '+stop(b.getAttribute('data-text'))+' '+stop(mg);line.hidden=true}
     else line.textContent=name+'. '+days.charAt(0).toUpperCase()+days.slice(1)+' and '+count(b.getAttribute('data-sess'),'working session','working sessions')+' a month, at '+b.getAttribute('data-price')+'.';
     go.hidden=false;
     cta.textContent='Let’s talk about '+name+'.';
