@@ -609,6 +609,22 @@ $$('.mail[data-mail]').forEach(function(b){
   var hero=$('#top'),bk=D.createElement('a');bk.className='ot-back';bk.href=SITE.home||'../';bk.setAttribute('data-site','');bk.setAttribute('data-back','');
   bk.innerHTML='<span aria-hidden="true">←</span><span>'+esc(SITE.back||'Back to website')+'</span>';if(hero)hero.insertBefore(bk,hero.firstChild);
   var FROM=null;try{var r=new URL(D.referrer);if(r.origin===location.origin&&!/\/originalthinking\//.test(r.pathname))FROM=r.pathname}catch(x){}
+  /* the website's menu in the bar, and the same full-screen menu on phones */
+  if(SITE.menu&&SITE.menu.length){
+    var nlk=$('#navlinks');
+    function item(m,cls){return '<a'+(cls?' class="'+cls+'"':'')+' href="'+esc(m.href)+'"'+(m.current?' aria-current="page"':' data-site')+'>'+esc(m.label)+'</a>'}
+    if(nlk){nlk.innerHTML=SITE.menu.map(function(m){return item(m,m.current?'on':'')}).join('');nlk.classList.add('site')}
+    var nv=$('#nav'),mbtn=D.createElement('button');mbtn.type='button';mbtn.className='menu-btn';mbtn.setAttribute('aria-expanded','false');mbtn.setAttribute('aria-controls','mnav');mbtn.innerHTML='<span>Menu</span><i></i>';
+    if(nv)nv.appendChild(mbtn);
+    var mnv=D.createElement('div');mnv.className='mnav';mnv.id='mnav';mnv.setAttribute('aria-hidden','true');
+    mnv.innerHTML='<div class="mnav-top"><span>The Observatory</span><button type="button" id="menuClose">Close</button></div><nav class="mnav-links" aria-label="Menu">'+SITE.menu.map(function(m){return item(m,m.current?'mn-wwu':'')}).join('')+'</nav><div class="mnav-foot">'+(SITE.menuFoot||[]).map(function(t,i){return '<span'+(i?' class="dim"':'')+'>'+esc(t)+'</span>'}).join('')+'</div>';
+    D.body.appendChild(mnv);
+    function shut(){mnv.classList.remove('open');mnv.setAttribute('aria-hidden','true');mbtn.setAttribute('aria-expanded','false');D.body.classList.remove('lock')}
+    mbtn.addEventListener('click',function(){mnv.classList.add('open');mnv.setAttribute('aria-hidden','false');mbtn.setAttribute('aria-expanded','true');D.body.classList.add('lock')});
+    $('#menuClose',mnv).addEventListener('click',shut);
+    $$('a[aria-current]',mnv).forEach(function(x){x.addEventListener('click',shut)});
+    D.addEventListener('keydown',function(e){if(e.key==='Escape'&&mnv.classList.contains('open'))shut()});
+  }
   var b=$('#brand');if(b&&SITE.home){b.setAttribute('href',SITE.home);b.setAttribute('aria-label','The Observatory, website home');b.setAttribute('data-site','')}
   var c=D.createElement('div');c.className='hand';c.setAttribute('aria-hidden','true');c.innerHTML='<svg class="sym"><use href="#sym"/></svg>';D.body.appendChild(c);
   D.addEventListener('click',function(e){

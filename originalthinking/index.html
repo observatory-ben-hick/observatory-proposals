@@ -193,7 +193,18 @@ window.PROPOSAL = {
 
   /* 03 · Choose your level */
   /* the live page sits inside the website: the symbol goes home and case studies open with the website's curtain */
-  site: { home: '../' },
+  site: {
+    home: '../',
+    /* the website's own menu, with Work with us (this page) above Contact */
+    menu: [
+      { label: 'Work', href: '../work/' },
+      { label: 'About', href: '../about/' },
+      { label: 'News', href: '../news/' },
+      { label: 'Work with us', href: '#top', current: true },
+      { label: 'Contact', href: '../contact/' }
+    ],
+    menuFoot: ['studio@theobservatory.je', 'Jersey, Channel Islands']
+  },
 
   levels: {
     intro: 'Before we kick-off we agree what the fee covers, specify the priorities, likely outputs, responsibilities and boundaries.',
@@ -741,6 +752,25 @@ html.anim.cin .pre>*{visibility:hidden}
 /* Est, a short rule, 2011 */
 .est{display:inline-flex;align-items:center;gap:.6em;white-space:nowrap}
 .est i{display:inline-block;width:1.8em;height:1px;background:currentColor}
+
+/* the website's menu: links in the bar from 901px, a full-screen menu below */
+.nav-links.site{gap:clamp(18px,2.6vw,40px);font-size:14px}
+.nav-links.site a.on{color:var(--accent)}
+.menu-btn{display:none;font-size:14px;align-items:center;gap:10px;height:40px;background:none;border:0;color:inherit;font-family:inherit;cursor:pointer;padding:0}
+.menu-btn i{display:block;width:22px;height:7px;border-block:1px solid currentColor}
+@media(max-width:900px){.menu-btn{display:inline-flex}.nav{gap:14px}.nav>.btn{margin-left:auto}}
+@media(max-width:520px){.nav>.btn{display:none}.menu-btn{margin-left:auto}}
+.mnav{position:fixed;inset:0;z-index:180;background:var(--ink);color:var(--on-dark);display:flex;flex-direction:column;justify-content:space-between;padding:calc(env(safe-area-inset-top,0px) + 14px) var(--g) calc(env(safe-area-inset-bottom,0px) + 24px);clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .7s var(--io),visibility 0s .7s}
+.mnav.open{clip-path:inset(0);visibility:visible;transition:clip-path .7s var(--io)}
+.mnav-top{display:flex;justify-content:space-between;align-items:center;height:var(--navh);font-size:14px}
+.mnav-top button{background:none;border:0;color:inherit;font:inherit;cursor:pointer;padding:0}
+.mnav-links{display:flex;flex-direction:column;gap:.1em}
+.mnav-links a{font-family:var(--display);font-size:clamp(48px,15vw,120px);line-height:.95;letter-spacing:-.02em}
+.mnav-links a.mn-wwu{color:var(--accent);font-size:clamp(36px,10.5vw,96px);margin-block:.12em}
+.mnav-foot{display:flex;flex-direction:column;gap:6px;font-size:15px}
+.mnav-foot .dim{color:rgba(241,237,229,.55)}
+body.lock{overflow:hidden}
+@media(prefers-reduced-motion:reduce){.mnav,.mnav.open{transition:none}}
 </style>
 <script>(function(){var h=document.documentElement;h.classList.add('js');try{if(sessionStorage.getItem('obs-cur')==='1'){h.classList.add('cin');sessionStorage.removeItem('obs-cur')}}catch(e){}try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))h.classList.add('anim')}catch(e){}/* failsafe: if the page script has not finished, show everything as plain content */function bare(){if(!h.classList.contains('ok'))h.classList.remove('anim')}window.addEventListener('error',bare);setTimeout(bare,5000)})();</script>
 <style>html body h1,html body h2,html body h3,html body h4,html body .h1,html body .h2,html body .h3,html body .mega,html body [data-split],html body [data-split] *,html body .w,html body .marq-t,html body .marq-t *,html body a.btn,html body a.btn *,html body .foot-meta a,html body .bos-t,html body .ot-back,html body .ot-back *{font-weight:700!important}</style>
@@ -1690,6 +1720,22 @@ $$('.mail[data-mail]').forEach(function(b){
   var hero=$('#top'),bk=D.createElement('a');bk.className='ot-back';bk.href=SITE.home||'../';bk.setAttribute('data-site','');bk.setAttribute('data-back','');
   bk.innerHTML='<span aria-hidden="true">←</span><span>'+esc(SITE.back||'Back to website')+'</span>';if(hero)hero.insertBefore(bk,hero.firstChild);
   var FROM=null;try{var r=new URL(D.referrer);if(r.origin===location.origin&&!/\/originalthinking\//.test(r.pathname))FROM=r.pathname}catch(x){}
+  /* the website's menu in the bar, and the same full-screen menu on phones */
+  if(SITE.menu&&SITE.menu.length){
+    var nlk=$('#navlinks');
+    function item(m,cls){return '<a'+(cls?' class="'+cls+'"':'')+' href="'+esc(m.href)+'"'+(m.current?' aria-current="page"':' data-site')+'>'+esc(m.label)+'</a>'}
+    if(nlk){nlk.innerHTML=SITE.menu.map(function(m){return item(m,m.current?'on':'')}).join('');nlk.classList.add('site')}
+    var nv=$('#nav'),mbtn=D.createElement('button');mbtn.type='button';mbtn.className='menu-btn';mbtn.setAttribute('aria-expanded','false');mbtn.setAttribute('aria-controls','mnav');mbtn.innerHTML='<span>Menu</span><i></i>';
+    if(nv)nv.appendChild(mbtn);
+    var mnv=D.createElement('div');mnv.className='mnav';mnv.id='mnav';mnv.setAttribute('aria-hidden','true');
+    mnv.innerHTML='<div class="mnav-top"><span>The Observatory</span><button type="button" id="menuClose">Close</button></div><nav class="mnav-links" aria-label="Menu">'+SITE.menu.map(function(m){return item(m,m.current?'mn-wwu':'')}).join('')+'</nav><div class="mnav-foot">'+(SITE.menuFoot||[]).map(function(t,i){return '<span'+(i?' class="dim"':'')+'>'+esc(t)+'</span>'}).join('')+'</div>';
+    D.body.appendChild(mnv);
+    function shut(){mnv.classList.remove('open');mnv.setAttribute('aria-hidden','true');mbtn.setAttribute('aria-expanded','false');D.body.classList.remove('lock')}
+    mbtn.addEventListener('click',function(){mnv.classList.add('open');mnv.setAttribute('aria-hidden','false');mbtn.setAttribute('aria-expanded','true');D.body.classList.add('lock')});
+    $('#menuClose',mnv).addEventListener('click',shut);
+    $$('a[aria-current]',mnv).forEach(function(x){x.addEventListener('click',shut)});
+    D.addEventListener('keydown',function(e){if(e.key==='Escape'&&mnv.classList.contains('open'))shut()});
+  }
   var b=$('#brand');if(b&&SITE.home){b.setAttribute('href',SITE.home);b.setAttribute('aria-label','The Observatory, website home');b.setAttribute('data-site','')}
   var c=D.createElement('div');c.className='hand';c.setAttribute('aria-hidden','true');c.innerHTML='<svg class="sym"><use href="#sym"/></svg>';D.body.appendChild(c);
   D.addEventListener('click',function(e){

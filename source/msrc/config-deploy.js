@@ -171,7 +171,18 @@ window.PROPOSAL = {
 
   /* 03 · Choose your level */
   /* the live page sits inside the website: the symbol goes home and case studies open with the website's curtain */
-  site: { home: '../' },
+  site: {
+    home: '../',
+    /* the website's own menu, with Work with us (this page) above Contact */
+    menu: [
+      { label: 'Work', href: '../work/' },
+      { label: 'About', href: '../about/' },
+      { label: 'News', href: '../news/' },
+      { label: 'Work with us', href: '#top', current: true },
+      { label: 'Contact', href: '../contact/' }
+    ],
+    menuFoot: ['studio@theobservatory.je', 'Jersey, Channel Islands']
+  },
 
   levels: {
     intro: 'Before we kick-off we agree what the fee covers, specify the priorities, likely outputs, responsibilities and boundaries.',

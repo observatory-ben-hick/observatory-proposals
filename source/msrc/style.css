@@ -475,3 +475,22 @@ html.anim.cin .pre>*{visibility:hidden}
 /* Est, a short rule, 2011 */
 .est{display:inline-flex;align-items:center;gap:.6em;white-space:nowrap}
 .est i{display:inline-block;width:1.8em;height:1px;background:currentColor}
+
+/* the website's menu: links in the bar from 901px, a full-screen menu below */
+.nav-links.site{gap:clamp(18px,2.6vw,40px);font-size:14px}
+.nav-links.site a.on{color:var(--accent)}
+.menu-btn{display:none;font-size:14px;align-items:center;gap:10px;height:40px;background:none;border:0;color:inherit;font-family:inherit;cursor:pointer;padding:0}
+.menu-btn i{display:block;width:22px;height:7px;border-block:1px solid currentColor}
+@media(max-width:900px){.menu-btn{display:inline-flex}.nav{gap:14px}.nav>.btn{margin-left:auto}}
+@media(max-width:520px){.nav>.btn{display:none}.menu-btn{margin-left:auto}}
+.mnav{position:fixed;inset:0;z-index:180;background:var(--ink);color:var(--on-dark);display:flex;flex-direction:column;justify-content:space-between;padding:calc(env(safe-area-inset-top,0px) + 14px) var(--g) calc(env(safe-area-inset-bottom,0px) + 24px);clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .7s var(--io),visibility 0s .7s}
+.mnav.open{clip-path:inset(0);visibility:visible;transition:clip-path .7s var(--io)}
+.mnav-top{display:flex;justify-content:space-between;align-items:center;height:var(--navh);font-size:14px}
+.mnav-top button{background:none;border:0;color:inherit;font:inherit;cursor:pointer;padding:0}
+.mnav-links{display:flex;flex-direction:column;gap:.1em}
+.mnav-links a{font-family:var(--display);font-size:clamp(48px,15vw,120px);line-height:.95;letter-spacing:-.02em}
+.mnav-links a.mn-wwu{color:var(--accent);font-size:clamp(36px,10.5vw,96px);margin-block:.12em}
+.mnav-foot{display:flex;flex-direction:column;gap:6px;font-size:15px}
+.mnav-foot .dim{color:rgba(241,237,229,.55)}
+body.lock{overflow:hidden}
+@media(prefers-reduced-motion:reduce){.mnav,.mnav.open{transition:none}}
