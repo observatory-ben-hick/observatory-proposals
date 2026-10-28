@@ -46,6 +46,7 @@ window.PROPOSAL = {
   /* the small label lines around the page, taken from the proposal copy */
   labels: {
     kind: 'Creative partnership proposal',
+    est: ['Est', '2011'],   /* top of the page: Est, a short rule, 2011 (in place of the proposal line and year) */
     opportunity: 'The why',
     offer: 'What you get',
     offerTag: 'An extension of your team',
@@ -736,6 +737,10 @@ html.anim.cin .pre>*{visibility:hidden}
 .ot-back:hover:after{transform:scaleX(1);transform-origin:0 50%}
 .ot-back span:first-child{transition:transform .4s var(--ease)}
 .ot-back:hover span:first-child{transform:translateX(-4px)}
+
+/* Est, a short rule, 2011 */
+.est{display:inline-flex;align-items:center;gap:.6em;white-space:nowrap}
+.est i{display:inline-block;width:1.8em;height:1px;background:currentColor}
 </style>
 <script>(function(){var h=document.documentElement;h.classList.add('js');try{if(sessionStorage.getItem('obs-cur')==='1'){h.classList.add('cin');sessionStorage.removeItem('obs-cur')}}catch(e){}try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))h.classList.add('anim')}catch(e){}/* failsafe: if the page script has not finished, show everything as plain content */function bare(){if(!h.classList.contains('ok'))h.classList.remove('anim')}window.addEventListener('error',bare);setTimeout(bare,5000)})();</script>
 <style>html body h1,html body h2,html body h3,html body h4,html body .h1,html body .h2,html body .h3,html body .mega,html body [data-split],html body [data-split] *,html body .w,html body .marq-t,html body .marq-t *,html body a.btn,html body a.btn *,html body .foot-meta a,html body .bos-t,html body .ot-back,html body .ot-back *{font-weight:700!important}</style>
@@ -1130,7 +1135,8 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   /* hero.marquee:false removes the moving line under the pictures. hero.work puts a sentence in its place */
   if(H2.marquee===false){var mq=$('.marq');if(mq)mq.hidden=true}
   if(H2.work){var wk=D.createElement('div');wk.className='wrap work';wk.innerHTML='<p class="lead rv">'+esc(H2.work)+'</p>';var mq2=$('.marq');if(mq2)mq2.parentNode.insertBefore(wk,mq2.nextSibling)}
-  put('heroKind',LB.kind||'Creative partnership proposal');put('footKind',LB.kind||'Creative partnership proposal');
+  put('heroKind',LB.kind||'Creative partnership proposal');
+  if(LB.est&&LB.est.length){var hk=$('#heroKind');if(hk){hk.className='est';hk.innerHTML=esc(LB.est[0])+'<i aria-hidden="true"></i>'+esc(LB.est[1]||'');var hy=hk.nextElementSibling;if(hy&&hy.hasAttribute('data-t'))hy.hidden=true}}put('footKind',LB.kind||'Creative partnership proposal');
   lines('heroTag',H2.tagline||['ORIGINAL THINKING.','BUILT TO LAST.']);lines('footTag',(P.labels||{}).footTag||H2.tagline||['ORIGINAL THINKING.','BUILT TO LAST.']);
   lines('kvLine',LB.kvLine||H2.tagline||['ORIGINAL THINKING.','BUILT TO LAST.']);
   /* labels.keyVisualShow:false removes the full-width picture and its panel above the contact section */

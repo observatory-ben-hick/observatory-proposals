@@ -54,7 +54,8 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   /* hero.marquee:false removes the moving line under the pictures. hero.work puts a sentence in its place */
   if(H2.marquee===false){var mq=$('.marq');if(mq)mq.hidden=true}
   if(H2.work){var wk=D.createElement('div');wk.className='wrap work';wk.innerHTML='<p class="lead rv">'+esc(H2.work)+'</p>';var mq2=$('.marq');if(mq2)mq2.parentNode.insertBefore(wk,mq2.nextSibling)}
-  put('heroKind',LB.kind||'Creative partnership proposal');put('footKind',LB.kind||'Creative partnership proposal');
+  put('heroKind',LB.kind||'Creative partnership proposal');
+  if(LB.est&&LB.est.length){var hk=$('#heroKind');if(hk){hk.className='est';hk.innerHTML=esc(LB.est[0])+'<i aria-hidden="true"></i>'+esc(LB.est[1]||'');var hy=hk.nextElementSibling;if(hy&&hy.hasAttribute('data-t'))hy.hidden=true}}put('footKind',LB.kind||'Creative partnership proposal');
   lines('heroTag',H2.tagline||['ORIGINAL THINKING.','BUILT TO LAST.']);lines('footTag',(P.labels||{}).footTag||H2.tagline||['ORIGINAL THINKING.','BUILT TO LAST.']);
   lines('kvLine',LB.kvLine||H2.tagline||['ORIGINAL THINKING.','BUILT TO LAST.']);
   /* labels.keyVisualShow:false removes the full-width picture and its panel above the contact section */

@@ -24,6 +24,7 @@ window.PROPOSAL = {
   /* the small label lines around the page, taken from the proposal copy */
   labels: {
     kind: 'Creative partnership proposal',
+    est: ['Est', '2011'],   /* top of the page: Est, a short rule, 2011 (in place of the proposal line and year) */
     opportunity: 'The why',
     offer: 'What you get',
     offerTag: 'An extension of your team',
