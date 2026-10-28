@@ -33,7 +33,7 @@ head='''<title>'''+TITLE+'''</title>
 '''+cfg+'''</script>
 <style>
 '''+css+'''</style>
-<script>(function(){var h=document.documentElement;h.classList.add('js');try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))h.classList.add('anim')}catch(e){}/* failsafe: if the page script has not finished, show everything as plain content */function bare(){if(!h.classList.contains('ok'))h.classList.remove('anim')}window.addEventListener('error',bare);setTimeout(bare,5000)})();</script>
+<script>(function(){var h=document.documentElement;h.classList.add('js');try{if(sessionStorage.getItem('obs-cur')==='1'){h.classList.add('cin');sessionStorage.removeItem('obs-cur')}}catch(e){}try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))h.classList.add('anim')}catch(e){}/* failsafe: if the page script has not finished, show everything as plain content */function bare(){if(!h.classList.contains('ok'))h.classList.remove('anim')}window.addEventListener('error',bare);setTimeout(bare,5000)})();</script>
 '''
 page=head+body+'\n<script>\n'+wmjs+symjs+'\n'+js+'</script>\n'
 open(S+'/'+OUT+'/index.html','w').write(page)

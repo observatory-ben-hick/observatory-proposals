@@ -57,10 +57,9 @@ window.PROPOSAL = {
     marquee: false,
     work: 'Our work encompasses: brand, design and identity, strategy and positioning, products and packaging, exhibitions and installations, websites and digital experiences, marketing, advertising and storytelling, data visualisations, film, sound and animation.',
     /* the showreel, edge to edge, playing on a loop. The pictures below stand in if the film is removed */
-    video: { src: 'assets/showreel-v4-r2.mp4', poster: 'assets/showreel-v3-poster.jpg', ratio: '16/9', label: 'The Observatory showreel 2026' },
-    images: [
-      { src: 'assets/otbtl-wide.jpg', position: '50% 50%', alt: 'Original thinking. Built to last. Printed in black over an orange block' }
-    ]
+    video: null,   /* showreel removed from the proposal (it stays on the website home page) */
+    stage: false,
+    images: []
   },
 
   opportunity: {
@@ -170,17 +169,27 @@ window.PROPOSAL = {
   },
 
   /* 03 · Choose your level */
+  /* the live page sits inside the website: the symbol goes home and case studies open with the website's curtain */
+  site: { home: '../' },
+
   levels: {
     intro: 'Before we kick-off we agree what the fee covers, specify the priorities, likely outputs, responsibilities and boundaries.',
     maxDays: 6,
     maxSessions: 3,
+    /* case studies under each level: small loops from the website's work pages */
+    casesLabel: 'Case studies',
+    caseBase: '../work/',
+    thumbBase: '../media/work/thumb/',
     manageLabel: '',   /* no label: each level reads as two lines */
     /* applies to every level: boxed under the three */
     note: 'Larger projects, specialist production, technical development and third-party costs are scoped and agreed separately.',
     items: [
-      { name: 'Essential', price: '£1,500', text: 'Focused senior creative input.', manage: 'One agreed priority, with hands-on creative development and delivery to move it forward.' },
-      { name: 'Growth', price: '£2,500', text: 'Consistent creative development.', manage: 'An agreed rolling plan, with ongoing design, content and communications created and delivered.' },
-      { name: 'Partner', price: '£4,000+', text: 'Broader senior creative involvement.', manage: 'Creative leadership and hands-on delivery across multiple priorities, campaigns and initiatives.' }
+      { name: 'Essential', price: '£1,500', text: 'Focused senior creative input.', manage: 'One agreed priority, with hands-on creative development and delivery to move it forward.',
+        cases: [{ id: 'releasing-shadows-the-loom', name: 'Claire Mitchell | Releasing Shadows' }, { id: 'the-good-stone', name: 'The Good Stone' }, { id: 'elizabeth-cook', name: 'Elizabeth Cook' }] },
+      { name: 'Growth', price: '£2,500', text: 'Consistent creative development.', manage: 'An agreed rolling plan, with ongoing design, content and communications created and delivered.',
+        cases: [{ id: 'future-of-humanity', name: 'Future of Humanity' }, { id: 'spacebox', name: 'SpaceBox' }, { id: 'po-golden-tide', name: 'Golden Tide | Tidal Rum x P&O Cruises' }] },
+      { name: 'Partner', price: '£4,000+', text: 'Broader senior creative involvement.', manage: 'Creative leadership and hands-on delivery across multiple priorities, campaigns and initiatives.',
+        cases: [{ id: 'timeless', name: 'Timeless' }, { id: 'ocean-culture', name: 'Ocean Culture' }, { id: 'jtc', name: 'JTC Group' }] }
     ],
     flex: ['SCALE UP WHEN THERE’S MORE TO DO.', 'SCALE BACK WHEN THERE ISN’T.', 'CHANGES AGREED IN ADVANCE.'],
     termsLead: 'A flexible creative partnership, built around your priorities.',

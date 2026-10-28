@@ -79,10 +79,9 @@ window.PROPOSAL = {
     marquee: false,
     work: 'Our work encompasses: brand, design and identity, strategy and positioning, products and packaging, exhibitions and installations, websites and digital experiences, marketing, advertising and storytelling, data visualisations, film, sound and animation.',
     /* the showreel, edge to edge, playing on a loop. The pictures below stand in if the film is removed */
-    video: { src: 'assets/showreel-v4-r2.mp4', poster: 'assets/showreel-v3-poster.jpg', ratio: '16/9', label: 'The Observatory showreel 2026' },
-    images: [
-      { src: 'assets/otbtl-wide.jpg', position: '50% 50%', alt: 'Original thinking. Built to last. Printed in black over an orange block' }
-    ]
+    video: null,   /* showreel removed from the proposal (it stays on the website home page) */
+    stage: false,
+    images: []
   },
 
   opportunity: {
@@ -192,17 +191,27 @@ window.PROPOSAL = {
   },
 
   /* 03 · Choose your level */
+  /* the live page sits inside the website: the symbol goes home and case studies open with the website's curtain */
+  site: { home: '../' },
+
   levels: {
     intro: 'Before we kick-off we agree what the fee covers, specify the priorities, likely outputs, responsibilities and boundaries.',
     maxDays: 6,
     maxSessions: 3,
+    /* case studies under each level: small loops from the website's work pages */
+    casesLabel: 'Case studies',
+    caseBase: '../work/',
+    thumbBase: '../media/work/thumb/',
     manageLabel: '',   /* no label: each level reads as two lines */
     /* applies to every level: boxed under the three */
     note: 'Larger projects, specialist production, technical development and third-party costs are scoped and agreed separately.',
     items: [
-      { name: 'Essential', price: '£1,500', text: 'Focused senior creative input.', manage: 'One agreed priority, with hands-on creative development and delivery to move it forward.' },
-      { name: 'Growth', price: '£2,500', text: 'Consistent creative development.', manage: 'An agreed rolling plan, with ongoing design, content and communications created and delivered.' },
-      { name: 'Partner', price: '£4,000+', text: 'Broader senior creative involvement.', manage: 'Creative leadership and hands-on delivery across multiple priorities, campaigns and initiatives.' }
+      { name: 'Essential', price: '£1,500', text: 'Focused senior creative input.', manage: 'One agreed priority, with hands-on creative development and delivery to move it forward.',
+        cases: [{ id: 'releasing-shadows-the-loom', name: 'Claire Mitchell | Releasing Shadows' }, { id: 'the-good-stone', name: 'The Good Stone' }, { id: 'elizabeth-cook', name: 'Elizabeth Cook' }] },
+      { name: 'Growth', price: '£2,500', text: 'Consistent creative development.', manage: 'An agreed rolling plan, with ongoing design, content and communications created and delivered.',
+        cases: [{ id: 'future-of-humanity', name: 'Future of Humanity' }, { id: 'spacebox', name: 'SpaceBox' }, { id: 'po-golden-tide', name: 'Golden Tide | Tidal Rum x P&O Cruises' }] },
+      { name: 'Partner', price: '£4,000+', text: 'Broader senior creative involvement.', manage: 'Creative leadership and hands-on delivery across multiple priorities, campaigns and initiatives.',
+        cases: [{ id: 'timeless', name: 'Timeless' }, { id: 'ocean-culture', name: 'Ocean Culture' }, { id: 'jtc', name: 'JTC Group' }] }
     ],
     flex: ['SCALE UP WHEN THERE’S MORE TO DO.', 'SCALE BACK WHEN THERE ISN’T.', 'CHANGES AGREED IN ADVANCE.'],
     termsLead: 'A flexible creative partnership, built around your priorities.',
@@ -557,6 +566,29 @@ html.anim .wall.done .cell:before{transition-delay:0s}
 .level{position:relative;display:flex;flex-direction:column;gap:clamp(18px,2vw,28px);padding:clamp(18px,2.2vw,32px) clamp(14px,2vw,32px) clamp(22px,2.4vw,36px);border-right:1px solid var(--rule);border-bottom:1px solid var(--ink);text-align:left;min-width:0}
 .level:first-child{padding-left:0}
 .level:last-child{border-right:0}
+/* with case studies each level is a column: the choice on top, its work beneath */
+.lv-col{position:relative;display:flex;flex-direction:column;padding:clamp(18px,2.2vw,32px) clamp(14px,2vw,32px) clamp(22px,2.4vw,36px);border-right:1px solid var(--rule);border-bottom:1px solid var(--ink);min-width:0}
+.lv-col:first-child{padding-left:0}
+.lv-col:last-child{border-right:0}
+.lv-col .level{padding:0;border:0;position:static;flex:1 1 auto}
+.lv-col .level:before{display:none}
+.lv-col:before{content:"";position:absolute;left:0;right:0;top:-2px;height:4px;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;transition:transform .7s var(--ease)}
+.lv-col.sel:before{transform:scaleX(1)}
+.levels.has .lv-col:not(.sel) .lv-cases{opacity:.5}
+.levels.has .lv-col:not(.sel) .lv-cases:hover{opacity:1}
+.lv-cases{margin-top:clamp(22px,2.4vw,34px);padding-top:14px;border-top:1px solid var(--rule);transition:opacity .5s var(--ease)}
+.lv-ck{display:block;font-size:var(--t-lab);margin-bottom:12px}
+.lv-cases ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.lv-case{display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;font-size:15px;line-height:1.25}
+.lv-th{position:relative;display:block;width:44px;aspect-ratio:4/5;overflow:hidden;background:var(--tile)}
+.lv-th img,.lv-th video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.lv-th video{opacity:0;transition:opacity .4s,transform .7s var(--ease)}
+.lv-th.vp video{opacity:1}
+.lv-cn{min-width:0;overflow-wrap:anywhere;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .5s var(--ease);justify-self:start}
+.lv-ca{transition:transform .4s var(--ease)}
+.lv-case:hover .lv-cn,.lv-case:focus-visible .lv-cn{background-size:100% 1px}
+.lv-case:hover .lv-ca{transform:translateX(4px)}
+.lv-case:hover .lv-th img,.lv-case:hover .lv-th video{transform:scale(1.08)}
 .level:before{content:"";position:absolute;left:0;right:0;top:-2px;height:4px;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;transition:transform .7s var(--ease)}
 .level.sel:before{transform:scaleX(1)}
 .levels.has .level:not(.sel)>*{opacity:.38}
@@ -580,7 +612,7 @@ html.anim .wall.done .cell:before{transition-delay:0s}
 .lv-pick i{width:16px;height:16px;border-radius:50%;border:1px solid var(--ink);display:grid;place-items:center}
 .lv-pick i:after{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);transform:scale(0);transition:transform .45s var(--ease)}
 .level.sel .lv-pick i:after{transform:scale(1)}
-@media(max-width:800px){.levels{grid-template-columns:1fr}.level{border-right:0;padding-left:0;padding-right:0}.lv-desc{min-height:0}}
+@media(max-width:800px){.levels{grid-template-columns:1fr}.level,.lv-col{border-right:0;padding-left:0;padding-right:0}.lv-col .level{padding:0}.lv-desc{min-height:0}}
 .lv-status{min-height:1.5em;margin-top:18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:15px}
 .lv-status a{border-bottom:1px solid currentColor}
 .flex-top{margin-top:clamp(64px,9vw,150px)}
@@ -687,8 +719,18 @@ html.anim .wall.done .cell:before{transition-delay:0s}
   .stage img.on{transition:none}
   .cap-view img{transition:none}
 }
+
+/* hand-off curtain: the same ink curtain the website uses between its pages */
+.hand{position:fixed;inset:0;z-index:300;background:var(--ink);color:var(--bg);display:grid;place-items:center;transform:translateY(100%);pointer-events:none}
+.hand .sym{width:72px;height:47px;fill:currentColor;opacity:0;transition:opacity .3s}
+.hand.cover{transform:none;transition:transform .38s var(--io)}
+.hand.cover .sym{opacity:1;transition-delay:.12s}
+/* arriving from the website the opening panel is the ink curtain, lifting away */
+html.anim.cin .pre{background:var(--ink);transition:clip-path .6s var(--io)}
+html.anim.cin .pre>*{visibility:hidden}
+@media(prefers-reduced-motion:reduce){.hand{display:none}}
 </style>
-<script>(function(){var h=document.documentElement;h.classList.add('js');try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))h.classList.add('anim')}catch(e){}/* failsafe: if the page script has not finished, show everything as plain content */function bare(){if(!h.classList.contains('ok'))h.classList.remove('anim')}window.addEventListener('error',bare);setTimeout(bare,5000)})();</script>
+<script>(function(){var h=document.documentElement;h.classList.add('js');try{if(sessionStorage.getItem('obs-cur')==='1'){h.classList.add('cin');sessionStorage.removeItem('obs-cur')}}catch(e){}try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))h.classList.add('anim')}catch(e){}/* failsafe: if the page script has not finished, show everything as plain content */function bare(){if(!h.classList.contains('ok'))h.classList.remove('anim')}window.addEventListener('error',bare);setTimeout(bare,5000)})();</script>
 <style>html body h1,html body h2,html body h3,html body h4,html body .h1,html body .h2,html body .h3,html body .mega,html body [data-split],html body [data-split] *,html body .w,html body .marq-t,html body .marq-t *,html body a.btn,html body a.btn *,html body .foot-meta a,html body .bos-t{font-weight:700!important}</style>
 </head>
 <body>
@@ -1107,6 +1149,8 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
      Written as markup so iOS Safari sees every attribute before it loads the file:
      muted + playsinline (and webkit-playsinline for older iOS) are what allow it to play inline on its own,
      controls gives everyone a way to pause it, and a tap to start it if Low Power Mode blocks autoplay. */
+  /* hero.stage:false takes the whole picture/film band out */
+  if(H2.stage===false&&stage){$$('img',stage).forEach(function(m){m.parentNode.removeChild(m)});stage.parentNode.hidden=true;stage=null}
   var HV=H2.video;
   if(HV&&HV.src&&stage){
     $$('img',stage).forEach(function(m){m.parentNode.removeChild(m)});
@@ -1218,15 +1262,18 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   var tg=$('#lvTag');tg.textContent=tg.textContent.charAt(0).toUpperCase()+tg.textContent.slice(1);
   put('lvIntro',L.intro);
   var lv=$('#lvs');lv.style.setProperty('--n',items.length||1);
+  var CB=L.caseBase||'../work/',TB=L.thumbBase||'../media/work/thumb/';
+  function cases(it){if(!(it.cases||[]).length)return '';return '<div class="lv-cases"><span class="lv-ck">'+esc(L.casesLabel||'Case studies')+'</span><ul>'+it.cases.map(function(c){
+    return '<li><a class="lv-case" href="'+esc(CB+c.id+'/')+'" data-site><span class="lv-th"><img src="'+esc(TB+c.id+'.webp')+'" alt="" loading="lazy" decoding="async"><video muted loop playsinline webkit-playsinline preload="none" aria-hidden="true" data-src="'+esc(TB+c.id+'.mp4')+'"></video></span><span class="lv-cn">'+esc(c.name)+'</span><span class="lv-ca" aria-hidden="true">→</span></a></li>'}).join('')+'</ul></div>'}
   lv.innerHTML=items.map(function(it){
-    return '<button class="level" type="button" role="radio" aria-checked="false" data-level="'+esc(it.name)+'" data-days="'+it.days+'" data-sess="'+it.sessions+'" data-price="'+esc(it.price)+'" data-text="'+esc(it.text||'')+'" data-manage="'+esc(it.manage||'')+'">'+
+    return '<div class="lv-col"><button class="level" type="button" role="radio" aria-checked="false" data-level="'+esc(it.name)+'" data-days="'+it.days+'" data-sess="'+it.sessions+'" data-price="'+esc(it.price)+'" data-text="'+esc(it.text||'')+'" data-manage="'+esc(it.manage||'')+'">'+
       '<span class="h3">'+esc(String(it.name).toUpperCase())+'</span>'+
       '<span><span class="lv-price num">'+esc(it.price)+'</span><span class="lv-per">Per month</span></span>'+
       '<span class="lv-desc">'+esc(it.text)+'</span>'+
       (it.manage?'<span class="lv-rows"><span class="lv-mg">'+(L.manageLabel?'<span class="lv-mk">'+esc(L.manageLabel)+'</span>':'')+'<span class="lv-mv">'+esc(it.manage)+'</span></span></span>':
       '<span class="lv-rows"><span class="lv-row"><span>Senior days</span>'+pips(it.days,md)+'<b class="num">'+it.days+'</b></span>'+
       '<span class="lv-row"><span>Working sessions</span>'+pips(it.sessions,ms,true)+'<b class="num">'+it.sessions+'</b></span></span>')+
-      '<span class="lv-pick"><i></i><span data-pick>Choose '+esc(it.name)+'</span></span></button>';
+      '<span class="lv-pick"><i></i><span data-pick>Choose '+esc(it.name)+'</span></span></button>'+cases(it)+'</div>';
   }).join('');
   opt('lvNote',L.note);
   blocks('flexHead',L.flex);opt('termsLead',L.termsLead);opt('termsClose',L.closing);
@@ -1337,6 +1384,7 @@ function startReveal(){
   var pre=$('#pre'),n=$('#pren');
   function done(){if(pre)pre.classList.add('out');H.classList.add('ready');startReveal();startStage()}
   if(!ANIM||!pre){done();return}
+  if(H.classList.contains('cin')){setTimeout(done,260);return}
   var t0=performance.now(),dur=1500;
   (function tick(t){
     var p=clamp((t-t0)/dur,0,1),e=1-Math.pow(1-p,3);
@@ -1486,7 +1534,7 @@ function startStage(){
   function count(n,one,many){n=parseInt(n,10)||0;return (WORDS[n]||n)+' '+(n===1?one:many)}
   function pick(b){
     wrap.classList.add('has');
-    lv.forEach(function(x){var on=x===b;x.classList.toggle('sel',on);x.setAttribute('aria-checked',on?'true':'false');x.querySelector('[data-pick]').textContent=on?'Selected':'Choose '+x.getAttribute('data-level')});
+    lv.forEach(function(x){var on=x===b;x.classList.toggle('sel',on);if(x.parentNode.classList.contains('lv-col'))x.parentNode.classList.toggle('sel',on);x.setAttribute('aria-checked',on?'true':'false');x.querySelector('[data-pick]').textContent=on?'Selected':'Choose '+x.getAttribute('data-level')});
     var name=b.getAttribute('data-level'),days=count(b.getAttribute('data-days'),'senior day','senior days');
     var mg=b.getAttribute('data-manage');
     /* tiers described by how they are managed, not by days */
@@ -1608,6 +1656,35 @@ $$('.mail[data-mail]').forEach(function(b){
     if(mvis){mx-=.7+Math.abs(vel)*.35;var half=marq.scrollWidth/2;if(half>0&&-mx>=half)mx+=half;marq.style.transform='translate3d('+mx.toFixed(1)+'px,0,0)'}
     requestAnimationFrame(loop);
   })();
+})();
+
+
+/* ---------- case study thumbnails: small loops play while they are on screen ---------- */
+(function(){
+  var vs=$$('.lv-th video');if(!vs.length)return;
+  var still=false;try{still=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
+  if(still||!('IntersectionObserver' in W))return;
+  function on(v){if(!v.src){v.src=v.getAttribute('data-src');v.addEventListener('playing',function(){v.parentNode.classList.add('vp')})}var p=v.play();if(p&&p.catch)p.catch(function(){})}
+  try{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)on(e.target);else e.target.pause()})},{rootMargin:'120px 0px'});vs.forEach(function(v){io.observe(v)})}catch(e){}
+})();
+
+/* ---------- seamless hand-off to and from the website ----------
+   Links into the website (case studies, the symbol) close an ink curtain, as the website does between its pages,
+   and the website opens the same curtain on arrival. Arriving from the website, the page opens out of it. */
+(function(){
+  var SITE=P.site;if(!SITE)return;
+  var b=$('#brand');if(b&&SITE.home){b.setAttribute('href',SITE.home);b.setAttribute('aria-label','The Observatory, website home');b.setAttribute('data-site','')}
+  var c=D.createElement('div');c.className='hand';c.setAttribute('aria-hidden','true');c.innerHTML='<svg class="sym"><use href="#sym"/></svg>';D.body.appendChild(c);
+  D.addEventListener('click',function(e){
+    if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+    var a=e.target.closest&&e.target.closest('a[data-site]');if(!a)return;
+    try{sessionStorage.setItem('obs-cur','1')}catch(x){}
+    if(!ANIM)return;
+    e.preventDefault();c.classList.add('cover');
+    setTimeout(function(){location.href=a.href},420);
+  });
+  /* back/forward cache: if this page is shown again, the curtain is open */
+  W.addEventListener('pageshow',function(ev){if(ev.persisted)c.classList.remove('cover')});
 })();
 
 H.classList.add('ok');

@@ -80,6 +80,8 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
      Written as markup so iOS Safari sees every attribute before it loads the file:
      muted + playsinline (and webkit-playsinline for older iOS) are what allow it to play inline on its own,
      controls gives everyone a way to pause it, and a tap to start it if Low Power Mode blocks autoplay. */
+  /* hero.stage:false takes the whole picture/film band out */
+  if(H2.stage===false&&stage){$$('img',stage).forEach(function(m){m.parentNode.removeChild(m)});stage.parentNode.hidden=true;stage=null}
   var HV=H2.video;
   if(HV&&HV.src&&stage){
     $$('img',stage).forEach(function(m){m.parentNode.removeChild(m)});
@@ -191,15 +193,18 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   var tg=$('#lvTag');tg.textContent=tg.textContent.charAt(0).toUpperCase()+tg.textContent.slice(1);
   put('lvIntro',L.intro);
   var lv=$('#lvs');lv.style.setProperty('--n',items.length||1);
+  var CB=L.caseBase||'../work/',TB=L.thumbBase||'../media/work/thumb/';
+  function cases(it){if(!(it.cases||[]).length)return '';return '<div class="lv-cases"><span class="lv-ck">'+esc(L.casesLabel||'Case studies')+'</span><ul>'+it.cases.map(function(c){
+    return '<li><a class="lv-case" href="'+esc(CB+c.id+'/')+'" data-site><span class="lv-th"><img src="'+esc(TB+c.id+'.webp')+'" alt="" loading="lazy" decoding="async"><video muted loop playsinline webkit-playsinline preload="none" aria-hidden="true" data-src="'+esc(TB+c.id+'.mp4')+'"></video></span><span class="lv-cn">'+esc(c.name)+'</span><span class="lv-ca" aria-hidden="true">→</span></a></li>'}).join('')+'</ul></div>'}
   lv.innerHTML=items.map(function(it){
-    return '<button class="level" type="button" role="radio" aria-checked="false" data-level="'+esc(it.name)+'" data-days="'+it.days+'" data-sess="'+it.sessions+'" data-price="'+esc(it.price)+'" data-text="'+esc(it.text||'')+'" data-manage="'+esc(it.manage||'')+'">'+
+    return '<div class="lv-col"><button class="level" type="button" role="radio" aria-checked="false" data-level="'+esc(it.name)+'" data-days="'+it.days+'" data-sess="'+it.sessions+'" data-price="'+esc(it.price)+'" data-text="'+esc(it.text||'')+'" data-manage="'+esc(it.manage||'')+'">'+
       '<span class="h3">'+esc(String(it.name).toUpperCase())+'</span>'+
       '<span><span class="lv-price num">'+esc(it.price)+'</span><span class="lv-per">Per month</span></span>'+
       '<span class="lv-desc">'+esc(it.text)+'</span>'+
       (it.manage?'<span class="lv-rows"><span class="lv-mg">'+(L.manageLabel?'<span class="lv-mk">'+esc(L.manageLabel)+'</span>':'')+'<span class="lv-mv">'+esc(it.manage)+'</span></span></span>':
       '<span class="lv-rows"><span class="lv-row"><span>Senior days</span>'+pips(it.days,md)+'<b class="num">'+it.days+'</b></span>'+
       '<span class="lv-row"><span>Working sessions</span>'+pips(it.sessions,ms,true)+'<b class="num">'+it.sessions+'</b></span></span>')+
-      '<span class="lv-pick"><i></i><span data-pick>Choose '+esc(it.name)+'</span></span></button>';
+      '<span class="lv-pick"><i></i><span data-pick>Choose '+esc(it.name)+'</span></span></button>'+cases(it)+'</div>';
   }).join('');
   opt('lvNote',L.note);
   blocks('flexHead',L.flex);opt('termsLead',L.termsLead);opt('termsClose',L.closing);
@@ -310,6 +315,7 @@ function startReveal(){
   var pre=$('#pre'),n=$('#pren');
   function done(){if(pre)pre.classList.add('out');H.classList.add('ready');startReveal();startStage()}
   if(!ANIM||!pre){done();return}
+  if(H.classList.contains('cin')){setTimeout(done,260);return}
   var t0=performance.now(),dur=1500;
   (function tick(t){
     var p=clamp((t-t0)/dur,0,1),e=1-Math.pow(1-p,3);
@@ -459,7 +465,7 @@ function startStage(){
   function count(n,one,many){n=parseInt(n,10)||0;return (WORDS[n]||n)+' '+(n===1?one:many)}
   function pick(b){
     wrap.classList.add('has');
-    lv.forEach(function(x){var on=x===b;x.classList.toggle('sel',on);x.setAttribute('aria-checked',on?'true':'false');x.querySelector('[data-pick]').textContent=on?'Selected':'Choose '+x.getAttribute('data-level')});
+    lv.forEach(function(x){var on=x===b;x.classList.toggle('sel',on);if(x.parentNode.classList.contains('lv-col'))x.parentNode.classList.toggle('sel',on);x.setAttribute('aria-checked',on?'true':'false');x.querySelector('[data-pick]').textContent=on?'Selected':'Choose '+x.getAttribute('data-level')});
     var name=b.getAttribute('data-level'),days=count(b.getAttribute('data-days'),'senior day','senior days');
     var mg=b.getAttribute('data-manage');
     /* tiers described by how they are managed, not by days */
@@ -581,6 +587,35 @@ $$('.mail[data-mail]').forEach(function(b){
     if(mvis){mx-=.7+Math.abs(vel)*.35;var half=marq.scrollWidth/2;if(half>0&&-mx>=half)mx+=half;marq.style.transform='translate3d('+mx.toFixed(1)+'px,0,0)'}
     requestAnimationFrame(loop);
   })();
+})();
+
+
+/* ---------- case study thumbnails: small loops play while they are on screen ---------- */
+(function(){
+  var vs=$$('.lv-th video');if(!vs.length)return;
+  var still=false;try{still=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
+  if(still||!('IntersectionObserver' in W))return;
+  function on(v){if(!v.src){v.src=v.getAttribute('data-src');v.addEventListener('playing',function(){v.parentNode.classList.add('vp')})}var p=v.play();if(p&&p.catch)p.catch(function(){})}
+  try{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)on(e.target);else e.target.pause()})},{rootMargin:'120px 0px'});vs.forEach(function(v){io.observe(v)})}catch(e){}
+})();
+
+/* ---------- seamless hand-off to and from the website ----------
+   Links into the website (case studies, the symbol) close an ink curtain, as the website does between its pages,
+   and the website opens the same curtain on arrival. Arriving from the website, the page opens out of it. */
+(function(){
+  var SITE=P.site;if(!SITE)return;
+  var b=$('#brand');if(b&&SITE.home){b.setAttribute('href',SITE.home);b.setAttribute('aria-label','The Observatory, website home');b.setAttribute('data-site','')}
+  var c=D.createElement('div');c.className='hand';c.setAttribute('aria-hidden','true');c.innerHTML='<svg class="sym"><use href="#sym"/></svg>';D.body.appendChild(c);
+  D.addEventListener('click',function(e){
+    if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+    var a=e.target.closest&&e.target.closest('a[data-site]');if(!a)return;
+    try{sessionStorage.setItem('obs-cur','1')}catch(x){}
+    if(!ANIM)return;
+    e.preventDefault();c.classList.add('cover');
+    setTimeout(function(){location.href=a.href},420);
+  });
+  /* back/forward cache: if this page is shown again, the curtain is open */
+  W.addEventListener('pageshow',function(ev){if(ev.persisted)c.classList.remove('cover')});
 })();
 
 H.classList.add('ok');
