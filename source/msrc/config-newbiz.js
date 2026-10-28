@@ -137,12 +137,7 @@ window.PROPOSAL = {
         ],
         get: 'Creative work brought to life, a stronger presence in the market and a clear plan to build on the momentum.' }
     ],
-    end: {
-      headline: ['ORIGINAL THINKING.', 'BUILT TO LAST.'],
-      sub: '90 days is the beginning, not the end.',
-      body: 'We build the foundations, develop the ideas and create the momentum for what comes next. As your business evolves, we evolve alongside you.',
-      small: 'The 90-day approach provides a shared framework, not a fixed list of deliverables. Specific creative outputs, production requirements and implementation are agreed around your objectives, priorities and selected partnership capacity. Larger projects are scoped separately.'
-    },
+    end: null,
     closing: ''
   },
 

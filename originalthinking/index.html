@@ -159,12 +159,7 @@ window.PROPOSAL = {
         ],
         get: 'Creative work brought to life, a stronger presence in the market and a clear plan to build on the momentum.' }
     ],
-    end: {
-      headline: ['ORIGINAL THINKING.', 'BUILT TO LAST.'],
-      sub: '90 days is the beginning, not the end.',
-      body: 'We build the foundations, develop the ideas and create the momentum for what comes next. As your business evolves, we evolve alongside you.',
-      small: 'The 90-day approach provides a shared framework, not a fixed list of deliverables. Specific creative outputs, production requirements and implementation are agreed around your objectives, priorities and selected partnership capacity. Larger projects are scoped separately.'
-    },
+    end: null,
     closing: ''
   },
 
@@ -800,6 +795,24 @@ html.anim .wall.done .cell:before{transition-delay:0s}
   </div>
 </section>
 
+<section class="wrap sec" id="levels">
+  <div class="sec-head"><span class="idx num"></span><span class="ttl" id="lvLabel"></span><span class="end" id="lvTag"></span></div>
+  <div class="grid lv-top">
+    <h2 class="h1" data-split>CHOOSE<br>YOUR LEVEL.</h2>
+    <p class="body txt rv" id="lvIntro"></p>
+  </div>
+  <div class="levels" id="lvs" role="radiogroup" aria-label="Partnership level"></div>
+  <div class="lv-status" id="lvstatus" aria-live="polite"><span id="lvline">Select a level to take it into the conversation.</span><a href="#talk" id="lvgo" hidden>Take it to the conversation ↓</a></div>
+  <div class="grid flex-top">
+    <h3 class="h2" id="flexHead" data-split></h3>
+    <div class="terms">
+      <p class="lead rv" id="termsLead"></p>
+      <ul id="terms"></ul>
+      <p class="lead rv" id="termsClose"></p>
+    </div>
+  </div>
+</section>
+
 <section class="wrap sec" id="pedigree" data-sec="pedigree">
   <div class="sec-head"><span class="idx" id="pedLabel"></span><span class="ttl" id="pedTtl"></span><span class="end num" id="pedTag"></span></div>
   <div class="grid ped-top">
@@ -849,24 +862,6 @@ html.anim .wall.done .cell:before{transition-delay:0s}
     <div class="cell" style="--c:3;--r:6"></div>
     <div class="cell" style="--c:4;--r:6"></div>
     <div class="cell" style="--c:5;--r:6"></div>
-  </div>
-</section>
-
-<section class="wrap sec" id="levels">
-  <div class="sec-head"><span class="idx num"></span><span class="ttl" id="lvLabel"></span><span class="end" id="lvTag"></span></div>
-  <div class="grid lv-top">
-    <h2 class="h1" data-split>CHOOSE<br>YOUR LEVEL.</h2>
-    <p class="body txt rv" id="lvIntro"></p>
-  </div>
-  <div class="levels" id="lvs" role="radiogroup" aria-label="Partnership level"></div>
-  <div class="lv-status" id="lvstatus" aria-live="polite"><span id="lvline">Select a level to take it into the conversation.</span><a href="#talk" id="lvgo" hidden>Take it to the conversation ↓</a></div>
-  <div class="grid flex-top">
-    <h3 class="h2" id="flexHead" data-split></h3>
-    <div class="terms">
-      <p class="lead rv" id="termsLead"></p>
-      <ul id="terms"></ul>
-      <p class="lead rv" id="termsClose"></p>
-    </div>
   </div>
 </section>
 
