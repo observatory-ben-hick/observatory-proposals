@@ -132,6 +132,8 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   var caps=F.capabilities||[];
   /* no capabilities: the poster sequence stands on its own beside the lead */
   if(!caps.length){$('#caps').hidden=true;$('#capview').parentNode.classList.add('solo')}
+  /* no capabilities and no pictures: the whole block goes */
+  if(!caps.length&&!(F.gallery&&F.gallery.length))$('#capview').parentNode.hidden=true;
   $('#caps').innerHTML=caps.map(function(c,i){return '<li class="cap" data-i="'+i+'" tabindex="0"><i class="dot"></i><h3 class="h3">'+esc(c.title)+'</h3>'+(c.lead?'<p class="cl">'+esc(c.lead)+'</p>':'')+'<p>'+esc(c.text)+'</p></li>'}).join('');
   /* offer.gallery: an optional sequence of pictures that plays on its own beside the list */
   var gal=F.gallery&&F.gallery.length?F.gallery:null,views=gal||caps.map(function(c){return {src:c.image,position:c.position}});

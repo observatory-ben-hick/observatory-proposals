@@ -82,14 +82,7 @@ window.PROPOSAL = {
     people: [],
     /* the sequence that plays beside the list, in this order */
     galleryRatio: '3/4',
-    gallery: [
-      { src: 'assets/g1-nature.jpg', alt: 'Poster: Nature, set over the moon' },
-      { src: 'assets/g2-non.jpg', alt: 'Poster: NON, now or never' },
-      { src: 'assets/g3-humans-of-joy.jpg', alt: 'Poster: Humans of Joy' },
-      { src: 'assets/g4-ocean-culture.jpg', alt: 'Poster: Ocean Culture, when people feel something, they protect it' },
-      { src: 'assets/g5-eivissa.jpg', alt: 'Poster: Nothing here exists alone, Eivissa' },
-      { src: 'assets/g6-joy-asset.jpg', alt: 'Poster: Joy is a serious asset' }
-    ],
+    gallery: [],
     capabilities: []
   },
 
