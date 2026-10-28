@@ -245,6 +245,8 @@ window.PROPOSAL = {
       display: '+44 7797 758788',
       message: 'Hi Ben, I’ve read The Observatory partnership proposal.'
     },
+    /* book a call: sits above the email addresses */
+    booking: { url: 'https://calendly.com/studio-theobservatory/20-minute-chat', who: 'Ben and Sarah · 20 minutes', text: 'Book a call', button: 'Pick a time' },
     emails: [
       { who: 'Ben and Sarah · The studio', address: 'studio@theobservatory.je' }
     ]
@@ -660,6 +662,16 @@ html.anim .wall.done .cell:before{transition-delay:0s}
 .foot-row .roundel{--rs:clamp(9px,1vw,14px)}
 .foot-meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--ink);margin-top:clamp(24px,3vw,44px);padding-top:14px;font-size:var(--t-lab)}
 .foot-meta .soc{display:flex;gap:18px;flex-wrap:wrap}
+/* footer badge: Built by Brand OS, reversed out, with an orange keyline running round it */
+@property --bos{syntax:'<angle>';initial-value:0deg;inherits:false}
+/* the badge hangs from the footer rule and ends exactly on the text baseline (14px padding + 15px to the baseline of the 14px line) */
+.bos{position:relative;display:inline-flex;align-items:center;box-sizing:border-box;height:29px;margin-top:-14px;padding:1px 14px 0;border-radius:0;background:var(--ink);color:var(--bg);line-height:1;isolation:isolate;align-self:flex-start}
+.bos:before{content:"";position:absolute;inset:0 -1.5px -1.5px;border-radius:0;padding:0 1.5px 1.5px;background:conic-gradient(from var(--bos),transparent 0 62%,var(--accent) 80%,#ffb199 86%,var(--accent) 92%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:bosrun 3.6s linear infinite;z-index:-1}
+.bos-t{font-size:11px;letter-spacing:.14em;background:linear-gradient(100deg,var(--bg) 0 40%,#ffd4c4 50%,var(--bg) 60% 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:bosshine 3.6s ease-in-out infinite}
+/* on phones the badge leads the row so it still hangs from the rule */
+@media(max-width:700px){.foot-meta .bos{order:-1;white-space:nowrap}.foot-meta>span:first-child{flex-basis:100%}}@keyframes bosrun{to{--bos:360deg}}
+@keyframes bosshine{0%,35%{background-position:100% 0}65%,100%{background-position:0 0}}
+@media(prefers-reduced-motion:reduce){.bos:before{animation:none;background:var(--accent)}.bos-t{animation:none;color:var(--bg);background:none}}
 
 /* master marker: shown only while template is true */
 .tpl{position:fixed;left:var(--g);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:140;display:flex;align-items:center;gap:9px;background:var(--ink);color:var(--bg);font-size:12px;line-height:1.2;padding:9px 13px;border-radius:999px;max-width:calc(100vw - 2*var(--g))}
@@ -677,7 +689,7 @@ html.anim .wall.done .cell:before{transition-delay:0s}
 }
 </style>
 <script>(function(){var h=document.documentElement;h.classList.add('js');try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))h.classList.add('anim')}catch(e){}/* failsafe: if the page script has not finished, show everything as plain content */function bare(){if(!h.classList.contains('ok'))h.classList.remove('anim')}window.addEventListener('error',bare);setTimeout(bare,5000)})();</script>
-<style>html body h1,html body h2,html body h3,html body h4,html body .h1,html body .h2,html body .h3,html body .mega,html body [data-split],html body [data-split] *,html body .w,html body .marq-t,html body .marq-t *,html body a.btn,html body a.btn *,html body .foot-meta a{font-weight:700!important}</style>
+<style>html body h1,html body h2,html body h3,html body h4,html body .h1,html body .h2,html body .h3,html body .mega,html body [data-split],html body [data-split] *,html body .w,html body .marq-t,html body .marq-t *,html body a.btn,html body a.btn *,html body .foot-meta a,html body .bos-t{font-weight:700!important}</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -927,7 +939,7 @@ html.anim .wall.done .cell:before{transition-delay:0s}
     <p class="h2" id="footTag">GREAT IDEAS.<br>GOOD COMPANY.</p>
     
   </div>
-  <div class="foot-meta"><span>The Observatory × <span data-t="short"></span></span><span><span id="footKind"></span> · <span data-t="year"></span></span><span class="soc"><a href="https://www.instagram.com/theobservatory/" target="_blank" rel="noopener me">Instagram ↗</a><a href="https://www.linkedin.com/company/the-observatory---visual-culture/" target="_blank" rel="noopener me">LinkedIn ↗</a><a href="https://x.com/beobserved" target="_blank" rel="noopener me">X ↗</a></span><a href="#top">Back to top ↑</a></div>
+  <div class="foot-meta"><span>The Observatory × <span data-t="short"></span></span><span><span id="footKind"></span> · <span data-t="year"></span></span><span class="soc"><a href="https://www.instagram.com/theobservatory/" target="_blank" rel="noopener me">Instagram ↗</a><a href="https://www.linkedin.com/company/the-observatory---visual-culture/" target="_blank" rel="noopener me">LinkedIn ↗</a><a href="https://x.com/beobserved" target="_blank" rel="noopener me">X ↗</a></span><span class="bos" role="img" aria-label="Built by Brand OS"><span class="bos-t" aria-hidden="true">BUILT BY BRAND OS</span></span><a href="#top">Back to top ↑</a></div>
 </footer>
 
 <div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="Concept" hidden>
@@ -1234,7 +1246,8 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   if(wa&&wa.number){var b=$('#wa');b.hidden=false;b.href=waLink('Let’s talk.');$$('[data-wabtn]').forEach(function(el){el.textContent=wa.button||'WhatsApp'});put('waN',[wa.name,wa.display].filter(Boolean).join(' · '))}
   /* contacts.compose: the address opens a new email in the viewer's own mail app, subject and opening line filled in
      (with the level they picked, if any). The address stays on screen as text and is copied on click as a backup. */
-  $('#emails').innerHTML=(K.emails||[]).map(function(e){
+  var BK=K.booking;
+  $('#emails').innerHTML=(BK&&BK.url?'<div class="contact book"><span class="lab">'+esc(BK.who||'')+'</span><a class="mail" href="'+esc(BK.url)+'" target="_blank" rel="noopener"><span class="mt">'+esc(BK.text||'Book a call')+'</span><span class="cp">'+esc(BK.button||'Pick a time')+' ↗</span></a></div>':'')+(K.emails||[]).map(function(e){
     if(K.compose)return '<div class="contact"><span class="lab">'+esc(e.who)+'</span><a class="mail" target="'+esc(K.compose.target||'_blank')+'" rel="noopener" data-mail="'+esc(e.address)+'" data-who="'+esc(String(e.who||'').split(' · ')[0])+'" href="'+esc(mailHref(e.address,String(e.who||'').split(' · ')[0],null))+'"><span class="mt">'+esc(e.address)+'</span><span class="cp">'+esc(K.compose.button||'Email us')+'</span></a></div>';
     return '<div class="contact"><span class="lab">'+esc(e.who)+'</span><button class="mail" type="button" data-mail="'+esc(e.address)+'"><span class="mt">'+esc(e.address)+'</span><span class="cp">Copy address</span></button></div>'}).join('');
 })();
@@ -1483,7 +1496,7 @@ function startStage(){
     cta.textContent='Let’s talk about '+name+'.';
     var wa=$('#wa');if(wa&&!wa.hidden)wa.href=waLink('Let’s talk about '+name+'.');
     var choice={name:name,detail:line.textContent.replace(name+'. ','')};
-    $$('a.mail').forEach(function(m){m.href=mailHref(m.getAttribute('data-mail'),m.getAttribute('data-who'),choice)});
+    $$('a.mail[data-mail]').forEach(function(m){m.href=mailHref(m.getAttribute('data-mail'),m.getAttribute('data-who'),choice)});
   }
   lv.forEach(function(b,i){
     b.addEventListener('click',function(){pick(b)});
@@ -1495,7 +1508,7 @@ function startStage(){
 })();
 
 /* ---------- copy an address ---------- */
-$$('.mail').forEach(function(b){
+$$('.mail[data-mail]').forEach(function(b){
   var cp=$('.cp',b),t=$('.mt',b);
   b.addEventListener('click',function(){
     var a=b.getAttribute('data-mail'),isLink=b.tagName==='A',lbl=cp.textContent;

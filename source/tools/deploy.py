@@ -19,7 +19,7 @@ assert 'data:font/woff2' not in doc, 'embedded font not removed'
 doc=doc.replace('"NHG Display",','"neue-haas-grotesk-display",')
 doc=doc.replace('*,*:before,*:after{font-weight:400!important','*,*:before,*:after{font-weight:500!important')
 # same type rule as www.theobservatory.je: 75 Bold for headlines in caps and links with arrows, 55 Roman for everything else
-BOLD=','.join('html body '+x for x in ['h1','h2','h3','h4','.h1','.h2','.h3','.mega','[data-split]','[data-split] *','.w','.marq-t','.marq-t *','a.btn','a.btn *','.foot-meta a'])
+BOLD=','.join('html body '+x for x in ['h1','h2','h3','h4','.h1','.h2','.h3','.mega','[data-split]','[data-split] *','.w','.marq-t','.marq-t *','a.btn','a.btn *','.foot-meta a','.bos-t'])
 doc=doc.replace('</head>','<style>'+BOLD+'{font-weight:700!important}</style>\n</head>',1)
 OG='https://www.theobservatory.je/'+SLUG
 OGI='https://www.theobservatory.je/'+SLUG+'/assets/og-'+SLUG+'.jpg?v=3'

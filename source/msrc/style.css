@@ -406,6 +406,16 @@ html.anim .wall.done .cell:before{transition-delay:0s}
 .foot-row .roundel{--rs:clamp(9px,1vw,14px)}
 .foot-meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--ink);margin-top:clamp(24px,3vw,44px);padding-top:14px;font-size:var(--t-lab)}
 .foot-meta .soc{display:flex;gap:18px;flex-wrap:wrap}
+/* footer badge: Built by Brand OS, reversed out, with an orange keyline running round it */
+@property --bos{syntax:'<angle>';initial-value:0deg;inherits:false}
+/* the badge hangs from the footer rule and ends exactly on the text baseline (14px padding + 15px to the baseline of the 14px line) */
+.bos{position:relative;display:inline-flex;align-items:center;box-sizing:border-box;height:29px;margin-top:-14px;padding:1px 14px 0;border-radius:0;background:var(--ink);color:var(--bg);line-height:1;isolation:isolate;align-self:flex-start}
+.bos:before{content:"";position:absolute;inset:0 -1.5px -1.5px;border-radius:0;padding:0 1.5px 1.5px;background:conic-gradient(from var(--bos),transparent 0 62%,var(--accent) 80%,#ffb199 86%,var(--accent) 92%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:bosrun 3.6s linear infinite;z-index:-1}
+.bos-t{font-size:11px;letter-spacing:.14em;background:linear-gradient(100deg,var(--bg) 0 40%,#ffd4c4 50%,var(--bg) 60% 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:bosshine 3.6s ease-in-out infinite}
+/* on phones the badge leads the row so it still hangs from the rule */
+@media(max-width:700px){.foot-meta .bos{order:-1;white-space:nowrap}.foot-meta>span:first-child{flex-basis:100%}}@keyframes bosrun{to{--bos:360deg}}
+@keyframes bosshine{0%,35%{background-position:100% 0}65%,100%{background-position:0 0}}
+@media(prefers-reduced-motion:reduce){.bos:before{animation:none;background:var(--accent)}.bos-t{animation:none;color:var(--bg);background:none}}
 
 /* master marker: shown only while template is true */
 .tpl{position:fixed;left:var(--g);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:140;display:flex;align-items:center;gap:9px;background:var(--ink);color:var(--bg);font-size:12px;line-height:1.2;padding:9px 13px;border-radius:999px;max-width:calc(100vw - 2*var(--g))}

@@ -219,7 +219,8 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   if(wa&&wa.number){var b=$('#wa');b.hidden=false;b.href=waLink('Let’s talk.');$$('[data-wabtn]').forEach(function(el){el.textContent=wa.button||'WhatsApp'});put('waN',[wa.name,wa.display].filter(Boolean).join(' · '))}
   /* contacts.compose: the address opens a new email in the viewer's own mail app, subject and opening line filled in
      (with the level they picked, if any). The address stays on screen as text and is copied on click as a backup. */
-  $('#emails').innerHTML=(K.emails||[]).map(function(e){
+  var BK=K.booking;
+  $('#emails').innerHTML=(BK&&BK.url?'<div class="contact book"><span class="lab">'+esc(BK.who||'')+'</span><a class="mail" href="'+esc(BK.url)+'" target="_blank" rel="noopener"><span class="mt">'+esc(BK.text||'Book a call')+'</span><span class="cp">'+esc(BK.button||'Pick a time')+' ↗</span></a></div>':'')+(K.emails||[]).map(function(e){
     if(K.compose)return '<div class="contact"><span class="lab">'+esc(e.who)+'</span><a class="mail" target="'+esc(K.compose.target||'_blank')+'" rel="noopener" data-mail="'+esc(e.address)+'" data-who="'+esc(String(e.who||'').split(' · ')[0])+'" href="'+esc(mailHref(e.address,String(e.who||'').split(' · ')[0],null))+'"><span class="mt">'+esc(e.address)+'</span><span class="cp">'+esc(K.compose.button||'Email us')+'</span></a></div>';
     return '<div class="contact"><span class="lab">'+esc(e.who)+'</span><button class="mail" type="button" data-mail="'+esc(e.address)+'"><span class="mt">'+esc(e.address)+'</span><span class="cp">Copy address</span></button></div>'}).join('');
 })();
@@ -468,7 +469,7 @@ function startStage(){
     cta.textContent='Let’s talk about '+name+'.';
     var wa=$('#wa');if(wa&&!wa.hidden)wa.href=waLink('Let’s talk about '+name+'.');
     var choice={name:name,detail:line.textContent.replace(name+'. ','')};
-    $$('a.mail').forEach(function(m){m.href=mailHref(m.getAttribute('data-mail'),m.getAttribute('data-who'),choice)});
+    $$('a.mail[data-mail]').forEach(function(m){m.href=mailHref(m.getAttribute('data-mail'),m.getAttribute('data-who'),choice)});
   }
   lv.forEach(function(b,i){
     b.addEventListener('click',function(){pick(b)});
@@ -480,7 +481,7 @@ function startStage(){
 })();
 
 /* ---------- copy an address ---------- */
-$$('.mail').forEach(function(b){
+$$('.mail[data-mail]').forEach(function(b){
   var cp=$('.cp',b),t=$('.mt',b);
   b.addEventListener('click',function(){
     var a=b.getAttribute('data-mail'),isLink=b.tagName==='A',lbl=cp.textContent;

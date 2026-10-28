@@ -223,6 +223,8 @@ window.PROPOSAL = {
       display: '+44 7797 758788',
       message: 'Hi Ben, I’ve read The Observatory partnership proposal.'
     },
+    /* book a call: sits above the email addresses */
+    booking: { url: 'https://calendly.com/studio-theobservatory/20-minute-chat', who: 'Ben and Sarah · 20 minutes', text: 'Book a call', button: 'Pick a time' },
     emails: [
       { who: 'Ben and Sarah · The studio', address: 'studio@theobservatory.je' }
     ]
