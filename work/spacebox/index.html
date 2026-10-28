@@ -4531,7 +4531,7 @@ if(ANIM)D.documentElement.classList.add('anim');
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function lines(a){return (a||[]).map(function(l){return '<span>'+esc(l)+'</span>'}).join('')}
 var WM=W.OBS_WORDMARK;
-function wmTop(){return '<span class="sr">The Observatory, creative agency, Jersey</span><svg aria-hidden="true" class="wm wm-top" viewBox="'+WM.vb+'" role="img" aria-label="Observatory"><title>Observatory</title>'+WM.letters.map(function(d,i){return '<path style="--i:'+i+'" d="'+d+'"/>'}).join('')+'</svg>'}
+function wmTop(){return '<span class="sr">The Observatory, creative agency, Jersey</span><svg aria-hidden="true" class="wm wm-top" viewBox="'+WM.vb+'" focusable="false">'+WM.letters.map(function(d,i){return '<path style="--i:'+i+'" d="'+d+'"/>'}).join('')+'</svg>'}
 function byId(id){for(var i=0;i<S.work.length;i++)if(S.work[i].id===id)return S.work[i];return null}
 function newsById(id){for(var i=0;i<S.news.length;i++)if(S.news[i].id===id)return S.news[i];return null}
 function n2(i){return (i<9?'0':'')+(i+1)}
