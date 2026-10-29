@@ -3,5 +3,6 @@ Allow: /
 Disallow: /site-src/
 Disallow: /source/
 Disallow: /originalthinking/
+Disallow: /overview/
 
 Sitemap: https://www.theobservatory.je/sitemap.xml

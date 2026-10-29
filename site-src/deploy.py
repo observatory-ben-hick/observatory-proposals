@@ -173,7 +173,7 @@ def main():
         sm.append('  <url><loc>%s/%s</loc><lastmod>%s</lastmod><priority>%s</priority><image:image><image:loc>%s</image:loc></image:image></url>' % (ORIGIN, r + '/' if r else '', today, pri(r), html.escape(im)))
     sm.append('</urlset>')
     open(os.path.join(REPO, 'sitemap.xml'), 'w').write('\n'.join(sm) + '\n')
-    rb = 'User-agent: *\nDisallow: /\n' if PREVIEW else ('User-agent: *\nAllow: /\nDisallow: /site-src/\nDisallow: /source/\nDisallow: /originalthinking/\n\nSitemap: %s/sitemap.xml\n' % ORIGIN)
+    rb = 'User-agent: *\nDisallow: /\n' if PREVIEW else ('User-agent: *\nAllow: /\nDisallow: /site-src/\nDisallow: /source/\nDisallow: /originalthinking/\nDisallow: /overview/\n\nSitemap: %s/sitemap.xml\n' % ORIGIN)
     open(os.path.join(REPO, 'robots.txt'), 'w').write(rb)
     # pages that no longer exist in the CMS are removed
     keep = set(r for r in routes if '/' in r)
