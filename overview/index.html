@@ -90,13 +90,13 @@ ol,ul{list-style:none}
 .ig{margin-top:18px;align-items:center}
 .ig .fig{grid-column:span 5;padding-right:6px}
 .lg-svg{display:block;width:100%;height:auto;overflow:visible}
-.lg-svg .lw{fill:var(--off);stroke:var(--ink);stroke-width:.6;stroke-linejoin:round;transition:fill .5s var(--ease),stroke .5s var(--ease);cursor:pointer}
-.lg-svg .lw.on{fill:var(--accent);stroke:var(--accent)}
+.lg-svg .lw{fill:var(--off);stroke:none;transition:fill .5s var(--ease);cursor:pointer}
+.lg-svg .lw.on{fill:var(--accent)}
 .lg-svg .lc{fill:var(--ink)}
 .lg-svg .lg-n{font-family:var(--f);font-weight:500;font-size:9px;fill:var(--dim);transition:fill .4s}
 .lg-svg .lg-n.on{fill:var(--accent)}
 .lg-svg .lk>*{fill:none;stroke:var(--ink);stroke-width:.45;opacity:.32;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.4s var(--ease) calc(var(--i)*140ms)}
-.lg-svg .lt{fill:none;stroke:var(--accent);stroke-width:1.3;stroke-linecap:round;stroke-dasharray:12 88;opacity:0;transition:opacity 1s var(--ease) 2s}
+.lg-svg .lt{fill:none;stroke:var(--accent);stroke-width:1.3;stroke-linecap:round;stroke-dasharray:12 88;opacity:0;transition:opacity 1s var(--ease) .6s}
 .seen .lg-svg .lk>*{stroke-dashoffset:0}
 .seen .lg-svg .lt{opacity:1;animation:lgrun 7s linear infinite}
 @keyframes lgrun{to{stroke-dashoffset:-100}}
@@ -104,8 +104,8 @@ ol,ul{list-style:none}
 .key li{display:grid;grid-template-columns:26px 34px minmax(0,1fr);column-gap:12px;align-items:center;padding:5px 0;border-bottom:1px solid var(--rule);cursor:default;transition:color .4s var(--ease)}
 .key .n{font-size:12px;color:var(--dim);transition:color .4s}
 .key .mini{width:34px;height:auto;display:block;overflow:visible}
-.key .mini path{fill:var(--off);stroke:var(--ink);stroke-width:5;stroke-linejoin:round;transition:fill .4s,stroke .4s}
-.key .mini path.on{fill:var(--accent);stroke:var(--accent)}
+.key .mini path{fill:var(--off);transition:fill .4s}
+.key .mini path.on{fill:var(--accent)}
 .key .mini circle{fill:var(--ink)}
 .key .tx{display:flex;flex-direction:column;gap:1px;transition:transform .6s var(--ease)}
 .key .tx b{font-weight:700;font-size:13px;letter-spacing:-.005em}
@@ -367,7 +367,7 @@ ol,ul{list-style:none}
   kl.push('<path pathLength="1" style="--i:'+(ki++)+'" d="M-6 93.7H292"/>','<path pathLength="1" style="--i:'+(ki++)+'" d="M143 -14V201"/>','<circle pathLength="1" style="--i:'+(ki++)+'" cx="143" cy="93.7" r="104"/>');
   GC.forEach(function(g){[g[0],286-g[0]].forEach(function(cx){kl.push('<circle pathLength="1" style="--i:'+(ki++)+'" cx="'+cx.toFixed(1)+'" cy="93.7" r="'+g[1]+'"/>')})});
   $('#lgFig').innerHTML='<svg class="lg-svg" viewBox="-8 -22 302 222" role="img" aria-label="The Observatory symbol. Each of its six wings stands for one discipline">'+
-    '<g class="lk" aria-hidden="true">'+kl.join('')+'</g><circle class="lt" aria-hidden="true" pathLength="100" cx="143" cy="93.7" r="104"/>'+
+    '<circle class="lt" aria-hidden="true" pathLength="100" cx="143" cy="93.7" r="104"/>'+
     draw.map(function(i){return '<path class="lw" data-k="'+i+'" d="'+P[i]+'"/>'}).join('')+
     '<circle class="lc" cx="143" cy="93.7" r="90.15"/>'+
     LX.map(function(x,i){return '<text class="lg-n" data-k="'+i+'" x="'+x+'" y="'+LY[i]+'" text-anchor="middle">'+n2(i)+'</text>'}).join('')+'</svg>';
