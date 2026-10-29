@@ -14,4 +14,4 @@ The build writes `index.html`, a folder per page (`work/<id>/`, `news/<id>/`, `a
 - Names: Future of Humanity, The Good Stone, SpaceBox, 7th Sense Research, War Tunnels, AiM (always this spelling).
 - Type comes from the Adobe Fonts kit `lud1fnf` (Neue Haas Grotesk Display). Licensed font files never go in this public repo.
 - Films: H.264, yuv420p, `-movflags +faststart`, silent unless they have real sound, under 20 MB.
-- `originalthinking/` is the proposal page. It is not linked from the site and stays out of search (noindex, robots.txt).
+- `greatideas/` is the proposal page (the old `originalthinking/` address forwards to it). It is not linked from the site and stays out of search (noindex, robots.txt).

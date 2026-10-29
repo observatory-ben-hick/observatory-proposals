@@ -1,19 +1,19 @@
 # Proposal master: source files
 
 Everything needed to rebuild The Observatory proposal master and the live page at
-www.theobservatory.je/originalthinking.
+www.theobservatory.je/greatideas.
 
 ## What lives where
 - `msrc/config-newbiz.js`: the master's content (all copy, images, levels, contacts). Most briefs only touch this file.
 - `msrc/config-deploy.js`: the same content set up for the live site (film and poster served from the repo, email links open in the visitor's mail app).
 - `msrc/app.js`, `msrc/body.html`, `msrc/style.css`, `msrc/wordmark.js`, `symsrc/sym.js`: the page itself.
-- `site/assets`, `sj-assets`: images. The film lives once, in `../originalthinking/assets/showreel-v4-r2.mp4`.
-- `og/`: the share preview image (`og-originalthinking.jpg`) and the scripts that render it.
-- `tools/build_master.py`: builds the master page. `tools/deploy.py`: builds the live page into `../originalthinking/`. `tools/audit.js`: layout checks at every width.
+- `site/assets`, `sj-assets`: images. The film lives once, in `../greatideas/assets/showreel-v4-r2.mp4`.
+- `og/`: the share preview image (`og-greatideas.jpg`) and the scripts that render it.
+- `tools/build_master.py`: builds the master page. `tools/deploy.py`: builds the live page into `../greatideas/`. `tools/audit.js`: layout checks at every width.
 
 ## Update the live page
 1. Edit `msrc/config-newbiz.js` and make the same change in `msrc/config-deploy.js` (they differ only in the film source and the email link target).
-2. From this folder: `python3 -I tools/deploy.py "$PWD" config-deploy.js originalthinking`
+2. From this folder: `python3 -I tools/deploy.py "$PWD" config-deploy.js greatideas`
 3. Commit and push. GitHub Pages updates the live page within a couple of minutes. Webflow only needs republishing for page settings (title, share image).
 
 ## Update the master artifact preview
@@ -25,4 +25,4 @@ www.theobservatory.je/originalthinking.
 ## Rules
 - Type: FatFrank for the OBSERVATORY wordmark (as outlines), Neue Haas Grotesk Display for everything else, never bold. Headlines in caps, body in sentence case. No em dashes in body copy.
 - Colours: #F1EDE5 background, #242424 ink, #FF3400 accent.
-- New proposals get their own folder next to `originalthinking/` and their own config. Never overwrite another proposal's folder.
+- New proposals get their own folder next to `greatideas/` and their own config. Never overwrite another proposal's folder.

@@ -3,7 +3,7 @@ import sys,re,shutil,os,subprocess
 S,CFG,SLUG=sys.argv[1],sys.argv[2],sys.argv[3]
 # inside the GitHub repo the published folders sit next to source/; in a scratch workspace they go to repo/
 ROOT=os.path.dirname(os.path.abspath(S)) if os.path.exists(os.path.dirname(os.path.abspath(S))+'/.nojekyll') else S+'/repo'
-subprocess.run(['python3','-I',S+'/tools/build_master.py',S,CFG,'deploybuild','The Observatory · Original thinking','A creative partnership proposal from The Observatory.'],check=True,stdout=subprocess.DEVNULL)
+subprocess.run(['python3','-I',S+'/tools/build_master.py',S,CFG,'deploybuild','The Observatory · Great ideas. Good company.','A creative partnership proposal from The Observatory.'],check=True,stdout=subprocess.DEVNULL)
 p=open(S+'/deploybuild/index.html',encoding='utf8').read()
 mark="setTimeout(bare,5000)})();</script>\n"
 i=p.index(mark)+len(mark)
@@ -23,7 +23,7 @@ BOLD=','.join('html body '+x for x in ['h1','h2','h3','h4','.h1','.h2','.h3','.m
 doc=doc.replace('</head>','<style>'+BOLD+'{font-weight:700!important}</style>\n</head>',1)
 OG='https://www.theobservatory.je/'+SLUG
 OGI='https://www.theobservatory.je/'+SLUG+'/assets/og-'+SLUG+'.jpg?v=3'
-doc=doc.replace('<meta name="theme-color" content="#F1EDE5">','<meta name="theme-color" content="#F1EDE5">\n<meta property="og:type" content="website">\n<meta property="og:title" content="The Observatory · Original thinking. Built to last.">\n<meta property="og:description" content="A creative partnership proposal from The Observatory.">\n<meta property="og:url" content="'+OG+'">\n<meta property="og:image" content="'+OGI+'">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image" content="'+OGI+'">',1)
+doc=doc.replace('<meta name="theme-color" content="#F1EDE5">','<meta name="theme-color" content="#F1EDE5">\n<meta property="og:type" content="website">\n<meta property="og:title" content="The Observatory · Great ideas. Good company.">\n<meta property="og:description" content="A creative partnership proposal from The Observatory.">\n<meta property="og:url" content="'+OG+'">\n<meta property="og:image" content="'+OGI+'">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image" content="'+OGI+'">',1)
 shutil.os.makedirs(ROOT+'/'+SLUG+'/assets',exist_ok=True); shutil.copy(S+'/og/og-'+SLUG+'.jpg',ROOT+'/'+SLUG+'/assets/og-'+SLUG+'.jpg')
 doc=doc.replace('<meta name="theme-color" content="#F1EDE5">','<meta name="theme-color" content="#F1EDE5">\n<link rel="preconnect" href="https://use.typekit.net" crossorigin>\n<link rel="stylesheet" href="https://use.typekit.net/lud1fnf.css">',1)
 out=ROOT+'/'+SLUG

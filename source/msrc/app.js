@@ -56,8 +56,8 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   if(H2.work){var wk=D.createElement('div');wk.className='wrap work';wk.innerHTML='<p class="lead rv">'+esc(H2.work)+'</p>';var mq2=$('.marq');if(mq2)mq2.parentNode.insertBefore(wk,mq2.nextSibling)}
   put('heroKind',LB.kind||'Creative partnership proposal');
   if(LB.est&&LB.est.length){var hk=$('#heroKind');if(hk){hk.className='est';hk.innerHTML=esc(LB.est[0])+'<i aria-hidden="true"></i>'+esc(LB.est[1]||'');var hy=hk.nextElementSibling;if(hy&&hy.hasAttribute('data-t'))hy.hidden=true}}put('footKind',LB.kind||'Creative partnership proposal');
-  lines('heroTag',H2.tagline||['ORIGINAL THINKING.','BUILT TO LAST.']);lines('footTag',(P.labels||{}).footTag||H2.tagline||['ORIGINAL THINKING.','BUILT TO LAST.']);
-  lines('kvLine',LB.kvLine||H2.tagline||['ORIGINAL THINKING.','BUILT TO LAST.']);
+  lines('heroTag',H2.tagline||['GREAT IDEAS.','GOOD COMPANY.']);lines('footTag',(P.labels||{}).footTag||H2.tagline||['GREAT IDEAS.','GOOD COMPANY.']);
+  lines('kvLine',LB.kvLine||H2.tagline||['GREAT IDEAS.','GOOD COMPANY.']);
   /* labels.keyVisualShow:false removes the full-width picture and its panel above the contact section */
   if(LB.keyVisualShow===false){var kvs=$('section.kv');if(kvs)kvs.hidden=true}
   /* keyVisual image: labels.keyVisualImage = {src, alt, position} */
@@ -608,7 +608,7 @@ $$('.mail[data-mail]').forEach(function(b){
   /* Back to website: returns to the website page the visitor came from (same place), or the home page */
   var hero=$('#top'),bk=D.createElement('a');bk.className='ot-back';bk.href=SITE.home||'../';bk.setAttribute('data-site','');bk.setAttribute('data-back','');
   bk.innerHTML='<span aria-hidden="true">←</span><span>'+esc(SITE.back||'Back to website')+'</span>';if(hero)hero.insertBefore(bk,hero.firstChild);
-  var FROM=null;try{var r=new URL(D.referrer);if(r.origin===location.origin&&!/\/originalthinking\//.test(r.pathname))FROM=r.pathname}catch(x){}
+  var FROM=null;try{var r=new URL(D.referrer);if(r.origin===location.origin&&!/\/(greatideas|originalthinking)\//.test(r.pathname))FROM=r.pathname}catch(x){}
   /* the website's menu in the bar, and the same full-screen menu on phones */
   if(SITE.menu&&SITE.menu.length){
     var nlk=$('#navlinks');

@@ -32,13 +32,13 @@ window.PROPOSAL = {
     close: 'Where we go from here',
     closeTag: '',
     keyVisualShow: false,   /* no key visual block before the contact section */
-    keyVisual: ['Original thinking', 'Built to last'],
+    keyVisual: ['Great ideas', 'Good company'],
     keyVisualImage: { src: 'assets/kv-lips.jpg', position: '50% 34%', alt: 'Close-up of lips and teeth, skin flecked with sand, in black and white' },
     workflow: 'Visual language concepts are now ready',
     workflowFile: 'Visual language',
     workflowMeta: 'Concepts v1 →',
     workflowNote: 'Illustration of a generative workflow',
-    kvLine: ['ORIGINAL THINKING.', 'BUILT TO LAST.'],   /* the line on the key visual panel */
+    kvLine: ['GREAT IDEAS.', 'GOOD COMPANY.'],   /* the line on the key visual panel */
     footTag: ['GREAT IDEAS.', 'GOOD COMPANY.'],   /* the footer line */
     workflowCount: 45
   },
