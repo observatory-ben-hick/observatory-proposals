@@ -25,6 +25,7 @@ OG='https://www.theobservatory.je/'+SLUG
 OGI='https://www.theobservatory.je/'+SLUG+'/assets/og-'+SLUG+'.jpg?v=3'
 doc=doc.replace('<meta name="theme-color" content="#F1EDE5">','<meta name="theme-color" content="#F1EDE5">\n<meta property="og:type" content="website">\n<meta property="og:title" content="The Observatory · Great ideas. Good company.">\n<meta property="og:description" content="A creative partnership proposal from The Observatory.">\n<meta property="og:url" content="'+OG+'">\n<meta property="og:image" content="'+OGI+'">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image" content="'+OGI+'">',1)
 shutil.os.makedirs(ROOT+'/'+SLUG+'/assets',exist_ok=True); shutil.copy(S+'/og/og-'+SLUG+'.jpg',ROOT+'/'+SLUG+'/assets/og-'+SLUG+'.jpg')
+doc=doc.replace('<meta name="theme-color" content="#F1EDE5">','<meta name="theme-color" content="#F1EDE5">\n<link rel="icon" href="/media/favicon.svg?v=2" type="image/svg+xml">\n<link rel="icon" href="/media/favicon-32.png?v=2" sizes="32x32" type="image/png">\n<link rel="apple-touch-icon" href="/media/apple-touch-icon.png?v=2">\n<link rel="manifest" href="/site.webmanifest">',1)
 doc=doc.replace('<meta name="theme-color" content="#F1EDE5">','<meta name="theme-color" content="#F1EDE5">\n<link rel="preconnect" href="https://use.typekit.net" crossorigin>\n<link rel="stylesheet" href="https://use.typekit.net/lud1fnf.css">',1)
 out=ROOT+'/'+SLUG
 os.makedirs(out+'/assets',exist_ok=True)

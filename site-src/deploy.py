@@ -33,7 +33,8 @@ def page_html(base):
             '<meta name="obs-base" content="%s">\n'
             '<link rel="icon" href="%smedia/favicon.svg" type="image/svg+xml">\n'
             '<link rel="icon" href="%smedia/favicon-32.png" sizes="32x32" type="image/png">\n'
-            '<link rel="apple-touch-icon" href="%smedia/apple-touch-icon.png">\n' % (CSP, base, base, base, base)) + FONT
+            '<link rel="apple-touch-icon" href="%smedia/apple-touch-icon.png">\n'
+            '<link rel="manifest" href="%ssite.webmanifest">\n' % (CSP, base, base, base, base, base)) + FONT
     if PREVIEW:
         s = s.replace('<meta name="robots" content="index, follow, max-image-preview:large">', '<meta name="robots" content="noindex, nofollow">')
     return fingerprint(head + s, base)

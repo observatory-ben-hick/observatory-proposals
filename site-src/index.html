@@ -3763,8 +3763,8 @@ window.SITE = {
       'But what matters most to us, more than the names, the techniques, or the headlines, is the human connection. Real relationships. Long-term creative partnerships rooted in trust, shared vision, and the kind of rebellion that says: we’re not waiting for permission. No more one-night stands. We’re here for the work that lasts, the kind that asks for all of you and gives more in return. The kind of work that feels like coming home.'
     ],
     people: [
-      { name: 'BEN HICKINGBOTHAM', role: 'Creative Director / Producer', email: 'studio@theobservatory.je', image: '__BASE__media/work/portrait-ben.jpg', initials: 'BH' },
-      { name: 'SARAH HICKINGBOTHAM', role: 'Communications Director / Writer / Producer', email: 'studio@theobservatory.je', image: '__BASE__media/work/portrait-sarah.jpg', initials: 'SH' }
+      { name: 'BEN HICKINGBOTHAM', role: 'Creative Director / Producer', email: 'ben@theobservatory.je', image: '__BASE__media/work/portrait-ben.jpg', initials: 'BH' },
+      { name: 'SARAH HICKINGBOTHAM', role: 'Communications Director / Writer / Producer', email: 'sarah@theobservatory.je', image: '__BASE__media/work/portrait-sarah.jpg', initials: 'SH' }
     ],
     capabilities: ['Strategy and positioning', 'Brand, design and identity', 'Products and packaging', 'Exhibitions and installations', 'Websites and digital experiences', 'Marketing and advertising', 'Storytelling', 'Data visualisation', 'Film, sound and animation', 'Feature film development'],
     aim: 'Through our technology partnership with AiM, Automated Intelligence Models, we introduce intelligent systems, AI and automation where there is clear commercial benefit.'
@@ -4843,7 +4843,7 @@ function vClients(){
 }
 function person(p){
   return '<div class="pp"><div class="ap">'+(p.image?img(p.image,p.name):'<span class="ini">'+esc(p.initials)+'</span><span class="ph-n">Portrait from the Bios folder</span>')+'</div>'+
-    '<h3 class="h3">'+esc(p.name)+'</h3><p class="lab dim">'+esc(p.role)+'</p><p class="lab">'+esc(p.email)+'</p></div>';
+    '<h3 class="h3">'+esc(p.name)+'</h3><p class="lab dim">'+esc(p.role)+'</p><p class="lab"><a class="ul" href="mailto:'+esc(p.email)+'">'+esc(p.email)+'</a></p></div>';
 }
 function newsList(arr){
   return '<div class="nl">'+arr.map(function(n){return '<a href="#'+n.id+'"><span class="d num">'+esc(n.date)+'</span><span class="tg dim">'+esc(n.tag)+'</span><span class="t">'+esc(stmt(n.title))+'</span><span class="ar">→</span></a>'}).join('')+'</div>';

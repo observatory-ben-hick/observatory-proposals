@@ -8,9 +8,10 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="google-site-verification" content="-VpKRAsjYBZ9gfo6TmifI1kYQbCXsEsVQbuSis7VphQ">
 <meta name="obs-base" content="/">
-<link rel="icon" href="/media/favicon.svg?v=36d4f633" type="image/svg+xml">
-<link rel="icon" href="/media/favicon-32.png?v=3e1b03d2" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="/media/apple-touch-icon.png?v=cd74af1e">
+<link rel="icon" href="/media/favicon.svg?v=5de0b281" type="image/svg+xml">
+<link rel="icon" href="/media/favicon-32.png?v=7d8c3d05" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/media/apple-touch-icon.png?v=87868526">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/lud1fnf.css">
 <style>/* Adobe kit weights: 500 = 55 Roman, 600 = 65 Medium, 700 = 75 Bold. 75 Bold for every headline in caps, every link with an arrow, every work title and news dates; 65 Medium for client names on the home work tiles; 55 Roman for everything else */body,body *{font-weight:500!important}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6,html body b,html body strong,html body th,html body [data-split],html body .mega,html body .t-mega,html body .t-title,html body .h1,html body .mf-t,html body .fc-h,html body p.tg,html body .tl,html body .tl *,html body .lk,html body .cs-back,html body .btn,html body .btn *,html body .tq-nav button,html body .nl a .t,html body .nl a .ar,html body .wc .meta span:first-child,html body .wlist .c,html body .next .lab,html body .next .h1,html body [data-split] *,html body .fc-h,html body .fc-h *,html body .nl a .d,html body .nc>.dim:first-child,html body .np-meta .num,html body .post-date,html body .ft-soc a,html body .bos-t,html body .bk2-h,html body .bk2-go,html body .bk2-go *,html body .nf-n span{font-weight:700!important}html body .wk-c .ar,html body .wk-c span:nth-child(2){font-weight:600!important}html body .wc h3.cardt{font-weight:500!important}</style>
@@ -3782,8 +3783,8 @@ window.SITE = {
       'But what matters most to us, more than the names, the techniques, or the headlines, is the human connection. Real relationships. Long-term creative partnerships rooted in trust, shared vision, and the kind of rebellion that says: we’re not waiting for permission. No more one-night stands. We’re here for the work that lasts, the kind that asks for all of you and gives more in return. The kind of work that feels like coming home.'
     ],
     people: [
-      { name: 'BEN HICKINGBOTHAM', role: 'Creative Director / Producer', email: 'studio@theobservatory.je', image: '/media/work/portrait-ben.jpg?v=b8e27396', initials: 'BH' },
-      { name: 'SARAH HICKINGBOTHAM', role: 'Communications Director / Writer / Producer', email: 'studio@theobservatory.je', image: '/media/work/portrait-sarah.jpg?v=953a4c56', initials: 'SH' }
+      { name: 'BEN HICKINGBOTHAM', role: 'Creative Director / Producer', email: 'ben@theobservatory.je', image: '/media/work/portrait-ben.jpg?v=b8e27396', initials: 'BH' },
+      { name: 'SARAH HICKINGBOTHAM', role: 'Communications Director / Writer / Producer', email: 'sarah@theobservatory.je', image: '/media/work/portrait-sarah.jpg?v=953a4c56', initials: 'SH' }
     ],
     capabilities: ['Strategy and positioning', 'Brand, design and identity', 'Products and packaging', 'Exhibitions and installations', 'Websites and digital experiences', 'Marketing and advertising', 'Storytelling', 'Data visualisation', 'Film, sound and animation', 'Feature film development'],
     aim: 'Through our technology partnership with AiM, Automated Intelligence Models, we introduce intelligent systems, AI and automation where there is clear commercial benefit.'
@@ -4862,7 +4863,7 @@ function vClients(){
 }
 function person(p){
   return '<div class="pp"><div class="ap">'+(p.image?img(p.image,p.name):'<span class="ini">'+esc(p.initials)+'</span><span class="ph-n">Portrait from the Bios folder</span>')+'</div>'+
-    '<h3 class="h3">'+esc(p.name)+'</h3><p class="lab dim">'+esc(p.role)+'</p><p class="lab">'+esc(p.email)+'</p></div>';
+    '<h3 class="h3">'+esc(p.name)+'</h3><p class="lab dim">'+esc(p.role)+'</p><p class="lab"><a class="ul" href="mailto:'+esc(p.email)+'">'+esc(p.email)+'</a></p></div>';
 }
 function newsList(arr){
   return '<div class="nl">'+arr.map(function(n){return '<a href="#'+n.id+'"><span class="d num">'+esc(n.date)+'</span><span class="tg dim">'+esc(n.tag)+'</span><span class="t">'+esc(stmt(n.title))+'</span><span class="ar">→</span></a>'}).join('')+'</div>';
