@@ -23,6 +23,23 @@ CSP = ("default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google
        "font-src 'self' data: https://use.typekit.net; img-src 'self' data: https://p.typekit.net https://*.google-analytics.com https://*.googletagmanager.com; media-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; "
        "frame-src https://calendly.com; object-src 'none'; base-uri 'self'; form-action 'self' mailto:")
 
+def ad_csp():
+    """Open the security policy to LinkedIn and Meta only when their IDs are filled in (SITE.tracking)."""
+    src = open(SRC, encoding='utf-8').read()
+    m = re.search(r"tracking: \{ linkedin: '([^']*)', meta: '([^']*)' \}", src)
+    li, fb = (m.group(1).strip(), m.group(2).strip()) if m else ('', '')
+    c = CSP
+    if li:
+        c = c.replace("https://www.googletagmanager.com; style-src", "https://www.googletagmanager.com https://snap.licdn.com; style-src")
+        c = c.replace("img-src 'self' data:", "img-src 'self' data: https://px.ads.linkedin.com")
+        c = c.replace("connect-src 'self'", "connect-src 'self' https://px.ads.linkedin.com")
+    if fb:
+        c = c.replace("; style-src", " https://connect.facebook.net; style-src", 1)
+        c = c.replace("img-src 'self' data:", "img-src 'self' data: https://www.facebook.com")
+        c = c.replace("connect-src 'self'", "connect-src 'self' https://www.facebook.com https://connect.facebook.net")
+        c = c.replace("frame-src https://calendly.com", "frame-src https://calendly.com https://www.facebook.com")
+    return c
+
 def page_html(base):
     s = open(SRC, encoding='utf-8').read().replace('__BASE__', base)
     head = ('<!doctype html>\n<html lang="en-GB">\n<head>\n<meta charset="utf-8">\n'
@@ -34,7 +51,7 @@ def page_html(base):
             '<link rel="icon" href="%smedia/favicon.svg" type="image/svg+xml">\n'
             '<link rel="icon" href="%smedia/favicon-32.png" sizes="32x32" type="image/png">\n'
             '<link rel="apple-touch-icon" href="%smedia/apple-touch-icon.png">\n'
-            '<link rel="manifest" href="%ssite.webmanifest">\n' % (CSP, base, base, base, base, base)) + FONT
+            '<link rel="manifest" href="%ssite.webmanifest">\n' % (ad_csp(), base, base, base, base, base)) + FONT
     if PREVIEW:
         s = s.replace('<meta name="robots" content="index, follow, max-image-preview:large">', '<meta name="robots" content="noindex, nofollow">')
     return fingerprint(head + s, base)

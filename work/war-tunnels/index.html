@@ -95,6 +95,12 @@ window.SITE = {
   /* SEARCH SNIPPETS: the title and description Google shows for each page, keyed by its address.
      Title first (" · The Observatory" is added, except on home), then the description, up to 155 characters.
      null keeps the automatic title. Pages not listed fall back to their own copy. */
+  /* ADVERTISING TAGS: paste the IDs here when the campaigns are ready. Empty = nothing loads, and the
+     cookie banner and privacy policy stay analytics only. Filled in = the build opens the security policy
+     to that platform, the banner adds an advertising choice and the policy gains an advertising section.
+     linkedin: the Insight Tag partner ID (numbers only). meta: the Meta Pixel ID (numbers only). */
+  tracking: { linkedin: '', meta: '' },
+
   seo: {
     "home": ["The Observatory · Brand and creative studio, Jersey", "Independent creative studio in Jersey. Brand strategy, identity, film and storytelling for founders, impact brands and culture. Great ideas. Good company."],
     "work": ["Work · Brand, film and storytelling", "Selected work in brand identity, strategy, film and storytelling, from ocean conservation and sustainable finance to rum, motorcycles and feature films."],
@@ -4614,16 +4620,16 @@ html.anim .ap.in img{transform:none}
 <div class="cur" id="cur"></div>
 <div class="tpl" id="tpl" hidden><i></i><span></span></div>
 
-<!-- analytics: Google Analytics 4 loads only after a visitor says yes -->
+<!-- analytics: Google Analytics 4 loads only after a visitor says yes; LinkedIn and Meta tags only after a yes to advertising, and only when their IDs are set -->
 <div class="ck" id="ck" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
-  <p>We use analytics cookies to see which work people enjoy, so we can make the site better. Nothing else, and never for advertising.</p>
-  <div class="ck-b"><button type="button" class="ck-y" id="ckYes">Accept</button><button type="button" class="ck-n" id="ckNo">No thanks</button></div>
+  <p id="ckTxt">We use analytics cookies to see which work people enjoy, so we can make the site better. Nothing else, and never for advertising.</p>
+  <div class="ck-b"><button type="button" class="ck-y" id="ckYes">Accept</button><button type="button" class="ck-n" id="ckAn" hidden>Analytics only</button><button type="button" class="ck-n" id="ckNo">No thanks</button></div>
 </div>
 <style>
-.ck{position:fixed;left:max(16px,env(safe-area-inset-left));bottom:max(16px,env(safe-area-inset-bottom));z-index:180;max-width:360px;background:var(--ink);color:var(--bg);border-radius:14px;padding:18px 20px;font-size:14px;line-height:1.45;box-shadow:0 10px 40px rgba(0,0,0,.18)}
-.ck[hidden]{display:none}
+.ck{position:fixed;left:max(16px,env(safe-area-inset-left));bottom:max(16px,env(safe-area-inset-bottom));z-index:180;max-width:380px;background:var(--ink);color:var(--bg);border-radius:14px;padding:18px 20px;font-size:14px;line-height:1.45;box-shadow:0 10px 40px rgba(0,0,0,.18)}
+.ck[hidden],.ck-b [hidden]{display:none}
 .ck p{margin:0 0 14px}
-.ck-b{display:flex;gap:10px}
+.ck-b{display:flex;flex-wrap:wrap;gap:10px}
 .ck-b button{border-radius:999px;padding:9px 18px;font-size:14px;border:1px solid rgba(241,237,229,.5)}
 .ck-y{background:var(--bg);color:var(--ink);border-color:var(--bg)!important}
 .ck-open{font-size:inherit;color:inherit}
@@ -4631,7 +4637,9 @@ html.anim .ap.in img{transform:none}
 </style>
 <script>
 (function(){
-  var ID='G-K1RX8D7BXQ',K='obs-consent',W=window,D=document,on=false;
+  var ID='G-K1RX8D7BXQ',K='obs-consent',W=window,D=document,on=false,ads=false,T=(W.SITE&&W.SITE.tracking)||{},LI=String(T.linkedin||'').replace(/\D/g,''),FB=String(T.meta||'').replace(/\D/g,''),HASADS=!!(LI||FB),fbPath=null;
+  /* campaign links: the tags (utm_, gclid, fbclid, li_fat_id) on the landing address are kept for the first page view, so GA4 credits the campaign even after the visitor moves on */
+  var LAND=/[?&](utm_|gclid|fbclid|li_fat_id)/.test(location.search)?location.search:'',first=true;
   function get(){try{return localStorage.getItem(K)}catch(e){return null}}
   function put(v){try{localStorage.setItem(K,v)}catch(e){}}
   W.dataLayer=W.dataLayer||[];function gtag(){W.dataLayer.push(arguments)}W.gtag=gtag;
@@ -4641,14 +4649,31 @@ html.anim .ap.in img{transform:none}
     gtag('js',new Date());gtag('config',ID,{send_page_view:false,anonymize_ip:true});
     var s=D.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;D.head.appendChild(s);
     if(now)W.obsPV()}
+  function startAds(){if(ads||!HASADS)return;ads=true;
+    if(LI){W._linkedin_partner_id=LI;W._linkedin_data_partner_ids=W._linkedin_data_partner_ids||[];W._linkedin_data_partner_ids.push(LI);
+      if(!W.lintrk){W.lintrk=function(a,b){W.lintrk.q.push([a,b])};W.lintrk.q=[]}
+      var l=D.createElement('script');l.async=true;l.src='https://snap.licdn.com/li.lms-analytics/insight.min.js';D.head.appendChild(l)}
+    if(FB){var n=W.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!W._fbq)W._fbq=n;n.push=n;n.loaded=true;n.version='2.0';n.queue=[];
+      var f=D.createElement('script');f.async=true;f.src='https://connect.facebook.net/en_US/fbevents.js';D.head.appendChild(f);W.fbq('init',FB);W.fbq('track','PageView');fbPath=location.pathname}}
   /* one page view per page, including pages reached without a reload */
-  W.obsPV=function(){if(!on)return;gtag('event','page_view',{page_location:location.origin+location.pathname,page_path:location.pathname,page_title:D.title})};
+  W.obsPV=function(){
+    if(on){gtag('event','page_view',{page_location:location.origin+location.pathname+(first?LAND:''),page_path:location.pathname,page_title:D.title});first=false}
+    if(ads&&FB&&W.fbq&&location.pathname!==fbPath){fbPath=location.pathname;W.fbq('track','PageView')}};
   var ck=D.getElementById('ck');
+  if(HASADS){D.getElementById('ckTxt').textContent='We use analytics cookies to see which work people enjoy and, if you allow it, advertising cookies from '+[LI?'LinkedIn':'',FB?'Meta':''].filter(Boolean).join(' and ')+' to measure our campaigns. You choose.';
+    D.getElementById('ckYes').textContent='Accept all';D.getElementById('ckAn').hidden=false}
   function ask(){ck.hidden=false}
-  D.getElementById('ckYes').addEventListener('click',function(){put('granted');ck.hidden=true;start(true)});
-  D.getElementById('ckNo').addEventListener('click',function(){var was=get()==='granted';put('denied');ck.hidden=true;if(was)location.reload()});
+  D.getElementById('ckYes').addEventListener('click',function(){put(HASADS?'all':'granted');ck.hidden=true;start(true);startAds()});
+  D.getElementById('ckAn').addEventListener('click',function(){var was=get()==='all';put('granted');ck.hidden=true;if(was)location.reload();else start(true)});
+  D.getElementById('ckNo').addEventListener('click',function(){var was=get();put('denied');ck.hidden=true;if(was==='granted'||was==='all')location.reload()});
   D.getElementById('ckOpen').addEventListener('click',ask);
-  var v=get();if(v==='granted')start();else if(v!=='denied')setTimeout(ask,1200);
+  var v=get();
+  if(v==='granted'||v==='all')start();
+  if(v==='all'&&HASADS)startAds();
+  /* first visit: ask. Someone who said yes to analytics before the advertising choice existed is asked once more */
+  var asked=false;try{asked=localStorage.getItem('obs-ads-asked')==='1'}catch(e){}
+  if(!v)setTimeout(ask,1200);
+  else if(v==='granted'&&HASADS&&!asked){try{localStorage.setItem('obs-ads-asked','1')}catch(e){}setTimeout(ask,1200)}
 })();
 </script>
 
@@ -5013,7 +5038,8 @@ function postBody(n){
 }
 function socRow(cls){var L=S.social||[];if(!L.length)return '';return '<div class="soc '+cls+'"><span class="lab dim">Follow</span><span class="soc-l">'+L.map(function(x){return '<a class="tl" href="'+esc(x.url)+'" target="_blank" rel="noopener me"><span>'+esc(x.label)+'</span><i>↗</i></a>'}).join('')+'</span></div>'}
 function vPrivacy(){
-  var P=S.privacy||{},L=function(t){return esc(t).replace(/([\w.]+@theobservatory\.je)/g,'<a class="ul" href="mailto:$1">$1</a>').replace(/\b(jerseyoic\.org|ico\.org\.uk)\b/g,'<a class="ul" href="https://$1" target="_blank" rel="noopener">$1</a>')};
+  var P=S.privacy||{},TK=S.tracking||{},AD=[TK.linkedin?'LinkedIn':'',TK.meta?'Meta (Facebook and Instagram)':''].filter(Boolean),L=function(t){return esc(t).replace(/([\w.]+@theobservatory\.je)/g,'<a class="ul" href="mailto:$1">$1</a>').replace(/\b(jerseyoic\.org|ico\.org\.uk)\b/g,'<a class="ul" href="https://$1" target="_blank" rel="noopener">$1</a>')};
+  if(AD.length&&!P._ads){P=Object.assign({},P);P.sections=(P.sections||[]).slice();var ci=P.sections.findIndex(function(x){return x.h==='Cookies'});P.sections.splice(ci<0?P.sections.length:ci+1,0,{h:'Advertising',p:['Only if you choose Accept all in the cookie banner, '+AD.join(' and ')+' set advertising cookies so we can measure our campaigns on their platforms and show them to people likely to be interested. Choose Analytics only or No thanks and they never load. You can change your choice at any time with Cookie settings in the footer.']});P._ads=1}
   return '<section class="ph wrap prv"><h1 class="h1" data-split>PRIVACY<br>POLICY.</h1>'+
     '<div class="grid prv-top"><p class="lab dim">Last updated '+esc(P.updated||'')+'</p><p class="lead rv">'+L(P.intro||'')+'</p></div>'+
     (P.sections||[]).map(function(x,i){return '<div class="grid prv-s rv"><h2 class="lab"><span class="num dim">'+n2(i)+'</span> '+esc(x.h)+'</h2><div class="prv-b">'+x.p.map(function(t){return '<p>'+L(t)+'</p>'}).join('')+'</div></div>'}).join('')+'</section>';
