@@ -64,6 +64,7 @@ window.PROPOSAL = {
   },
 
   opportunity: {
+    show: false,   /* moved to the website's About page (3 Nov 2026) */
     /* the picture beside the opening, and the wide picture below it */
     /* no picture beside the opening and no wide picture below it */
     image: false,

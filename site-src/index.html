@@ -3747,6 +3747,14 @@ window.SITE = {
 
   about: {
     headline: ['GREAT IDEAS.', 'GOOD COMPANY.'],
+    /* the creative partnership statement (moved from /greatideas): headline, then copy that lights up word by word as it scrolls */
+    partnership: {
+      headline: ['THE RIGHT PEOPLE.', 'FOCUSED ON WHAT MATTERS MOST.'],
+      paragraphs: [
+        'Our creative partnerships give you ongoing access to experienced creatives as an extension of your team. People who expand your thinking, find opportunities and turn ideas into something real. The creative firepower and hands-on expertise to move your business forward.',
+        ['You bring the ambition.', 'We bring the thinking, creativity and capability to make it happen.']
+      ]
+    },
     intro: 'There’s a reason we’re called The Observatory. We’re curious by nature, good at seeing what others miss and even better at figuring out what to do about it. We bring experienced creative minds directly into your business to solve problems, spot opportunities and get things moving. Whether you’re launching, scaling or changing direction, we think fast, get stuck in and turn ambitious ideas into work that makes a difference.',
     statement: [
       'We’ve spent decades creating with some of the world’s most iconic brands, NASA, Google, Coca-Cola, Land Rover, John Lewis, shaping stories where imagination meets the edge of what’s possible. But now, we’re following the tide back to where we belong.',
@@ -4053,7 +4061,7 @@ html.anim .wall.in .cell:before{opacity:1;transform:none}
 @media(max-width:800px){.next .h1{grid-column:1/-1}.next .ap{grid-column:1/span 6}}
 
 /* about */
-.ab-top .h1{grid-column:1/-1}
+.ab-top .h1{grid-column:1/-1}.fw-g{margin-top:clamp(40px,6vw,96px)}.fw-copy{grid-column:6/span 7;display:flex;flex-direction:column;gap:1.1em}.fw-copy .lead{margin:0;max-width:none;font-size:clamp(22px,2.4vw,38px);line-height:1.16;letter-spacing:-.014em}.fw-copy .pg{display:flex;flex-direction:column}.fwa .fw{opacity:.2;transition:opacity .45s linear}.fwa .fw.on{opacity:1}@media(max-width:900px){.fw-copy{grid-column:1/-1}}
 .ab-top .lead{grid-column:6/span 7;align-self:end;margin-top:clamp(28px,3.4vw,56px);font-size:clamp(20px,2.1vw,32px);line-height:1.2;max-width:none}
 @media(max-width:900px){.ab-top .h1,.ab-top .lead{grid-column:1/-1}}
 .st-side{grid-column:1/span 4;position:sticky;top:calc(var(--navh) + 28px);align-self:start;font-size:var(--t-lab)}
@@ -4946,10 +4954,18 @@ function vCase(w){
     (w.links&&w.links.length?'<div class="cs-link wrap"><div class="np-links">'+w.links.map(function(k){var m=/^mailto:/.test(k.url);return '<a class="tl" href="'+esc(k.url)+'"'+(m?'':' target="_blank" rel="noopener"')+'><span>'+esc(k.label)+'</span><i>'+(m?'→':'↗')+'</i></a>'}).join('')+'</div></div>':'')+
     '<a class="next" href="#'+nx.id+'"><div class="grid"><span class="lab">Next project · '+esc(nice(nx.client))+'</span><p class="h1">'+esc(nx.statement)+'</p><div class="ap">'+img(nx.image,nx.client)+'</div></div></a></section>';
 }
+function vPartnership(F){if(!F)return '';
+  function wds(t){return esc(t).split(' ').map(function(w){return '<span class="fw">'+w+'</span>'}).join(' ')}
+  return '<section class="wrap sec ab-fw"><h2 class="h1" data-split>'+lines(F.headline)+'</h2><div class="grid fw-g"><div class="fw-copy" id="fwCopy">'+
+    (F.paragraphs||[]).map(function(p){return Array.isArray(p)?'<div class="pg">'+p.map(function(l){return '<p class="lead">'+wds(l)+'</p>'}).join('')+'</div>':'<p class="lead">'+wds(p)+'</p>'}).join('')+'</div></div></section>'}
+/* the partnership copy lights up word by word as it moves up the screen */
+function fwTick(){var c=$('#fwCopy');if(!c)return;if(!ANIM){c.classList.remove('fwa');return}c.classList.add('fwa');var ws=c._ws||(c._ws=$$('.fw',c)),r=c.getBoundingClientRect(),vh=W.innerHeight,p=Math.max(0,Math.min(1,(vh*.86-r.top)/(r.height*.9+vh*.32))),lit=Math.round(p*ws.length);if(lit!==c._lit){c._lit=lit;ws.forEach(function(w,j){w.classList.toggle('on',j<lit)})}}
+W.addEventListener('scroll',function(){if($('#fwCopy'))requestAnimationFrame(fwTick)},{passive:true});
 function vAbout(){
   var A=S.about;
   return '<section class="ph wrap"><div class="grid ab-top"><h1 class="h1" data-split>'+lines(A.headline)+'</h1><p class="lead rv">'+esc(A.intro||'')+'</p></div>'+
     '<div class="grid pair">'+A.people.map(person).join('')+'</div></section>'+
+    vPartnership(A.partnership)+
     '<section class="wrap sec"><div class="sec-head"><span class="idx">Who we are</span><span class="ttl">Since 2005</span><span class="end"></span></div>'+
     '<div class="grid"><p class="st-side">Ben and Sarah Hickingbotham<br><span class="dim">Jersey, Channel Islands</span></p><div class="st-copy">'+A.statement.map(function(p,i){return '<p class="'+(i?'body':'lead')+' rv">'+esc(p)+'</p>'}).join('')+'</div></div></section>'+
     '<section class="wrap sec"><div class="sec-head"><span class="idx">What we do</span><span class="ttl">Capabilities</span><span class="end"></span></div>'+
@@ -5233,7 +5249,7 @@ function render(){
   setMeta(r);if(W.obsPV)W.obsPV();
   $('#foot').querySelector('.foot-cta').hidden=r.view==='contact';
   peek.classList.remove('on');
-  reveal(m);wire(r.view);mountExtras();litTiles();if(r.view==='nf')fitNF();if(typeof collect==='function')collect();
+  reveal(m);wire(r.view);mountExtras();litTiles();if(r.view==='nf')fitNF();if(r.view==='about')fwTick();if(typeof collect==='function')collect();
 }
 var cur=$('#curtain'),busy=false,FROM_OT=false;try{FROM_OT=/\/(greatideas|originalthinking)\/?$/.test(new URL(D.referrer).pathname)&&new URL(D.referrer).origin===location.origin}catch(e){}
 function go(){

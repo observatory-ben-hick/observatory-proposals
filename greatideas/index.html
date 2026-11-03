@@ -86,6 +86,7 @@ window.PROPOSAL = {
   },
 
   opportunity: {
+    show: false,   /* moved to the website's About page (3 Nov 2026) */
     /* the picture beside the opening, and the wide picture below it */
     /* no picture beside the opening and no wide picture below it */
     image: false,
@@ -1224,6 +1225,8 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   /* optional picture swaps: opportunity.image beside the opening, opportunity.band below it. Each {src,position,ratio,alt} */
   var OI=(P.opportunity||{}).image,OB=(P.opportunity||{}).band;
   if(OI===false){var sd=$('#intro .st-side');if(sd)sd.hidden=true}
+  /* opportunity.show:false takes the whole opening section out; links to it go to the next section */
+  if((P.opportunity||{}).show===false){var it0=$('#intro');if(it0){it0.hidden=true;$$('a[href="#intro"]').forEach(function(a){a.setAttribute('href','#offer')})}}
   if(OB===false){var bd=$('.band');if(bd)bd.hidden=true}
   if(OI&&OI.src){var oa=$('#intro .ap'),oim=oa&&$('img',oa);if(oim){oim.src=OI.src;oim.alt=OI.alt||'';if(OI.position)oim.style.objectPosition=OI.position;if(OI.ratio)oa.style.aspectRatio=OI.ratio}}
   if(OB&&OB.src){var bim=$('.band img');if(bim){bim.src=OB.src;if(OB.position)bim.style.objectPosition=OB.position}}
