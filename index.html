@@ -4657,6 +4657,11 @@ html.anim .ap.in img{transform:none}
   W.obsPV=function(){
     if(on){gtag('event','page_view',{page_location:location.origin+location.pathname+(first?LAND:''),page_path:location.pathname,page_title:D.title});first=false}
     if(ads&&FB&&W.fbq&&location.pathname!==fbPath){fbPath=location.pathname;W.fbq('track','PageView')}};
+  /* the actions that matter, counted as GA4 events (only once someone has said yes): booking a call, emailing, Work with us */
+  D.addEventListener('click',function(e){if(!on)return;var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href')||'',n=null;
+    if(/calendly\.com/.test(h))n='book_call';else if(/^mailto:/.test(h))n='email_click';else if(/greatideas\/?$/.test(h))n='work_with_us';else if(/wa\.me|whatsapp/.test(h))n='whatsapp_click';
+    if(n)gtag('event',n,{link_url:h.split('?')[0],page_path:location.pathname});
+    if(n==='book_call'||n==='email_click'){if(ads&&FB&&W.fbq)W.fbq('track','Contact')}},true);
   var ck=D.getElementById('ck');
   if(HASADS){D.getElementById('ckTxt').textContent='We use analytics cookies to see which work people enjoy and, if you allow it, advertising cookies from '+[LI?'LinkedIn':'',FB?'Meta':''].filter(Boolean).join(' and ')+' to measure our campaigns. You choose.';
     D.getElementById('ckYes').textContent='Accept all';D.getElementById('ckAn').hidden=false}
