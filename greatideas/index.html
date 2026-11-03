@@ -207,6 +207,21 @@ window.PROPOSAL = {
   },
 
   levels: {
+    /* two ways to work together, above the three partnership tiers */
+    ways: {
+      statement: 'Two ways for us to work together: sprint or longer term engagement.',
+      tag: 'Two ways to work together',
+      cta: 'Book a call',
+      items: [
+        { title: 'SPRINT',
+          body: ['For clearly defined projects with a specific outcome, timeline and scope.', 'We agree the brief upfront, set clear milestones for review and delivery, and keep all costings transparent before any work begins.', 'Ideal for focused pieces of work where you need senior creative and strategic input without an ongoing commitment.'],
+          fee: 'Minimum project fee: £1,000' },
+        { title: 'CREATIVE PARTNERSHIPS',
+          body: ['Launching something new? Trying to grow a business that’s outgrown its brand? Or looking for experienced creative support without adding to your team?', 'Work directly with us on a focused 90-day partnership, with clear priorities and work you can put to use.'],
+          fee: 'Three tiers, from £1,500 a month', tiers: true }
+      ],
+      tiersLabel: 'Creative partnerships · Three tiers'
+    },
     intro: 'Before we kick-off we agree what the fee covers, specify the priorities, likely outputs, responsibilities and boundaries.',
     maxDays: 6,
     maxSessions: 3,
@@ -771,9 +786,32 @@ html.anim.cin .pre>*{visibility:hidden}
 .mnav-foot .dim{color:rgba(241,237,229,.55)}
 body.lock{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.mnav,.mnav.open{transition:none}}
+
+/* two ways to work together (sprint, creative partnerships), between the headline and the tiers */
+.ways{margin-top:clamp(56px,8vw,120px)}
+.wy-st{font-family:var(--display);font-size:var(--t-lead);line-height:1.16;letter-spacing:-.012em;max-width:22em;text-wrap:balance;margin:0}
+.wy-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--g);margin-top:clamp(32px,4vw,64px)}
+.wy{display:flex;flex-direction:column;border-top:1px solid var(--ink);padding-top:16px}
+.wy-h{display:flex;justify-content:space-between;align-items:baseline;font-size:var(--t-body)}
+.wy-n{color:var(--accent)}
+.wy-k{opacity:.6}
+.wy-t{margin:clamp(20px,2.4vw,36px) 0 0;font-size:clamp(28px,3.4vw,52px);line-height:.98;letter-spacing:-.02em}
+.wy-b{margin-top:clamp(16px,2vw,28px);display:flex;flex-direction:column;gap:.8em;font-size:var(--t-body);line-height:1.45;max-width:34em}
+.wy-b p{margin:0}
+.wy-f{margin-top:auto;padding-top:clamp(22px,2.6vw,40px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px 24px}
+.wy-f{border-bottom:1px solid var(--rule);padding-bottom:18px}
+.wy-fee{margin:0;font-size:var(--t-body)}
+.wy-cta{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:999px;background:var(--ink);color:var(--bg);text-decoration:none;font-size:15px;transition:background .4s var(--ease)}
+.wy-cta:hover{background:var(--accent)}
+.wy-cta i{font-style:normal;transition:transform .4s var(--ease)}
+.wy-cta:hover i{transform:translate(2px,-2px)}
+.wy-tl{display:flex;justify-content:space-between;align-items:baseline;margin-top:clamp(56px,7vw,110px);padding-top:12px;border-top:1px solid var(--ink);font-size:var(--t-body)}
+.wy-tl i{font-style:normal;color:var(--accent)}
+.ways+.levels{margin-top:clamp(20px,2.4vw,36px)}
+@media(max-width:800px){.wy-g{grid-template-columns:minmax(0,1fr);row-gap:clamp(40px,8vw,64px)}}
 </style>
 <script>(function(){var h=document.documentElement;h.classList.add('js');try{if(sessionStorage.getItem('obs-cur')==='1'){h.classList.add('cin');sessionStorage.removeItem('obs-cur')}}catch(e){}try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))h.classList.add('anim')}catch(e){}/* failsafe: if the page script has not finished, show everything as plain content */function bare(){if(!h.classList.contains('ok'))h.classList.remove('anim')}window.addEventListener('error',bare);setTimeout(bare,5000)})();</script>
-<style>html body h1,html body h2,html body h3,html body h4,html body .h1,html body .h2,html body .h3,html body .mega,html body [data-split],html body [data-split] *,html body .w,html body .marq-t,html body .marq-t *,html body a.btn,html body a.btn *,html body .foot-meta a,html body .bos-t,html body .ot-back,html body .ot-back *{font-weight:700!important}</style>
+<style>html body h1,html body h2,html body h3,html body h4,html body .h1,html body .h2,html body .h3,html body .mega,html body [data-split],html body [data-split] *,html body .w,html body .marq-t,html body .marq-t *,html body a.btn,html body a.btn *,html body .foot-meta a,html body .bos-t,html body .ot-back,html body .ot-back *,html body .wy-cta,html body .wy-cta *{font-weight:700!important}</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -902,6 +940,7 @@ body.lock{overflow:hidden}
     <h2 class="h1" data-split>CHOOSE<br>YOUR LEVEL.</h2>
     <p class="body txt rv" id="lvIntro"></p>
   </div>
+  <div class="ways" id="ways" hidden></div>
   <div class="levels" id="lvs" role="radiogroup" aria-label="Partnership level"></div>
   <p class="lv-note" id="lvNote"></p>
   <div class="lv-status" id="lvstatus" aria-live="polite"><span id="lvline">Select a level to take it into the conversation.</span><a href="#talk" id="lvgo" hidden>Take it to the conversation ↓</a></div>
@@ -1302,6 +1341,17 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   var items=L.items||[],md=L.maxDays||6,ms=L.maxSessions||3;
   function pips(n,max,round){var s='';for(var i=0;i<max;i++)s+='<i'+(i<n?' class="f"':'')+'></i>';return '<span class="pips'+(round?' o':'')+'">'+s+'</span>'}
   put('lvTag',(WORDS[items.length]||items.length)+' ways to work together');
+  /* two ways to work together: a sprint or a creative partnership, each with a call to book; the tiers follow */
+  var WY=L.ways;
+  if(WY&&(WY.items||[]).length){var bk=((P.contacts||{}).booking||{}).url||'#talk',ext=/^https?:/.test(bk);
+    if(WY.tag)put('lvTag',WY.tag);
+    var wy=$('#ways');wy.hidden=false;
+    wy.innerHTML=(WY.statement?'<p class="wy-st rv">'+esc(WY.statement)+'</p>':'')+'<div class="wy-g">'+WY.items.map(function(it,i){
+      return '<div class="wy rv" style="--d:'+i+'"><div class="wy-h"><span class="wy-n num">'+pad(i+1)+'</span>'+(it.kicker?'<span class="wy-k">'+esc(it.kicker)+'</span>':'')+'</div>'+
+        '<h3 class="h2 wy-t">'+esc(it.title)+'</h3><div class="wy-b">'+(it.body||[]).map(function(t){return '<p>'+esc(t)+'</p>'}).join('')+'</div>'+
+        '<div class="wy-f"><p class="wy-fee">'+esc(it.fee||'')+'</p><a class="wy-cta" href="'+esc(bk)+'"'+(ext?' target="_blank" rel="noopener"':'')+'><span>'+esc(WY.cta||'Book a call')+'</span><i aria-hidden="true">'+(ext?'↗':'→')+'</i></a></div></div>'}).join('')+'</div>'+
+      (WY.tiersLabel?'<div class="wy-tl rv"><span>'+esc(WY.tiersLabel)+'</span><i aria-hidden="true">↓</i></div>':'');
+  }
   var tg=$('#lvTag');tg.textContent=tg.textContent.charAt(0).toUpperCase()+tg.textContent.slice(1);
   put('lvIntro',L.intro);
   var lv=$('#lvs');lv.style.setProperty('--n',items.length||1);

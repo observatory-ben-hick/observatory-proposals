@@ -191,6 +191,17 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   var items=L.items||[],md=L.maxDays||6,ms=L.maxSessions||3;
   function pips(n,max,round){var s='';for(var i=0;i<max;i++)s+='<i'+(i<n?' class="f"':'')+'></i>';return '<span class="pips'+(round?' o':'')+'">'+s+'</span>'}
   put('lvTag',(WORDS[items.length]||items.length)+' ways to work together');
+  /* two ways to work together: a sprint or a creative partnership, each with a call to book; the tiers follow */
+  var WY=L.ways;
+  if(WY&&(WY.items||[]).length){var bk=((P.contacts||{}).booking||{}).url||'#talk',ext=/^https?:/.test(bk);
+    if(WY.tag)put('lvTag',WY.tag);
+    var wy=$('#ways');wy.hidden=false;
+    wy.innerHTML=(WY.statement?'<p class="wy-st rv">'+esc(WY.statement)+'</p>':'')+'<div class="wy-g">'+WY.items.map(function(it,i){
+      return '<div class="wy rv" style="--d:'+i+'"><div class="wy-h"><span class="wy-n num">'+pad(i+1)+'</span>'+(it.kicker?'<span class="wy-k">'+esc(it.kicker)+'</span>':'')+'</div>'+
+        '<h3 class="h2 wy-t">'+esc(it.title)+'</h3><div class="wy-b">'+(it.body||[]).map(function(t){return '<p>'+esc(t)+'</p>'}).join('')+'</div>'+
+        '<div class="wy-f"><p class="wy-fee">'+esc(it.fee||'')+'</p><a class="wy-cta" href="'+esc(bk)+'"'+(ext?' target="_blank" rel="noopener"':'')+'><span>'+esc(WY.cta||'Book a call')+'</span><i aria-hidden="true">'+(ext?'↗':'→')+'</i></a></div></div>'}).join('')+'</div>'+
+      (WY.tiersLabel?'<div class="wy-tl rv"><span>'+esc(WY.tiersLabel)+'</span><i aria-hidden="true">↓</i></div>':'');
+  }
   var tg=$('#lvTag');tg.textContent=tg.textContent.charAt(0).toUpperCase()+tg.textContent.slice(1);
   put('lvIntro',L.intro);
   var lv=$('#lvs');lv.style.setProperty('--n',items.length||1);

@@ -494,3 +494,26 @@ html.anim.cin .pre>*{visibility:hidden}
 .mnav-foot .dim{color:rgba(241,237,229,.55)}
 body.lock{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.mnav,.mnav.open{transition:none}}
+
+/* two ways to work together (sprint, creative partnerships), between the headline and the tiers */
+.ways{margin-top:clamp(56px,8vw,120px)}
+.wy-st{font-family:var(--display);font-size:var(--t-lead);line-height:1.16;letter-spacing:-.012em;max-width:22em;text-wrap:balance;margin:0}
+.wy-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--g);margin-top:clamp(32px,4vw,64px)}
+.wy{display:flex;flex-direction:column;border-top:1px solid var(--ink);padding-top:16px}
+.wy-h{display:flex;justify-content:space-between;align-items:baseline;font-size:var(--t-body)}
+.wy-n{color:var(--accent)}
+.wy-k{opacity:.6}
+.wy-t{margin:clamp(20px,2.4vw,36px) 0 0;font-size:clamp(28px,3.4vw,52px);line-height:.98;letter-spacing:-.02em}
+.wy-b{margin-top:clamp(16px,2vw,28px);display:flex;flex-direction:column;gap:.8em;font-size:var(--t-body);line-height:1.45;max-width:34em}
+.wy-b p{margin:0}
+.wy-f{margin-top:auto;padding-top:clamp(22px,2.6vw,40px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px 24px}
+.wy-f{border-bottom:1px solid var(--rule);padding-bottom:18px}
+.wy-fee{margin:0;font-size:var(--t-body)}
+.wy-cta{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:999px;background:var(--ink);color:var(--bg);text-decoration:none;font-size:15px;transition:background .4s var(--ease)}
+.wy-cta:hover{background:var(--accent)}
+.wy-cta i{font-style:normal;transition:transform .4s var(--ease)}
+.wy-cta:hover i{transform:translate(2px,-2px)}
+.wy-tl{display:flex;justify-content:space-between;align-items:baseline;margin-top:clamp(56px,7vw,110px);padding-top:12px;border-top:1px solid var(--ink);font-size:var(--t-body)}
+.wy-tl i{font-style:normal;color:var(--accent)}
+.ways+.levels{margin-top:clamp(20px,2.4vw,36px)}
+@media(max-width:800px){.wy-g{grid-template-columns:minmax(0,1fr);row-gap:clamp(40px,8vw,64px)}}

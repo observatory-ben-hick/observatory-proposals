@@ -185,6 +185,21 @@ window.PROPOSAL = {
   },
 
   levels: {
+    /* two ways to work together, above the three partnership tiers */
+    ways: {
+      statement: 'Two ways for us to work together: sprint or longer term engagement.',
+      tag: 'Two ways to work together',
+      cta: 'Book a call',
+      items: [
+        { title: 'SPRINT',
+          body: ['For clearly defined projects with a specific outcome, timeline and scope.', 'We agree the brief upfront, set clear milestones for review and delivery, and keep all costings transparent before any work begins.', 'Ideal for focused pieces of work where you need senior creative and strategic input without an ongoing commitment.'],
+          fee: 'Minimum project fee: £1,000' },
+        { title: 'CREATIVE PARTNERSHIPS',
+          body: ['Launching something new? Trying to grow a business that’s outgrown its brand? Or looking for experienced creative support without adding to your team?', 'Work directly with us on a focused 90-day partnership, with clear priorities and work you can put to use.'],
+          fee: 'Three tiers, from £1,500 a month', tiers: true }
+      ],
+      tiersLabel: 'Creative partnerships · Three tiers'
+    },
     intro: 'Before we kick-off we agree what the fee covers, specify the priorities, likely outputs, responsibilities and boundaries.',
     maxDays: 6,
     maxSessions: 3,
