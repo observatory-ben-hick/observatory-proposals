@@ -79,7 +79,7 @@ window.PROPOSAL = {
 
   /* 01 · What you get */
   offer: {
-    lead: 'A creative partnership that moves with your business. Clear thinking, bold ideas and the expertise to bring them to life, working alongside you.',
+    lead: 'We sharpen what you’re selling, make a stronger case for why it matters and create the work that helps you win business. From finding your position in the market to launching your next big idea, we’re experienced creative partners who take responsibility for getting things done.',
     people: [],
     /* the sequence that plays beside the list, in this order */
     galleryRatio: '3/4',
@@ -90,7 +90,8 @@ window.PROPOSAL = {
   /* 02 · Your first 90 days. Three stages, each 30 days on the ruler. */
   plan: {
     show: true,
-    nav: 'Where do we start',
+    intro: false,   /* WHERE DO WE START? removed (3 Nov 2026); the process itself stays, below the flexible terms */
+    nav: 'Our process',
     label: 'Where do we start',
     headline: ['WHERE DO', 'WE START?'],
     lead: 'We sharpen what you’re selling, make a stronger case for why it matters and create the work that helps you win business. From finding your position in the market to launching your next big idea, we’re experienced creative partners who take responsibility for getting things done.',
@@ -201,7 +202,7 @@ window.PROPOSAL = {
       ],
       tiersLabel: 'Creative partnerships · Three tiers'
     },
-    intro: 'Before we kick-off we agree what the fee covers, specify the priorities, likely outputs, responsibilities and boundaries.',
+    intro: '',
     maxDays: 6,
     maxSessions: 3,
     /* case studies under each level: small loops from the website's work pages */

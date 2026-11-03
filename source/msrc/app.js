@@ -75,6 +75,8 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   var OI=(P.opportunity||{}).image,OB=(P.opportunity||{}).band;
   if(OI===false){var sd=$('#intro .st-side');if(sd)sd.hidden=true}
   /* opportunity.show:false takes the whole opening section out; links to it go to the next section */
+  /* plan.intro:false takes out the WHERE DO WE START? block; links to it go to the process */
+  if((P.plan||{}).intro===false){var dy=$('#days');if(dy){dy.hidden=true;$$('a[href="#days"]').forEach(function(a){a.setAttribute('href','#process')})}}
   if((P.opportunity||{}).show===false){var it0=$('#intro');if(it0){it0.hidden=true;$$('a[href="#intro"]').forEach(function(a){a.setAttribute('href','#offer')})}}
   if(OB===false){var bd=$('.band');if(bd)bd.hidden=true}
   if(OI&&OI.src){var oa=$('#intro .ap'),oim=oa&&$('img',oa);if(oim){oim.src=OI.src;oim.alt=OI.alt||'';if(OI.position)oim.style.objectPosition=OI.position;if(OI.ratio)oa.style.aspectRatio=OI.ratio}}
@@ -205,7 +207,7 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
       (WY.tiersLabel?'<div class="wy-tl rv"><span>'+esc(WY.tiersLabel)+'</span><i aria-hidden="true">↓</i></div>':'');
   }
   var tg=$('#lvTag');tg.textContent=tg.textContent.charAt(0).toUpperCase()+tg.textContent.slice(1);
-  put('lvIntro',L.intro);
+  opt('lvIntro',L.intro);
   var lv=$('#lvs');lv.style.setProperty('--n',items.length||1);
   var CB=L.caseBase||'../work/',TB=L.thumbBase||'../media/work/thumb/';
   function cases(it){if(!(it.cases||[]).length)return '';return '<div class="lv-cases"><span class="lv-ck">'+esc(L.casesLabel||'Case studies')+'</span><ul>'+it.cases.map(function(c){

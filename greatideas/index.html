@@ -105,7 +105,7 @@ window.PROPOSAL = {
 
   /* 01 · What you get */
   offer: {
-    lead: 'A creative partnership that moves with your business. Clear thinking, bold ideas and the expertise to bring them to life, working alongside you.',
+    lead: 'We sharpen what you’re selling, make a stronger case for why it matters and create the work that helps you win business. From finding your position in the market to launching your next big idea, we’re experienced creative partners who take responsibility for getting things done.',
     people: [],
     /* the sequence that plays beside the list, in this order */
     galleryRatio: '3/4',
@@ -116,7 +116,8 @@ window.PROPOSAL = {
   /* 02 · Your first 90 days. Three stages, each 30 days on the ruler. */
   plan: {
     show: true,
-    nav: 'Where do we start',
+    intro: false,   /* WHERE DO WE START? removed (3 Nov 2026); the process itself stays, below the flexible terms */
+    nav: 'Our process',
     label: 'Where do we start',
     headline: ['WHERE DO', 'WE START?'],
     lead: 'We sharpen what you’re selling, make a stronger case for why it matters and create the work that helps you win business. From finding your position in the market to launching your next big idea, we’re experienced creative partners who take responsibility for getting things done.',
@@ -227,7 +228,7 @@ window.PROPOSAL = {
       ],
       tiersLabel: 'Creative partnerships · Three tiers'
     },
-    intro: 'Before we kick-off we agree what the fee covers, specify the priorities, likely outputs, responsibilities and boundaries.',
+    intro: '',
     maxDays: 6,
     maxSessions: 3,
     /* case studies under each level: small loops from the website's work pages */
@@ -1238,6 +1239,8 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   var OI=(P.opportunity||{}).image,OB=(P.opportunity||{}).band;
   if(OI===false){var sd=$('#intro .st-side');if(sd)sd.hidden=true}
   /* opportunity.show:false takes the whole opening section out; links to it go to the next section */
+  /* plan.intro:false takes out the WHERE DO WE START? block; links to it go to the process */
+  if((P.plan||{}).intro===false){var dy=$('#days');if(dy){dy.hidden=true;$$('a[href="#days"]').forEach(function(a){a.setAttribute('href','#process')})}}
   if((P.opportunity||{}).show===false){var it0=$('#intro');if(it0){it0.hidden=true;$$('a[href="#intro"]').forEach(function(a){a.setAttribute('href','#offer')})}}
   if(OB===false){var bd=$('.band');if(bd)bd.hidden=true}
   if(OI&&OI.src){var oa=$('#intro .ap'),oim=oa&&$('img',oa);if(oim){oim.src=OI.src;oim.alt=OI.alt||'';if(OI.position)oim.style.objectPosition=OI.position;if(OI.ratio)oa.style.aspectRatio=OI.ratio}}
@@ -1368,7 +1371,7 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
       (WY.tiersLabel?'<div class="wy-tl rv"><span>'+esc(WY.tiersLabel)+'</span><i aria-hidden="true">↓</i></div>':'');
   }
   var tg=$('#lvTag');tg.textContent=tg.textContent.charAt(0).toUpperCase()+tg.textContent.slice(1);
-  put('lvIntro',L.intro);
+  opt('lvIntro',L.intro);
   var lv=$('#lvs');lv.style.setProperty('--n',items.length||1);
   var CB=L.caseBase||'../work/',TB=L.thumbBase||'../media/work/thumb/';
   function cases(it){if(!(it.cases||[]).length)return '';return '<div class="lv-cases"><span class="lv-ck">'+esc(L.casesLabel||'Case studies')+'</span><ul>'+it.cases.map(function(c){
