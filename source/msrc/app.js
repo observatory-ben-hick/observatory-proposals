@@ -69,7 +69,7 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   put('offerLabel',LB.offer||'What you get');put('offerTag',LB.offerTag||'An ongoing partnership');
   put('lvLabel',LB.levels||'Choose your level');
   put('closeLabel',LB.close||'Where we go from here');if(LB.closeTag==='')$('#closeTag').hidden=true;else put('closeTag',LB.closeTag||'Your move');
-  put('pfMsg',LB.workflow||'Visual language concepts are now ready');
+  var pfm=$('#pfMsg');if(pfm)pfm.innerHTML=esc(LB.workflow||'Visual language concepts are now ready').replace(/\n/g,'<br>');
   put('pfT1',LB.workflowFile||'Visual language');put('pfT2',LB.workflowMeta||'Concepts v1 →');put('pfTag',LB.workflowNote||'Illustration of an intelligent workflow');
   /* hero images: the set in the page stands unless the block names its own */
   var hi=(P.hero||{}).images,stage=$('#stage');

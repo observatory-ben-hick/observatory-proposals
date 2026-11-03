@@ -3716,7 +3716,7 @@ window.SITE = {
     headline: ['CREATIVITY FIRST.', 'TECHNOLOGY WHEN IT ADDS VALUE.'],
     lead: 'Through our technology partnership with AiM, Automated Intelligence Models, we can also explore opportunities to introduce intelligent systems, AI and automation where there is clear commercial benefit.',
     body: 'For your business, that might eventually include connected brand and communications systems, audience insights, content management and automation. To be defined once the foundations are in.',
-    panel: { count: 45, msg: 'Visual language concepts are now ready', file: 'Visual language', meta: 'Concepts v1 →', note: 'Illustration of a generative workflow', image: '/media/assets/fabric.webp?v=32135f4d' }
+    panel: { count: 45, msg: 'Visual language\nconcepts are now ready', file: 'Visual language', meta: 'Concepts v1 →', note: 'Illustration of a generative workflow', image: '/media/assets/fabric.webp?v=32135f4d' }
   },
   /* Privacy policy at /privacy/, linked small in the footer. Plain words; update the date when anything changes. */
   privacy: {
@@ -3744,7 +3744,7 @@ window.SITE = {
     { q: 'Rapid creative solutions and breathtaking visuals', name: 'Michael Wright', role: 'Director & Writer of ‘Lone Star’, CEO', org: 'Hibiki Films' },
     { q: 'Nailed the brief.', name: 'Alexander Matt', role: 'CMO', org: 'Fiskars' },
     { q: 'Phenomenal.', name: 'Chris Clark', role: 'CEO', org: 'Prosperity 24/7' },
-    { q: 'Fantastic creative work, and a pleasure to work with.', name: 'Alex Book', role: 'Strategy Director', org: 'FutureBrand' }
+    { q: 'Fantastic creative work,\nand a pleasure to work with.', name: 'Alex Book', role: 'Strategy Director', org: 'FutureBrand' }
   ],
 
   news: [
@@ -4818,13 +4818,13 @@ function vHow(){
 }
 /* In their words: the testimonial cards, on Home and at the foot of Work */
 function vPr(){var V=S.testimonials||[];if(!V.length)return '';return '<section class="sec" id="tst"><div class="wrap">'+hd((S.testimonialsHead||{}).headline||['IN THEIR','WORDS'],(S.testimonialsHead||{}).body||'')+'</div>'+
-    '<div class="pr" id="pr"><div class="pr-t" id="prT">'+V.map(function(t){var w=t.work&&byId(t.work);return '<figure class="pc"><figcaption><span class="pc-i">'+esc(initials(t.name))+'</span><span><span>'+esc(t.name)+'</span><span class="dim">'+esc(t.org)+'</span></span></figcaption><blockquote>“'+esc(t.q)+'”</blockquote><p class="pc-r dim">'+esc(t.role)+(w?' · <a class="ul" href="#'+w.id+'">See the work</a>':'')+'</p></figure>'}).join('')+'</div></div>'+
+    '<div class="pr" id="pr"><div class="pr-t" id="prT">'+V.map(function(t){var w=t.work&&byId(t.work);return '<figure class="pc"><figcaption><span class="pc-i">'+esc(initials(t.name))+'</span><span><span>'+esc(t.name)+'</span><span class="dim">'+esc(t.org)+'</span></span></figcaption><blockquote>“'+brk(t.q)+'”</blockquote><p class="pc-r dim">'+esc(t.role)+(w?' · <a class="ul" href="#'+w.id+'">See the work</a>':'')+'</p></figure>'}).join('')+'</div></div>'+
     '<div class="wrap pr-ctl"><span class="num" id="prN">1 / '+V.length+'</span><div class="tq-nav"><button id="prP" aria-label="Previous testimonial">←</button><button id="prX" aria-label="Next testimonial">→</button></div></div></section>'}
 function vVoices(){
   var T=S.testimonials||[];if(!T.length)return '';
   return '<section class="wrap sec tst" id="tst" aria-roledescription="carousel" aria-label="Client testimonials"><div class="sec-head"><span class="idx">In their words</span><span class="ttl">Clients and collaborators</span><span class="end"></span></div>'+
     '<div class="tq-stage" id="tqS">'+T.map(function(t,i){var w=t.work&&byId(t.work);
-      return '<figure class="tq'+(i?'':' on')+'" aria-hidden="'+(i?'true':'false')+'" aria-roledescription="slide" aria-label="'+(i+1)+' of '+T.length+'"><blockquote class="tq-q">“'+esc(t.q)+'”</blockquote>'+
+      return '<figure class="tq'+(i?'':' on')+'" aria-hidden="'+(i?'true':'false')+'" aria-roledescription="slide" aria-label="'+(i+1)+' of '+T.length+'"><blockquote class="tq-q">“'+brk(t.q)+'”</blockquote>'+
         '<figcaption class="tq-by"><span class="nm">'+esc(t.name)+'</span><span class="ro">'+esc(t.role)+', '+esc(t.org)+'</span>'+(w?'<a class="lk ul" href="#'+w.id+'" tabindex="'+(i?'-1':'0')+'">See the work →</a>':'<span class="lk"></span>')+'</figcaption></figure>'}).join('')+'</div>'+
     '<div class="tq-ctl"><span class="tq-mk" id="tqMk" aria-hidden="true"></span><div class="tq-bars" role="group" aria-label="Choose a testimonial">'+T.map(function(t,i){return '<button class="tb'+(i?'':' cur')+'" data-i="'+i+'" aria-label="'+esc(t.name)+', '+esc(t.org)+'"><i></i></button>'}).join('')+'</div>'+
     '<span class="tq-n num" id="tqN" aria-live="polite">01 / '+(T.length<10?'0':'')+T.length+'</span>'+
@@ -4833,7 +4833,7 @@ function vVoices(){
 function vVoiceList(){
   var T=S.testimonials||[];if(!T.length)return '';
   return '<section class="wrap sec"><div class="sec-head"><span class="idx">What people say</span><span class="ttl">Clients and collaborators</span><span class="end"></span></div>'+
-    '<div class="tg-list">'+T.map(function(t,i){return '<figure class="rv" style="--d:'+(i%2)+'"><blockquote>“'+esc(t.q)+'”</blockquote><figcaption><span>'+esc(t.name)+'</span><span class="dim">'+esc(t.role)+', '+esc(t.org)+'</span></figcaption></figure>'}).join('')+'</div></section>';
+    '<div class="tg-list">'+T.map(function(t,i){return '<figure class="rv" style="--d:'+(i%2)+'"><blockquote>“'+brk(t.q)+'”</blockquote><figcaption><span>'+esc(t.name)+'</span><span class="dim">'+esc(t.role)+', '+esc(t.org)+'</span></figcaption></figure>'}).join('')+'</div></section>';
 }
 function marqSet(){return S.work.map(function(w){return '<a href="#'+w.id+'">'+esc(nice(w.client))+'</a><svg viewBox="0 0 286 188" aria-hidden="true"><use href="#sym"/></svg>'}).join('')}
 /* Creativity first: the AiM partnership card and the generative panel, as on the proposal page */
@@ -4845,7 +4845,7 @@ function vAim(){
       '<svg class="ai-sym" viewBox="0 0 286 188" role="img" aria-label="The Observatory"><use href="#sym"/></svg></div>'+
       '<div class="ai-labs"><span>Automated</span><span>Intelligence</span><span>Models</span></div></div>'+
     '<div class="pf rv" id="pf" style="--d:1"><div class="pf-row"><span class="pf-mk" id="pfMk" aria-hidden="true"></span><span>Thinking <span class="num" id="pfS">'+(P.count||12)+'s</span></span></div>'+
-      '<p class="pf-msg">'+esc(P.msg)+'</p>'+
+      '<p class="pf-msg">'+brk(P.msg)+'</p>'+
       '<div class="pf-card"><div class="im">'+(P.image?'<img src="'+esc(P.image)+'" alt="" loading="lazy" decoding="async">':'')+'</div><div class="t"><span>'+esc(P.file)+'</span><span>'+esc(P.meta)+'</span></div></div>'+
       '<span class="pf-tag">'+esc(P.note)+'</span></div></div></section>';
 }
@@ -4937,6 +4937,8 @@ function vNF(){
 }
 function fitNF(){var t=$('#nfN');if(!t)return;var cw=t.parentNode.clientWidth,f=100;t.style.fontSize=f+'px';for(var k=0;k<3;k++){var w=t.getBoundingClientRect().width;if(!w||!cw)return;f=f*cw/w;t.style.fontSize=f.toFixed(2)+'px'}}
 W.addEventListener('resize',function(){if($('#nfN'))fitNF()});try{D.fonts.ready.then(function(){if($('#nfN'))fitNF()})}catch(e){}
+/* line breaks typed as \n in copy become real breaks */
+function brk(t){return esc(t).replace(/\n/g,'<br>')}
 /* every case study leads with its results after the hero, then the intro copy */
 function resTop(w){if(!w.outcome)return '';
   return '<section class="wrap sec cs-res1"><div class="sec-head"><span class="idx">'+esc(w.resultsHead||'Results')+'</span><span class="ttl">'+esc(w.resultsTtl==null?'What the work delivered':w.resultsTtl)+'</span><span class="end"></span></div>'+

@@ -34,7 +34,7 @@ window.PROPOSAL = {
     keyVisualShow: false,   /* no key visual block before the contact section */
     keyVisual: ['Great ideas', 'Good company'],
     keyVisualImage: { src: 'assets/kv-lips.jpg', position: '50% 34%', alt: 'Close-up of lips and teeth, skin flecked with sand, in black and white' },
-    workflow: 'Visual language concepts are now ready',
+    workflow: 'Visual language\nconcepts are now ready',
     workflowFile: 'Visual language',
     workflowMeta: 'Concepts v1 →',
     workflowNote: 'Illustration of a generative workflow',
