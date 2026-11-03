@@ -74,7 +74,7 @@ window.SITE = {
     statement: ['GOOD THINGS HAPPEN', 'WHEN WE THINK', 'BIGGER.'],
     capabilities: ['Strategy and commercial thinking', 'Marketing and storytelling', 'Creative direction and design', 'Digital experiences', 'Production and partnerships', 'Exhibitions and installations'],
     /* the hero line under the wordmark: a short opener, then one sentence */
-    kicker: 'All in.',
+    kicker: '',
     intro: [
       'We get to know your business, challenge\nassumptions and get stuck into making it better, fast.',   /* \n marks the line break on larger screens */
       /* under the showreel: a statement, then the paragraphs, then the sign-off */
@@ -4106,10 +4106,10 @@ html.anim .wall.in .cell:before{opacity:1;transform:none}
 .np-hero{margin:clamp(40px,6vw,88px) 0 0}.np-hero img{display:block;width:100%;height:auto}
 .np{margin-top:clamp(48px,7vw,110px)}
 .np-copy{grid-column:4/span 8;display:flex;flex-direction:column;gap:clamp(18px,2vw,28px)}
-.np-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--g);align-items:start;margin-top:clamp(56px,8vw,120px)}
+/* news images: one row, each picture as wide as its shape needs so they all share one height (no gaps, nothing cropped) */.np-grid{display:flex;gap:var(--g);align-items:flex-start;margin-top:clamp(56px,8vw,120px)}.np-grid figure{flex:var(--ar,1) 1 0;min-width:0}
 .np-grid figure{margin:0}.np-grid img{display:block;width:100%;height:auto}
 .np .cs-link{margin-top:clamp(48px,6vw,96px)}.np-links{display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,48px);justify-content:center}
-@media(max-width:900px){.np-copy{grid-column:1/-1}.np-grid{grid-template-columns:1fr}}
+@media(max-width:900px){.np-copy{grid-column:1/-1}}@media(max-width:640px){.np-grid{flex-direction:column}.np-grid figure{flex:none;width:100%}}
 .ct-img{margin:clamp(64px,8vw,128px) 0 0}
 .ct-img img{display:block;width:100%;height:auto}
 @media(max-width:900px){.cta .who,.cta .act{grid-column:1/-1}}
@@ -4590,7 +4590,7 @@ html.anim .ap.in img{transform:none}
 
 <div class="curtain" id="curtain" aria-hidden="true"><span class="cmk" id="cmk"></span></div>
 
-<main id="main"><section class="ph wrap"><div class="cs-meta"><div><span class="dim">Date</span><span class="post-date">Sep 2026</span></div><div><span class="dim">Topic</span><span>Technology</span></div></div><div class="grid post"><h1 class="h1" data-split="" data-done="1"><span class="w"><span style="--d: 0;">CREATIVITY</span> </span>  <span class="w"><span style="--d: 1;">FIRST.</span> </span>  <span class="w"><span style="--d: 2;">TECHNOLOGY</span> </span>  <span class="w"><span style="--d: 3;">WHEN</span> </span>  <span class="w"><span style="--d: 4;">IT</span> </span>  <span class="w"><span style="--d: 5;">ADDS</span> </span>  <span class="w"><span style="--d: 6;">VALUE.</span> </span> </h1></div></section><figure class="np-hero rv"><img src="/media/work/aim-hero.webp?v=76a0e2be" alt="CREATIVITY FIRST. TECHNOLOGY WHEN IT ADDS VALUE." style="aspect-ratio:1080 / 1350" loading="lazy" decoding="async"></figure><section class="wrap np"><div class="grid"><div class="np-copy"><p class="lead rv">We love technology. We just don’t think it should lead. Ideas come first, and the tools follow when they genuinely make something better.</p><p class="body rv">Through our technology partnership with AiM, Automated Intelligence Models, we introduce intelligent systems, AI and automation for our clients where there is clear commercial benefit. Not because it’s fashionable. Because it works.</p><p class="body rv">AiM puts it simply: we make businesses work better. AI solutions that work, built not in months, not in weeks, but in days. Intelligence with intent.</p></div></div><div class="np-grid"><figure class="rv"><img src="/media/work/sel/aim-04.webp?v=765877b8" alt="CREATIVITY FIRST. TECHNOLOGY WHEN IT ADDS VALUE." style="aspect-ratio:1080 / 1350" loading="lazy" decoding="async"></figure><figure class="rv"><img src="/media/work/aim-2.webp?v=b4950ac1" alt="CREATIVITY FIRST. TECHNOLOGY WHEN IT ADDS VALUE." style="aspect-ratio:1920 / 1080" loading="lazy" decoding="async"></figure><figure class="rv"><img src="/media/work/sel/aim-06.webp?v=d3151bcf" alt="CREATIVITY FIRST. TECHNOLOGY WHEN IT ADDS VALUE." style="aspect-ratio:1080 / 1350" loading="lazy" decoding="async"></figure></div><div class="cs-link np-links"><a class="tl" href="/work/aim/"><span>See the AiM | Automated Intelligence Models case study</span><i>→</i></a></div></section></main>
+<main id="main"><section class="ph wrap"><div class="cs-meta"><div><span class="dim">Date</span><span class="post-date">Sep 2026</span></div><div><span class="dim">Topic</span><span>Technology</span></div></div><div class="grid post"><h1 class="h1" data-split="" data-done="1"><span class="w"><span style="--d: 0;">CREATIVITY</span> </span>  <span class="w"><span style="--d: 1;">FIRST.</span> </span>  <span class="w"><span style="--d: 2;">TECHNOLOGY</span> </span>  <span class="w"><span style="--d: 3;">WHEN</span> </span>  <span class="w"><span style="--d: 4;">IT</span> </span>  <span class="w"><span style="--d: 5;">ADDS</span> </span>  <span class="w"><span style="--d: 6;">VALUE.</span> </span> </h1></div></section><figure class="np-hero rv"><img src="/media/work/aim-hero.webp?v=76a0e2be" alt="CREATIVITY FIRST. TECHNOLOGY WHEN IT ADDS VALUE." style="aspect-ratio:1080 / 1350" loading="lazy" decoding="async"></figure><section class="wrap np"><div class="grid"><div class="np-copy"><p class="lead rv">We love technology. We just don’t think it should lead. Ideas come first, and the tools follow when they genuinely make something better.</p><p class="body rv">Through our technology partnership with AiM, Automated Intelligence Models, we introduce intelligent systems, AI and automation for our clients where there is clear commercial benefit. Not because it’s fashionable. Because it works.</p><p class="body rv">AiM puts it simply: we make businesses work better. AI solutions that work, built not in months, not in weeks, but in days. Intelligence with intent.</p></div></div><div class="np-grid"><figure class="rv" style="--ar:0.8000"><img src="/media/work/sel/aim-04.webp?v=765877b8" alt="CREATIVITY FIRST. TECHNOLOGY WHEN IT ADDS VALUE." style="aspect-ratio:1080 / 1350" loading="lazy" decoding="async"></figure><figure class="rv" style="--ar:1.7778"><img src="/media/work/aim-2.webp?v=b4950ac1" alt="CREATIVITY FIRST. TECHNOLOGY WHEN IT ADDS VALUE." style="aspect-ratio:1920 / 1080" loading="lazy" decoding="async"></figure><figure class="rv" style="--ar:0.8000"><img src="/media/work/sel/aim-06.webp?v=d3151bcf" alt="CREATIVITY FIRST. TECHNOLOGY WHEN IT ADDS VALUE." style="aspect-ratio:1080 / 1350" loading="lazy" decoding="async"></figure></div><div class="cs-link np-links"><a class="tl" href="/work/aim/"><span>See the AiM | Automated Intelligence Models case study</span><i>→</i></a></div></section></main>
 
 <footer class="foot wrap" id="foot">
   <div class="foot-cta">
@@ -4986,11 +4986,11 @@ function vPost(n){
 }
 function postBody(n){
   var im=n.images||[],cw=n['case']?byId(n['case']):null;
-  function pic(x,c){return '<figure class="'+c+'"><img src="'+esc(x.img)+'" alt="'+esc(n.title)+'" style="aspect-ratio:'+esc(x.ar)+'" loading="lazy" decoding="async"></figure>'}
+  function pic(x,c,r){return '<figure class="'+c+'"'+(r?' style="--ar:'+r.toFixed(4)+'"':'')+'><img src="'+esc(x.img)+'" alt="'+esc(n.title)+'" style="aspect-ratio:'+esc(x.ar)+'" loading="lazy" decoding="async"></figure>'}
   return (im[0]?pic(im[0],'np-hero rv'):'')+
     '<section class="wrap np"><div class="grid"><div class="np-copy">'+n.text.map(function(t,i){return '<p class="'+(i?'body':'lead')+' rv">'+esc(t)+'</p>'}).join('')+'</div></div>'+
     (n.quote?'<figure class="cs-q'+qLong(n.quote)+'">'+qBlock(n.quote)+'<figcaption class="rv"><span>'+esc(n.quote.name)+'</span><span class="dim">'+esc(n.quote.role)+'</span></figcaption></figure>':'')+
-    (im.length>1?'<div class="np-grid">'+im.slice(1).map(function(x){return pic(x,'rv')}).join('')+'</div>':'')+
+    (im.length>1?'<div class="np-grid">'+im.slice(1).map(function(x){return pic(x,'rv',ratio(x.ar))}).join('')+'</div>':'')+
     (cw||n.link?'<div class="cs-link np-links">'+(n.link?'<a class="tl" href="'+esc(n.link.href)+'"><span>'+esc(n.link.label)+'</span><i>→</i></a>':'')+(cw?'<a class="tl" href="#'+esc(cw.id)+'"><span>See the '+esc(nice(cw.client))+' case study</span><i>→</i></a>':'')+'</div>':'')+'</section>';
 }
 function socRow(cls){var L=S.social||[];if(!L.length)return '';return '<div class="soc '+cls+'"><span class="lab dim">Follow</span><span class="soc-l">'+L.map(function(x){return '<a class="tl" href="'+esc(x.url)+'" target="_blank" rel="noopener me"><span>'+esc(x.label)+'</span><i>↗</i></a>'}).join('')+'</span></div>'}
@@ -5142,8 +5142,10 @@ function reveal(root){
   if(!ANIM){els.forEach(function(e){e.classList.add('in')});return}
   $$('[data-split]',root).forEach(function(e){if(!e.dataset.done){split(e);e.dataset.done=1}});
   if(!io)io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:0});
-  els.forEach(function(e){io.observe(e)});
+  els.forEach(function(e){io.observe(e)});RVP=els.slice();
 }
+/* a fast flick can skip past an element before the observer sees it: anything already above the bottom of the screen is shown */
+var RVP=[],rvRaf=0;W.addEventListener('scroll',function(){if(!RVP.length||rvRaf)return;rvRaf=requestAnimationFrame(function(){rvRaf=0;var vh=W.innerHeight;RVP=RVP.filter(function(e){if(e.classList.contains('in')||!e.isConnected)return false;if(e.getBoundingClientRect().top<vh){e.classList.add('in');if(io)io.unobserve(e);return false}return true})})},{passive:true});
 var reelIO=null,reelUser=false;
 function mountReel(){
   var st=$('#stage');if(!st)return;var R=S.hero.reel;
