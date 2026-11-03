@@ -49,6 +49,8 @@ function sentence(list){var s=list.map(plain).join(', ');return s.charAt(0).toUp
   /* hero.navBrand: the words beside the symbol in the top bar. hero.metaBrand:false removes the same line from the row under it */
   if(H2.navBrand){var nb=$('#brand span');if(nb)nb.textContent=tok(H2.navBrand)}
   if(H2.metaBrand===false){var mb=$('.hero-meta>span');if(mb)mb.hidden=true}
+  /* hero.row:false removes the line, intro and button under the wordmark */
+  if(H2.row===false){var hr=$('.hero-row');if(hr)hr.hidden=true}
   /* hero.prepared:false removes the "Prepared for" line */
   if(H2.prepared===false){var pl=$('.hero-meta .live');if(pl)pl.hidden=true}
   /* hero.marquee:false removes the moving line under the pictures. hero.work puts a sentence in its place */

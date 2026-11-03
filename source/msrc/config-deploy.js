@@ -51,6 +51,7 @@ window.PROPOSAL = {
       'We’re thinkers and doers. An independent creative partnership bringing decades of experience, original thinking and exceptional design to ambitious businesses.'
     ],
     prepared: false,
+    row: false,   /* the GREAT IDEAS. GOOD COMPANY. line, the intro and Read the proposal under the wordmark removed (3 Nov 2026) */
     navBrand: 'The Observatory × {short}',
     roundel: false,   /* no rotating OBSERVATORY roundel anywhere on the page */
     wordmark: true,   /* OBSERVATORY in FatFrank at the top and in the footer */
