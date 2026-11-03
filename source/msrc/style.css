@@ -517,3 +517,7 @@ body.lock{overflow:hidden}
 .wy-tl i{font-style:normal;color:var(--accent)}
 .ways+.levels{margin-top:clamp(20px,2.4vw,36px)}
 @media(max-width:800px){.wy-g{grid-template-columns:minmax(0,1fr);row-gap:clamp(40px,8vw,64px)}}
+
+/* the process section sits straight after the flexible terms */
+.proc{padding-top:0}.proc .stg-map:first-child{margin-top:0}
+.ruler-day{min-width:0}

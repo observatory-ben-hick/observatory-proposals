@@ -122,7 +122,7 @@ window.PROPOSAL = {
     focusLabel: 'Our focus',
     getLabel: 'What you get',
     stages: [
-      { num: '01', title: 'DEFINE.', days: 'Days 01–30', sub: 'See the bigger picture.',
+      { num: '01', title: 'DEFINE.', days: 'Start', sub: 'See the bigger picture.',
         body: [
           'Before we create anything, we get to know your business. Where you are, where you want to go, what’s working, what’s missing and what could be possible.',
           'We collaborate on the brief, bringing relevant perspective, commercial understanding and original thinking to execute on the opportunities that matter.'
@@ -135,7 +135,7 @@ window.PROPOSAL = {
           { k: 'Define.', t: 'Establish a clear strategic direction, creative ambition and shared priorities.' }
         ],
         get: 'A deeper understanding of your business, a sharper sense of opportunity and a clear direction for what we create together.' },
-      { num: '02', title: 'CREATE.', days: 'Days 31–60', sub: 'Turn insight into something extraordinary.',
+      { num: '02', title: 'CREATE.', days: 'Middle', sub: 'Turn insight into something extraordinary.',
         body: [
           'With a clear direction, we move from understanding to execution.'
         ],
@@ -147,7 +147,7 @@ window.PROPOSAL = {
           { k: 'Refine.', t: 'Test ideas against the objectives, strengthen the work and agree what moves into production.' }
         ],
         get: 'A distinctive creative direction, a stronger brand proposition and developed ideas ready to become real.' },
-      { num: '03', title: 'ACTIVATE.', days: 'Days 61–90', sub: 'Make it real. Make it matter.',
+      { num: '03', title: 'ACTIVATE.', days: 'End', sub: 'Make it real. Make it matter.',
         body: [
           'From production to launch, we make sure the thinking carries through to every detail.'
         ],
@@ -810,6 +810,10 @@ body.lock{overflow:hidden}
 .wy-tl i{font-style:normal;color:var(--accent)}
 .ways+.levels{margin-top:clamp(20px,2.4vw,36px)}
 @media(max-width:800px){.wy-g{grid-template-columns:minmax(0,1fr);row-gap:clamp(40px,8vw,64px)}}
+
+/* the process section sits straight after the flexible terms */
+.proc{padding-top:0}.proc .stg-map:first-child{margin-top:0}
+.ruler-day{min-width:0}
 </style>
 <script>(function(){var h=document.documentElement;h.classList.add('js');try{if(sessionStorage.getItem('obs-cur')==='1'){h.classList.add('cin');sessionStorage.removeItem('obs-cur')}}catch(e){}try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))h.classList.add('anim')}catch(e){}/* failsafe: if the page script has not finished, show everything as plain content */function bare(){if(!h.classList.contains('ok'))h.classList.remove('anim')}window.addEventListener('error',bare);setTimeout(bare,5000)})();</script>
 <style>html body h1,html body h2,html body h3,html body h4,html body .h1,html body .h2,html body .h3,html body .mega,html body [data-split],html body [data-split] *,html body .w,html body .marq-t,html body .marq-t *,html body a.btn,html body a.btn *,html body .foot-meta a,html body .bos-t,html body .ot-back,html body .ot-back *,html body .wy-cta,html body .wy-cta *{font-weight:700!important}</style>
@@ -907,14 +911,6 @@ body.lock{overflow:hidden}
       <p class="body" id="planBody"></p>
     </div>
   </div>
-  <div class="stg-map" id="stgMap" hidden></div>
-  <div class="ruler" id="ruler" aria-hidden="true">
-    <div class="ruler-day">Day <b class="num" id="dayn">00</b></div>
-    <div class="track" id="track"><div class="ticks"></div><div class="fill" id="rfill"></div><div class="head" id="rhead"></div></div>
-  </div>
-  <div id="months"></div>
-  <div class="grid days-out" id="daysOut" hidden></div>
-  <div class="grid days-end"><p class="small rv" id="planClosing"></p></div>
 </section>
 
 <section class="sec" id="concept" data-sec="concept">
@@ -953,6 +949,18 @@ body.lock{overflow:hidden}
       <p class="lead rv" id="termsClose"></p>
     </div>
   </div>
+</section>
+
+<!-- the process: Define, Create, Activate on one timeline (moved below the flexible terms, 3 Nov 2026) -->
+<section class="wrap sec proc" id="process" data-sec="plan">
+  <div class="stg-map" id="stgMap" hidden></div>
+  <div class="ruler" id="ruler" aria-hidden="true">
+    <div class="ruler-day">Our process<b class="num" id="dayn" hidden>00</b></div>
+    <div class="track" id="track"><div class="ticks"></div><div class="fill" id="rfill"></div><div class="head" id="rhead"></div></div>
+  </div>
+  <div id="months"></div>
+  <div class="grid days-out" id="daysOut" hidden></div>
+  <div class="grid days-end"><p class="small rv" id="planClosing"></p></div>
 </section>
 
 <section class="wrap sec" id="pedigree" data-sec="pedigree">

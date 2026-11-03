@@ -100,7 +100,7 @@ window.PROPOSAL = {
     focusLabel: 'Our focus',
     getLabel: 'What you get',
     stages: [
-      { num: '01', title: 'DEFINE.', days: 'Days 01–30', sub: 'See the bigger picture.',
+      { num: '01', title: 'DEFINE.', days: 'Start', sub: 'See the bigger picture.',
         body: [
           'Before we create anything, we get to know your business. Where you are, where you want to go, what’s working, what’s missing and what could be possible.',
           'We collaborate on the brief, bringing relevant perspective, commercial understanding and original thinking to execute on the opportunities that matter.'
@@ -113,7 +113,7 @@ window.PROPOSAL = {
           { k: 'Define.', t: 'Establish a clear strategic direction, creative ambition and shared priorities.' }
         ],
         get: 'A deeper understanding of your business, a sharper sense of opportunity and a clear direction for what we create together.' },
-      { num: '02', title: 'CREATE.', days: 'Days 31–60', sub: 'Turn insight into something extraordinary.',
+      { num: '02', title: 'CREATE.', days: 'Middle', sub: 'Turn insight into something extraordinary.',
         body: [
           'With a clear direction, we move from understanding to execution.'
         ],
@@ -125,7 +125,7 @@ window.PROPOSAL = {
           { k: 'Refine.', t: 'Test ideas against the objectives, strengthen the work and agree what moves into production.' }
         ],
         get: 'A distinctive creative direction, a stronger brand proposition and developed ideas ready to become real.' },
-      { num: '03', title: 'ACTIVATE.', days: 'Days 61–90', sub: 'Make it real. Make it matter.',
+      { num: '03', title: 'ACTIVATE.', days: 'End', sub: 'Make it real. Make it matter.',
         body: [
           'From production to launch, we make sure the thinking carries through to every detail.'
         ],
