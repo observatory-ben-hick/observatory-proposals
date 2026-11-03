@@ -4989,7 +4989,7 @@ function postBody(n){
   function pic(x,c){return '<figure class="'+c+'"><img src="'+esc(x.img)+'" alt="'+esc(n.title)+'" style="aspect-ratio:'+esc(x.ar)+'" loading="lazy" decoding="async"></figure>'}
   return (im[0]?pic(im[0],'np-hero rv'):'')+
     '<section class="wrap np"><div class="grid"><div class="np-copy">'+n.text.map(function(t,i){return '<p class="'+(i?'body':'lead')+' rv">'+esc(t)+'</p>'}).join('')+'</div></div>'+
-    (n.quote?'<figure class="cs-q'+qLong(w.quote)+'"><blockquote class="rv">“'+esc(n.quote.q)+'”</blockquote><figcaption class="rv"><span>'+esc(n.quote.name)+'</span><span class="dim">'+esc(n.quote.role)+'</span></figcaption></figure>':'')+
+    (n.quote?'<figure class="cs-q'+qLong(n.quote)+'">'+qBlock(n.quote)+'<figcaption class="rv"><span>'+esc(n.quote.name)+'</span><span class="dim">'+esc(n.quote.role)+'</span></figcaption></figure>':'')+
     (im.length>1?'<div class="np-grid">'+im.slice(1).map(function(x){return pic(x,'rv')}).join('')+'</div>':'')+
     (cw||n.link?'<div class="cs-link np-links">'+(n.link?'<a class="tl" href="'+esc(n.link.href)+'"><span>'+esc(n.link.label)+'</span><i>→</i></a>':'')+(cw?'<a class="tl" href="#'+esc(cw.id)+'"><span>See the '+esc(nice(cw.client))+' case study</span><i>→</i></a>':'')+'</div>':'')+'</section>';
 }
