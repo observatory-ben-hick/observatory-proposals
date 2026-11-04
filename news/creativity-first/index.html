@@ -3451,7 +3451,7 @@ window.SITE = {
     "statement": "MAKING GOOD MOVES SINCE 1928.",
     "discipline": "Brand Strategy · Positioning · Visual Identity · Brand Storytelling · Signage · Advertising · Film",
     "year": "2021",
-    "film": {"src": "/media/work/mc-film.mp4?v=3a78ee99", "poster": "/media/work/mc-film.webp?v=72b2109a", "ar": "1920 / 1080", "silent": true},
+    "film": {"src": "/media/work/mc-film.mp4?v=3a78ee99", "sm": "/media/work/mc-film.sm.mp4?v=a5eaa1e8", "poster": "/media/work/mc-film.webp?v=72b2109a", "ar": "1920 / 1080", "silent": true},
     "masonry": true,
     "quote": {"q": "Feedback from the senior team this morning was excellent, and everyone is super pleased with the outcome. It feels absolutely spot on and something to be very proud of.", "name": "Oliver Mourant", "role": "Partner, Rialto"},
     "outcome": "A complete rebrand uniting over 40 property professionals under one identity. From strategic positioning and brand storytelling to signage, advertising and a dynamic design toolkit, we gave Jersey’s largest property group a fresh face and a united voice.",
@@ -4997,7 +4997,7 @@ function vCase(w){
     (w.quote&&!w.quoteUp?'<figure class="cs-q'+qLong(w.quote)+'">'+qBlock(w.quote)+'<figcaption class="rv"><span>'+esc(w.quote.name)+'</span><span class="dim">'+esc(w.quote.role)+'</span></figcaption></figure>':'')+
     (w.beforeFilm?'<figure class="cs-bf"><div class="ap">'+img(w.beforeFilm.img,w.client+'. '+w.beforeFilm.cap)+'</div><figcaption class="rv">'+esc(w.beforeFilm.cap)+'</figcaption></figure>':'')+
     (w.film&&w.film.src?'<div class="cs-film">'+(w.film.silent?'':'<div class="cs-film-h"><span>'+esc(w.film.label!=null?w.film.label:'The film')+'</span><button class="cs-snd" id="csSnd" type="button">Sound on</button></div>')+
-      '<div class="cs-fv"'+(w.film.ar?' style="aspect-ratio:'+esc(w.film.ar)+'"':'')+'><video muted loop playsinline webkit-playsinline preload="none" poster="'+esc(w.film.poster||'')+'" data-src="'+esc(w.film.src)+'"></video><button class="stage-play" id="csPlay" hidden aria-label="Play the film"><span>Play</span></button></div></div>':'')+
+      '<div class="cs-fv"'+(w.film.ar?' style="aspect-ratio:'+esc(w.film.ar)+'"':'')+'><video muted loop playsinline webkit-playsinline preload="none" poster="'+esc(w.film.poster||'')+'" data-src="'+esc(w.film.src)+'"'+(w.film.sm?' data-sm="'+esc(w.film.sm)+'"':'')+'></video><button class="stage-play" id="csPlay" hidden aria-label="Play the film"><span>Play</span></button></div></div>':'')+
     (w.footImg?'<figure class="cs-foot'+(w.footImg.edge?' edge':'')+(w.footImg.full?' full':'')+'"><img src="'+esc(w.footImg.img)+'" alt="'+esc(nice(w.client))+'" loading="lazy" style="aspect-ratio:'+esc(w.footImg.ar)+'"></figure>':'')+
     (w.link?'<div class="cs-link wrap"><a class="tl" href="'+esc(w.link.url)+'" target="_blank" rel="noopener"><span>'+esc(w.link.label)+'</span><i>↗</i></a></div>':'')+
     /* links: a row of footer links; mail links open the email app, web links open in a new tab */
@@ -5081,7 +5081,7 @@ function mountFilm(){
   if(filmIO){filmIO.disconnect();filmIO=null}
   var v=$('.cs-fv video');if(!v)return;var btn=$('#csPlay'),snd=$('#csSnd'),user=false;
   v.muted=true;v.defaultMuted=true;v.playsInline=true;v.loop=true;
-  function play(){if(still&&!user){btn.hidden=false;return}if(!v.getAttribute('src')){v.src=v.getAttribute('data-src');v.preload='auto'}var p;try{p=v.play()}catch(e){}if(p&&p.then)p.then(function(){btn.hidden=true},function(){btn.hidden=false})}
+  function play(){if(still&&!user){btn.hidden=false;return}if(!v.getAttribute('src')){var sm=v.getAttribute('data-sm'),cn=navigator.connection||{};v.src=(sm&&(W.innerWidth*(W.devicePixelRatio||1)<=1500||cn.saveData||/2g|3g/.test(cn.effectiveType||'')))?sm:v.getAttribute('data-src');v.preload='auto'}var p;try{p=v.play()}catch(e){}if(p&&p.then)p.then(function(){btn.hidden=true},function(){btn.hidden=false})}
   btn.addEventListener('click',function(){user=true;play()});
   if(snd)snd.addEventListener('click',function(){v.muted=!v.muted;snd.textContent=v.muted?'Sound on':'Sound off';if(!v.muted){user=true;play()}});
   if('IntersectionObserver' in W){filmIO=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)play();else{try{v.pause()}catch(x){}}})},{threshold:.25});filmIO.observe(v.parentNode)}else play();
