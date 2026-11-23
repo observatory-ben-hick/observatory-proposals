@@ -2,6 +2,7 @@
 source/deploybuild/
 source/newbiz/
 source/master/
+source/jetbuild/
 source/font/*.woff2
 source/font/*.otf
 *.ttf

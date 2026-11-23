@@ -22,6 +22,18 @@ www.theobservatory.je/greatideas.
 - Its film and poster come from that artifact's own asset store (the `/_blob/...` ids in the config).
 - Artifacts cannot load Adobe Fonts, so the preview embeds Neue Haas Grotesk Display 65 Medium. That font file is not kept in this public repo: put `nhgd65.woff2` in `font/` before building, or the preview falls back to Helvetica. The live site uses the Adobe Fonts kit `lud1fnf` and needs no font file.
 
+## The JET proposal: www.theobservatory.je/jet
+- `jet/copy7.json` holds every word on the page. `jet/jet7_post.py` fills the master config (`msrc/config-jet7.js`), then adds the numbered sections, the first look, the moving timeline and their styles and scripts to the master build.
+- The live page is not linked from the site and stays out of search (noindex, robots.txt). Its images and films live in `../jet/assets`. The artifact preview is the "The Observatory × JET" artifact in Ben's claude.ai artifacts: change both together.
+- Rebuild, from this folder:
+  1. `python3 -I jet/jet7_post.py config jet/copy7.json jet/config-jet7.tpl.js msrc/config-jet7.js`
+  2. `python3 -I tools/build_master.py "$PWD" config-jet7.js jetbuild "The Observatory × JET" "A creative and commercial partnership proposal for Jersey Energy Technologies, from The Observatory."` (put `nhgd65.woff2` in `font/` first when building the artifact preview)
+  3. `python3 -I jet/jet7_post.py post jet/copy7.json jetbuild/index.html jetbuild/jet.html`
+  4. Live page: `python3 -I jet/deploy_jet.py jetbuild/jet.html jetbuild/assets:../jet/assets .. ../jet/assets/og-jet.jpg`, then commit and push. It swaps the built-in font for the Adobe Fonts kit and applies the website's type rule.
+  5. Artifact preview: publish `jetbuild/jet.html` to that artifact, with the files from `jetbuild/assets` and `../jet/assets` under `assets/`.
+- Checks: `python3 jet/verify7.py <page.html> jet/copy7.json` (every word, the nav, every width, the timeline) and `python3 jet/media7.py <url>` (frames, images, films and the timeline on every device; serve the page over http first).
+- The share image `../jet/assets/og-jet.jpg` comes from `node jet/og-jet.js "$PWD"` (needs the font in `font/`), screenshotted at 1200 × 630.
+
 ## Rules
 - Type: FatFrank for the OBSERVATORY wordmark (as outlines), Neue Haas Grotesk Display for everything else, never bold. Headlines in caps, body in sentence case. No em dashes in body copy.
 - Colours: #F1EDE5 background, #242424 ink, #FF3400 accent.
