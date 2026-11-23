@@ -17,7 +17,7 @@ window.PROPOSAL = {
   },
 
   labels: {
-    kind: "For discussion with Simon and Chris",
+    kind: "Presented to Simon Humphreys",
     est: ['Est', '2005'],
     opportunity: '',
     offer: 'What you get',
