@@ -257,8 +257,14 @@ def slot(i, x):
         srcset = (' srcset="%s 1400w, %s %dw" sizes="(max-width: 800px) 100vw, 94vw"' % (a(x['src_small']), a(x['src']), x['w'])) if x.get('src_small') else ''
         chip = x.get('note_style') == 'chip'
         note = '<figcaption class="j-ph-note%s">%s</figcaption>' % (' chip' if chip else '', e(x['note'])) if x.get('note') else ''
-        return ('<figure class="j-ph has-img%s rv" style="--d:%d;--pt:%.4f%%" data-ph="%s"><img src="%s"%s width="%d" height="%d" alt="%s">%s</figure>'
-                % (' light' if chip else '', i % 4, pad(x.get('ar', '4/3')), a(x['n']), a(x['src']), srcset, x['w'], x['h'], a(x['alt']), note))
+        # a daytime version of the same frame, laid over the night scene and faded out as the reader scrolls past
+        day = ''
+        if x.get('day'):
+            d = x['day']
+            dset = (' srcset="%s 1400w, %s %dw" sizes="(max-width: 800px) 100vw, 94vw"' % (a(d['src_small']), a(d['src']), x['w'])) if d.get('src_small') else ''
+            day = '<img class="j-day" src="%s"%s width="%d" height="%d" alt="" aria-hidden="true" decoding="async">' % (a(d['src']), dset, x['w'], x['h'])
+        return ('<figure class="j-ph has-img%s%s rv" style="--d:%d;--pt:%.4f%%" data-ph="%s"><img src="%s"%s width="%d" height="%d" alt="%s">%s%s</figure>'
+                % (' light' if chip else '', ' j-dn' if day else '', i % 4, pad(x.get('ar', '4/3')), a(x['n']), a(x['src']), srcset, x['w'], x['h'], a(x['alt']), day, note))
     return ('<figure class="j-ph rv" style="--d:%d" data-ph="%s" role="img" aria-label="%s"><span class="j-ph-n num" aria-hidden="true">%s</span>'
             '<figcaption class="j-ph-c" aria-hidden="true">%s</figcaption></figure>'
             % (i % 4, a(x['n']), a('Image %s, %s, to follow' % (x['n'], x['label'].lower())), e(x['n']), e(x['label'])))
@@ -367,6 +373,9 @@ css = '''
 .j-ph-n{position:absolute;left:clamp(12px,1.2vw,20px);top:clamp(10px,1vw,16px);font-family:var(--display);font-size:clamp(30px,3.4vw,58px);line-height:1;letter-spacing:-.02em;color:rgba(36,36,36,.5)}
 .j-ph-c{position:absolute;left:clamp(12px,1.2vw,20px);bottom:clamp(10px,1vw,16px);font-size:12px;line-height:1.2;color:rgba(36,36,36,.58)}
 .j-ph img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block}
+/* the polytunnel: by day as it comes into view, the night scene by the time it passes the middle of the screen. Without scripts or with less motion, night */
+.j-dn .j-day{opacity:0;pointer-events:none}
+.dn-live .j-dn .j-day{will-change:opacity}
 .j-ph.has-img .j-ph-n,.j-ph.has-img .j-ph-c{display:none}
 /* visual direction: references in justified rows, every frame kept whole, the film leading at full width */
 .j-refs{display:flex;flex-direction:column;gap:calc(var(--g)*1.6)}
@@ -503,6 +512,28 @@ script = '''<script>
     bars.forEach(function(b){var q=cl((t-b.s)/Math.max(1e-6,b.e-b.s));if(Math.abs(q-b.q)>.0005){b.q=q;var cp='inset(0 '+((1-q)*100).toFixed(2)+'% 0 0)';b.i.style.webkitClipPath=cp;b.i.style.clipPath=cp}});
     dots.forEach(function(o){o.el.classList.toggle('on',t>=o.s)});
     spans.forEach(function(o){o.el.classList.toggle('is-next',t<o.s);o.el.classList.toggle('is-on',t>=o.s&&t<o.e);o.el.classList.toggle('is-done',t>=o.e)});
+  }
+  function on(){if(!ticking){ticking=true;requestAnimationFrame(frame)}}
+  W.addEventListener('scroll',on,{passive:true});W.addEventListener('resize',on);frame();
+})();
+/* JET v7: the Arabian polytunnel turns from day to night as the reader scrolls past it */
+(function(){
+  var D=document,W=window,H=D.documentElement;
+  var items=[].slice.call(D.querySelectorAll('.j-dn')).map(function(f){return {f:f,day:f.querySelector('.j-day'),q:-1}});
+  if(!items.length||!H.classList.contains('anim'))return;
+  H.classList.add('dn-live');
+  var ticking=false;
+  function cl(v){return v<0?0:v>1?1:v}
+  function frame(){
+    ticking=false;
+    var vh=W.innerHeight||H.clientHeight,still=!H.classList.contains('anim');
+    items.forEach(function(o){
+      if(still){if(o.q!==-2){o.q=-2;o.day.style.opacity=''}return}
+      /* day until the picture is in view, night once its middle is just above the centre of the screen, over at least 40% of a screen of scrolling */
+      var r=o.f.getBoundingClientRect(),to=vh*.42-r.height/2,from=Math.max(vh-r.height,to+vh*.4),
+          t=cl((from-r.top)/Math.max(1,from-to)),q=1-t*t*(3-2*t);
+      if(Math.abs(q-o.q)>.002){o.q=q;o.day.style.opacity=q.toFixed(3)}
+    });
   }
   function on(){if(!ticking){ticking=true;requestAnimationFrame(frame)}}
   W.addEventListener('scroll',on,{passive:true});W.addEventListener('resize',on);frame();

@@ -31,7 +31,8 @@ www.theobservatory.je/greatideas.
   3. `python3 -I jet/jet7_post.py post jet/copy7.json jetbuild/index.html jetbuild/jet.html`
   4. Live page: `python3 -I jet/deploy_jet.py jetbuild/jet.html jetbuild/assets:../jet/assets .. ../jet/assets/og-jet.jpg`, then commit and push. It swaps the built-in font for the Adobe Fonts kit and applies the website's type rule.
   5. Artifact preview: publish `jetbuild/jet.html` to that artifact, with the files from `jetbuild/assets` and `../jet/assets` under `assets/`.
-- Checks: `python3 jet/verify7.py <page.html> jet/copy7.json` (every word, the nav, every width, the timeline) and `python3 jet/media7.py <url>` (frames, images, films and the timeline on every device; serve the page over http first).
+- Checks: `python3 jet/verify7.py <page.html> jet/copy7.json` (every word, the nav, every width, the timeline) and `python3 jet/media7.py <url>` (frames, images, films and the timeline on every device; serve the page over http first), and `python3 jet/daynight_check.py <url> <folder>` (the polytunnel's day to night scroll on every device).
+- The polytunnel (01) turns from day to night as the reader scrolls: `jet-polytunnel-day.jpg` is a daytime version of the night scene made with Higgsfield (GPT Image 2.6, the night image as reference) and aligned to it to within a pixel. Set by `day` on slot 01 in `jet/copy7.json`.
 - The share image `../jet/assets/og-jet.jpg` comes from `node jet/og-jet.js "$PWD"` (needs the font in `font/`), screenshotted at 1200 × 630.
 
 ## Rules
