@@ -216,9 +216,9 @@
        ]
       },
       {
-       "h": "VISUAL DIRECTION",
+       "h": "EARLY R&D",
        "layout": "refs",
-       "t": "References for the look and feel, from the work of other studios.",
+       "t": "Early stage art direction to establish the tone.",
        "families": [
         [
          [
@@ -270,7 +270,7 @@
        "slots": [
         {
          "n": "03",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "video": true,
          "src": "assets/jet-ref-07.mp4",
          "poster": "assets/jet-ref-07-poster.jpg",
@@ -281,7 +281,7 @@
         },
         {
          "n": "04",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-08.jpg",
          "w": 2000,
          "h": 713,
@@ -291,7 +291,7 @@
         },
         {
          "n": "05",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-12.jpg",
          "w": 1404,
          "h": 776,
@@ -301,7 +301,7 @@
         },
         {
          "n": "06",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-09.jpg",
          "w": 1856,
          "h": 1404,
@@ -311,7 +311,7 @@
         },
         {
          "n": "07",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-10.jpg",
          "w": 2000,
          "h": 1186,
@@ -321,7 +321,7 @@
         },
         {
          "n": "08",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-11.jpg",
          "w": 2000,
          "h": 1078,
@@ -331,7 +331,7 @@
         },
         {
          "n": "09",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-13.jpg",
          "w": 842,
          "h": 596,
@@ -340,7 +340,7 @@
         },
         {
          "n": "10",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "video": true,
          "src": "assets/jet-ref-reel.mp4",
          "poster": "assets/jet-ref-reel-poster.jpg",
@@ -351,7 +351,7 @@
         },
         {
          "n": "11",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-14.jpg",
          "w": 660,
          "h": 1216,
@@ -360,7 +360,7 @@
         },
         {
          "n": "12",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-15.jpg",
          "w": 2000,
          "h": 1112,
@@ -370,7 +370,7 @@
         },
         {
          "n": "13",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-16.jpg",
          "w": 2000,
          "h": 1073,
@@ -380,7 +380,7 @@
         },
         {
          "n": "14",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-17.jpg",
          "w": 2000,
          "h": 1078,
@@ -390,7 +390,7 @@
         },
         {
          "n": "15",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-18.jpg",
          "w": 2000,
          "h": 1084,
@@ -400,7 +400,7 @@
         },
         {
          "n": "16",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-19.jpg",
          "w": 2000,
          "h": 1214,
@@ -410,7 +410,7 @@
         },
         {
          "n": "17",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-20.jpg",
          "w": 1290,
          "h": 1490,
@@ -420,7 +420,7 @@
         },
         {
          "n": "18",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-21.jpg",
          "w": 2000,
          "h": 1232,
@@ -430,7 +430,7 @@
         },
         {
          "n": "19",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-22.jpg",
          "w": 2000,
          "h": 1183,
@@ -440,7 +440,7 @@
         },
         {
          "n": "20",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-23.jpg",
          "w": 2000,
          "h": 1129,
@@ -450,7 +450,7 @@
         },
         {
          "n": "21",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-24.jpg",
          "w": 2000,
          "h": 1051,
@@ -460,7 +460,7 @@
         },
         {
          "n": "22",
-         "label": "Visual direction",
+         "label": "Early R&D",
          "src": "assets/jet-ref-25.jpg",
          "w": 2000,
          "h": 1216,
