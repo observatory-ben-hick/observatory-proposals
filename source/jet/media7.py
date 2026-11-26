@@ -34,9 +34,9 @@ def walk(pg, sel='#look'):
     pg.wait_for_timeout(900)
 
 
-def films(pg, k_list=(0, 1), wait=1800):
+def films(pg, k_list=None, wait=1800):
     out = []
-    for k in k_list:
+    for k in (k_list if k_list is not None else range(pg.evaluate("document.querySelectorAll('video.j-vid').length"))):
         pg.evaluate("k => document.querySelectorAll('video.j-vid')[k].scrollIntoView({block: 'center'})", k)
         pg.wait_for_timeout(wait)
         out.append(pg.evaluate("k => { const v = document.querySelectorAll('video.j-vid')[k]; return (v.paused ? 'paused' : 'playing') + (v.controls ? '+controls' : '') + ' t=' + v.currentTime.toFixed(1) }", k))
@@ -68,7 +68,7 @@ def run(b, label, ctx_args, init=None, click=False):
     if click:
         pg.mouse.click(5, 300)
         pg.wait_for_timeout(1500)
-        f.append('after a tap: ' + pg.evaluate("() => { const v = document.querySelectorAll('video.j-vid')[1]; return v.paused ? 'paused' : 'playing' }"))
+        f.append('after a tap: ' + pg.evaluate("() => { const vs = document.querySelectorAll('video.j-vid'), v = vs[vs.length - 1]; return v.paused ? 'paused' : 'playing' }"))
     t = timeline(pg)
     ok = not probe['badFrames'] and not probe['notLoaded'] and not probe['hidden'] and probe['sw'] <= probe['cw'] and not errs
     print('%-34s %s | frames %d, images %d loaded %d | polytunnel %s | films %s | timeline %s | %s' % (

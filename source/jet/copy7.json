@@ -192,7 +192,11 @@
          "w": 2400,
          "h": 1018,
          "ar": "3168/1344",
-         "alt": "Early stage visual of the Arabian polytunnel, turning from day to night: a polytunnel in a desert landscape inside a greenhouse, with crops in raised beds, visitors and a live energy display.", "day": {"src": "assets/jet-polytunnel-day.jpg", "src_small": "assets/jet-polytunnel-day-1400.jpg"},
+         "alt": "Early stage visual of the Arabian polytunnel, turning from day to night: a polytunnel in a desert landscape inside a greenhouse, with crops in raised beds, visitors and a live energy display.",
+         "day": {
+          "src": "assets/jet-polytunnel-day.jpg",
+          "src_small": "assets/jet-polytunnel-day-1400.jpg"
+         },
          "note": "Early stage visual for discussion"
         }
        ]
@@ -236,34 +240,37 @@
         ],
         [
          [
-          "09",
+          "09"
+         ],
+         [
           "10",
-          "11"
+          "11",
+          "12"
          ]
         ],
         [
          [
-          "12",
-          "13"
+          "13",
+          "14"
          ],
          [
-          "14",
-          "15"
+          "15",
+          "16"
          ]
         ],
         [
          [
-          "16",
           "17",
-          "18"
+          "18",
+          "19"
          ],
          [
-          "19",
-          "20"
+          "20",
+          "21"
          ],
          [
-          "21",
-          "22"
+          "22",
+          "23"
          ]
         ]
        ],
@@ -332,6 +339,17 @@
         {
          "n": "09",
          "label": "Early R&D",
+         "video": true,
+         "src": "assets/jet-ref-industrial.mp4",
+         "poster": "assets/jet-ref-industrial-poster.jpg",
+         "w": 1920,
+         "h": 1080,
+         "alt": "Reference film: an industrial brand film, from molten rock and metal to machinery coming together and a glowing heat exchanger",
+         "desc": ""
+        },
+        {
+         "n": "10",
+         "label": "Early R&D",
          "src": "assets/jet-ref-13.jpg",
          "w": 842,
          "h": 596,
@@ -339,7 +357,7 @@
          "desc": ""
         },
         {
-         "n": "10",
+         "n": "11",
          "label": "Early R&D",
          "video": true,
          "src": "assets/jet-ref-reel.mp4",
@@ -350,7 +368,7 @@
          "desc": ""
         },
         {
-         "n": "11",
+         "n": "12",
          "label": "Early R&D",
          "src": "assets/jet-ref-14.jpg",
          "w": 660,
@@ -359,7 +377,7 @@
          "desc": ""
         },
         {
-         "n": "12",
+         "n": "13",
          "label": "Early R&D",
          "src": "assets/jet-ref-15.jpg",
          "w": 2000,
@@ -369,7 +387,7 @@
          "src_small": "assets/jet-ref-15-1000.jpg"
         },
         {
-         "n": "13",
+         "n": "14",
          "label": "Early R&D",
          "src": "assets/jet-ref-16.jpg",
          "w": 2000,
@@ -379,7 +397,7 @@
          "src_small": "assets/jet-ref-16-1000.jpg"
         },
         {
-         "n": "14",
+         "n": "15",
          "label": "Early R&D",
          "src": "assets/jet-ref-17.jpg",
          "w": 2000,
@@ -389,7 +407,7 @@
          "src_small": "assets/jet-ref-17-1000.jpg"
         },
         {
-         "n": "15",
+         "n": "16",
          "label": "Early R&D",
          "src": "assets/jet-ref-18.jpg",
          "w": 2000,
@@ -399,7 +417,7 @@
          "src_small": "assets/jet-ref-18-1000.jpg"
         },
         {
-         "n": "16",
+         "n": "17",
          "label": "Early R&D",
          "src": "assets/jet-ref-19.jpg",
          "w": 2000,
@@ -409,7 +427,7 @@
          "src_small": "assets/jet-ref-19-1000.jpg"
         },
         {
-         "n": "17",
+         "n": "18",
          "label": "Early R&D",
          "src": "assets/jet-ref-20.jpg",
          "w": 1290,
@@ -419,7 +437,7 @@
          "src_small": "assets/jet-ref-20-1000.jpg"
         },
         {
-         "n": "18",
+         "n": "19",
          "label": "Early R&D",
          "src": "assets/jet-ref-21.jpg",
          "w": 2000,
@@ -429,7 +447,7 @@
          "src_small": "assets/jet-ref-21-1000.jpg"
         },
         {
-         "n": "19",
+         "n": "20",
          "label": "Early R&D",
          "src": "assets/jet-ref-22.jpg",
          "w": 2000,
@@ -439,7 +457,7 @@
          "src_small": "assets/jet-ref-22-1000.jpg"
         },
         {
-         "n": "20",
+         "n": "21",
          "label": "Early R&D",
          "src": "assets/jet-ref-23.jpg",
          "w": 2000,
@@ -449,7 +467,7 @@
          "src_small": "assets/jet-ref-23-1000.jpg"
         },
         {
-         "n": "21",
+         "n": "22",
          "label": "Early R&D",
          "src": "assets/jet-ref-24.jpg",
          "w": 2000,
@@ -459,7 +477,7 @@
          "src_small": "assets/jet-ref-24-1000.jpg"
         },
         {
-         "n": "22",
+         "n": "23",
          "label": "Early R&D",
          "src": "assets/jet-ref-25.jpg",
          "w": 2000,
